@@ -16,13 +16,16 @@ const {
 	noIndex = false
 }: LayoutProps = Astro.props;
 
+const siteUrl = Astro.site || Astro.url.origin;
+const canonicalUrl = canonical.startsWith('http') ? canonical : new URL(Astro.url.pathname, siteUrl).href;
+
 const structuredData = {
 	"@context": "https://schema.org",
 	"@type": "Organization",
 	"name": "Google Developer Groups on Campus - University of San Carlos",
 	"description": description,
-	"url": canonical,
-	"logo": `${Astro.url.origin}/gdgoc_logo.svg`,
+	"url": canonicalUrl,
+	"logo": `${siteUrl}/gdgoc_logo.svg`,
 	"sameAs": [
 		"https://developers.google.com/community/gdg",
 		"https://www.facebook.com/gdgoc.sancarlos",
@@ -58,15 +61,15 @@ const structuredData = {
 		<meta name="robots" content={noIndex ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"} />
 		<meta name="googlebot" content={noIndex ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"} />
 		
-		<link rel="canonical" href={canonical} />
+		<link rel="canonical" href={canonicalUrl} />
 		
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="GDGoC USC" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
-		<meta property="og:image" content={new URL(ogImage, Astro.url.origin).href} />
+		<meta property="og:image" content={new URL(ogImage, siteUrl).href} />
 		<meta property="og:image:alt" content={`${title} - ${description}`} />
-		<meta property="og:url" content={canonical} />
+		<meta property="og:url" content={canonicalUrl} />
 		<meta property="og:locale" content="en_US" />
 		
 		<meta name="twitter:card" content="summary_large_image" />
@@ -74,7 +77,7 @@ const structuredData = {
 		<meta name="twitter:creator" content={twitterCreator} />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content={new URL(ogImage, Astro.url.origin).href} />
+		<meta name="twitter:image" content={new URL(ogImage, siteUrl).href} />
 		<meta name="twitter:image:alt" content={`${title} - ${description}`} />
 		
 		<meta name="format-detection" content="telephone=no" />
