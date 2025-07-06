@@ -1,0 +1,94 @@
+---
+import '../styles/global.css';
+import '@fontsource-variable/manrope';
+import type { LayoutProps } from '../config/layout.types';
+
+const { 
+	title = "GDGoC - University of San Carlos", 
+	description = "Google Developer Groups on Campus at University of San Carlos",
+	keywords = "Google Developer Groups, GDG, USC, University of San Carlos, programming, technology, web development, mobile development, cloud computing, AI, machine learning",
+	author = "GDGoC USC",
+	canonical = Astro.url.href,
+	ogImage = "/gdgoc_logo.svg",
+	twitterSite = "@gdgoc_usc",
+	twitterCreator = "@gdgoc_usc",
+	noIndex = false
+}: LayoutProps = Astro.props;
+
+const structuredData = {
+	"@context": "https://schema.org",
+	"@type": "Organization",
+	"name": "Google Developer Groups on Campus - University of San Carlos",
+	"description": description,
+	"url": canonical,
+	"logo": `${Astro.url.origin}/gdgoc_logo.svg`,
+	"sameAs": [
+		"https://developers.google.com/community/gdg",
+		"https://www.facebook.com/gdgoc.sancarlos",
+		"https://www.instagram.com/gdgoc.sancarlos/"
+	],
+	"address": {
+		"@type": "PostalAddress",
+		"addressCountry": "Philippines",
+		"addressLocality": "Cebu City"
+	}
+};
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		
+		<link rel="icon" type="image/svg+xml" href="/gdgoc_logo.svg" />
+		<link rel="apple-touch-icon" href="/gdgoc_logo.svg" />
+		
+		<meta name="theme-color" content="#4285f4" />
+		<meta name="msapplication-TileColor" content="#4285f4" />
+		
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords} />
+		<meta name="author" content={author} />
+		<meta name="robots" content={noIndex ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"} />
+		<meta name="googlebot" content={noIndex ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"} />
+		
+		<link rel="canonical" href={canonical} />
+		
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="GDGoC USC" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(ogImage, Astro.url.origin).href} />
+		<meta property="og:image:alt" content={`${title} - ${description}`} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:locale" content="en_US" />
+		
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content={twitterSite} />
+		<meta name="twitter:creator" content={twitterCreator} />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={new URL(ogImage, Astro.url.origin).href} />
+		<meta name="twitter:image:alt" content={`${title} - ${description}`} />
+		
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+		<meta name="apple-mobile-web-app-title" content="GDGoC USC" />
+		
+		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+		
+		<title>{title}</title>
+	</head>
+	<body class="antialiased">
+		<div class="min-h-screen w-full">
+			<slot />
+		</div>
+	</body>
+</html>
