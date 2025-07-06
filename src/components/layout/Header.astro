@@ -1,0 +1,118 @@
+---
+import { Image } from "astro:assets";
+import ThemeSwitcher from "../ThemeSwitcher.tsx";
+import { Menu } from "lucide-react";
+---
+
+<!-- bg-[url('/gdgoc_bg.svg')] bg-cover bg-center bg-no-repeat -->
+<header class="fixed top-0 left-0 right-0 z-50 border-b border-gray-200 dark:border-gray-800 backdrop-blur-md bg-white/80 dark:bg-gray-900/80">
+  <div class="px-4 sm:px-6 lg:px-8 w-full">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center">
+        <a href="/" class="flex items-center space-x-2">
+          <Image
+            src="/gdgoc_logo.svg"
+            alt="GDGoC USC Logo"
+            width={40}
+            height={40}
+            class="w-10 h-10"
+          />
+          <span class="text-xl font-bold text-black dark:text-white">
+            GDGoC USC
+          </span>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center space-x-8">
+        <a
+          href="#about"
+          class="text-gray-700 dark:text-gray-300 hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-primary-blue transition-colors duration-200 font-medium"
+        >
+          About GDGoC
+        </a>
+        <a
+          href="#team"
+          class="text-gray-700 dark:text-gray-300 hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-primary-blue transition-colors duration-200 font-medium"
+        >
+          Meet our Team
+        </a>
+        <a
+          href="#partners"
+          class="text-gray-700 dark:text-gray-300 hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-primary-blue transition-colors duration-200 font-medium"
+        >
+          Our Partners
+        </a>
+        <a
+          href="#events"
+          class="text-gray-700 dark:text-gray-300 hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-primary-blue transition-colors duration-200 font-medium"
+        >
+          Events
+        </a>
+      </nav>
+
+      <div class="flex items-center gap-4">
+        <ThemeSwitcher client:load />
+        
+        <a
+          href="#membership"
+          class="hidden sm:inline-flex px-4 py-2 bg-gdgoc-primary-green hover:bg-gdgoc-primary-green/90 text-white font-medium rounded-full transition-colors duration-200"
+        >
+          Register as a Member
+        </a>
+        
+        <button
+          class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+          aria-label="Open menu"
+          id="mobile-menu-button"
+        >
+          <Menu className="w-6 h-6" />
+        </button>
+      </div>
+    </div>
+
+    <div class="md:hidden hidden" id="mobile-menu">
+      <div class="px-2 pt-2 pb-3 space-y-1 border-t border-gray-200 dark:border-gray-700">
+        <a
+          href="#about"
+          class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium"
+        >
+          About GDGoC
+        </a>
+        <a
+          href="#team"
+          class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium"
+        >
+          Meet our Team
+        </a>
+        <a
+          href="#partners"
+          class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium"
+        >
+          Our Partners
+        </a>
+        <a
+          href="#events"
+          class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium"
+        >
+          Events
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!mobileMenuButton?.contains(event.target as Node) && 
+        !mobileMenu?.contains(event.target as Node)) {
+      mobileMenu?.classList.add('hidden');
+    }
+  });
+</script>
