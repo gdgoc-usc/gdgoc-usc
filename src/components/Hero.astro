@@ -1,0 +1,73 @@
+---
+import { Image } from "astro:assets";
+import { ChevronDown } from "lucide-react";
+---
+
+<section 
+  id="hero" 
+  class="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800"
+  
+>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16 max-w-6xl mx-auto">
+      
+      <div class="flex justify-center lg:justify-start">
+        <div class="relative">
+          <Image
+            src="/gdgoc_logo.svg"
+            alt="Google Developer Groups on Campus USC Logo"
+            width={300}
+            height={300}
+            class="w-64 h-64 lg:w-80 lg:h-80 drop-shadow-lg"
+          />
+        </div>
+      </div>
+
+      <div class="flex flex-col justify-center text-center lg:text-left">
+        <div class="space-y-4">
+          <h1 class="text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
+            Welcome
+          </h1>
+          
+          <h2 class="text-2xl lg:text-3xl font-semibold text-gdgoc-primary-blue dark:text-gdgoc-primary-blue leading-relaxed">
+            Google Developer Groups on Campus
+          </h2>
+          
+          <h3 class="text-xl lg:text-2xl font-medium text-gdgoc-primary-green dark:text-white">
+            University of San Carlos
+          </h3>
+          
+          <div class="pt-8">
+            <button 
+              onclick="scrollToNextSection()"
+              class="group inline-flex items-center gap-3 px-8 py-4 bg-gdgoc-primary-blue hover:bg-blue-700 text-white font-semibold rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+              aria-label="Learn more about GDGoC USC"
+            >
+              <span>Learn More</span>
+              <ChevronDown 
+                className="w-5 h-5 transition-transform duration-300 group-hover:translate-y-1" 
+                client:load 
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<script>
+  function scrollToNextSection() {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  }
+
+  // Make function globally available
+  (window as any).scrollToNextSection = scrollToNextSection;
+</script> 
