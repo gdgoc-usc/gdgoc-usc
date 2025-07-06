@@ -1,51 +1,77 @@
 ---
 import { Image } from "astro:assets";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Code, Users } from "lucide-react";
 ---
 
 <section 
   id="hero" 
-  class="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800"
-  
+  class="relative min-h-screen w-full flex items-center justify-center overflow-hidden"
 >
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16 max-w-6xl mx-auto">
-      
+  <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-green-50 to-yellow-50 dark:from-gray-900 dark:via-gdgoc-primary-blue/10 dark:to-gdgoc-primary-green/10"></div>
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-gdgoc-primary-blue/10 to-gdgoc-primary-green/10 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-32 left-16 w-64 h-64 bg-gradient-to-br from-gdgoc-primary-green/10 to-gdgoc-primary-yellow/10 rounded-full blur-2xl animate-pulse" style="animation-delay: 2s;"></div>
+  </div>
+
+  <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row items-center justify-center gap-12 lg:gap-20 max-w-7xl mx-auto">
       <div class="flex justify-center lg:justify-start">
-        <div class="relative">
-          <Image
-            src="/gdgoc_logo.svg"
-            alt="Google Developer Groups on Campus USC Logo"
-            width={300}
-            height={300}
-            class="w-64 h-64 lg:w-80 lg:h-80 drop-shadow-lg"
-          />
+        <div class="relative group">
+          <div class="absolute inset-0 bg-white/10 dark:bg-white/5 backdrop-blur-xl rounded-3xl border border-white/20 dark:border-white/10 shadow-xl transform group-hover:scale-105 transition-all duration-500"></div>
+          <div class="relative p-8 lg:p-12">
+            <Image
+              src="/gdgoc_pfp.png"
+              alt="Google Developer Groups on Campus USC Logo"
+              width={300}
+              height={300}
+              class="w-64 h-64 lg:w-80 lg:h-80 drop-shadow-2xl transform group-hover:rotate-3 transition-all duration-500"
+            />
+            <div class="absolute -top-4 -right-4 p-3 bg-gdgoc-primary-blue/20 backdrop-blur-sm rounded-2xl border border-white/20">
+              <Code className="w-6 h-6 text-gdgoc-primary-blue dark:text-gdgoc-secondary-blue" />
+            </div>
+            <div class="absolute -bottom-4 -left-4 p-3 bg-gdgoc-primary-green/20 backdrop-blur-sm rounded-2xl border border-white/20">
+              <Users className="w-6 h-6 text-gdgoc-primary-green dark:text-gdgoc-secondary-green" />
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="flex flex-col justify-center text-center lg:text-left">
-        <div class="space-y-4">
-          <h1 class="text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
-            Welcome
-          </h1>
-          
-          <h2 class="text-2xl lg:text-3xl font-semibold text-gdgoc-primary-blue dark:text-gdgoc-primary-blue leading-relaxed">
-            Google Developer Groups on Campus
+        <div class="space-y-6">
+          <h2 class="text-2xl lg:text-5xl font-bold text-black dark:text-white leading-relaxed">
+            Google Developer Groups
+            <span class="block text-xl lg:text-2xl font-medium text-gray-600 dark:text-gray-300 mt-1">
+              on Campus
+            </span>
           </h2>
           
-          <h3 class="text-xl lg:text-2xl font-medium text-gdgoc-primary-green dark:text-white">
-            University of San Carlos
-          </h3>
+          <div class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gdgoc-primary-green/10 to-gdgoc-secondary-green/10 backdrop-blur-sm rounded-full border border-gdgoc-primary-green/30 dark:border-gdgoc-secondary-green/20">
+                <Image
+                src="/usc_logo.svg"
+                alt="USC Logo"
+                width={64}
+                height={64}
+                class="w-8 h-8 lg:w-12 lg:h-12 drop-shadow-2xl transform group-hover:rotate-3 transition-all duration-500"
+            />
+            <h3 class="text-lg lg:text-xl font-semibold bg-gradient-to-t from-gdgoc-primary-green to-gdgoc-secondary-green dark:from-gdgoc-primary-green dark:to-gdgoc-secondary-green bg-clip-text text-transparent">
+              University of San Carlos
+            </h3>
+          </div>
           
-          <div class="pt-8">
+          <p class="text-lg text-gray-600 dark:text-gray-300 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+            Join our community of passionate developers, innovators, and tech enthusiasts building the future together.
+          </p>
+          
+          <div>
             <button 
               onclick="scrollToNextSection()"
-              class="group inline-flex items-center gap-3 px-8 py-4 bg-gdgoc-primary-blue hover:bg-blue-700 text-white font-semibold rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+              class="group relative inline-flex items-center gap-3 px-10 py-5 border-1 border-gdgoc-primary-blue bg-gdgoc-primary-blue text-white hover:bg-transparent hover:text-gdgoc-secondary-blue dark:hover:text-gdgoc-secondary-blue hover:border-gdgoc-primary-blue font-semibold rounded-full transition-all duration-200 transform hover:cursor-pointer overflow-hidden"
               aria-label="Learn more about GDGoC USC"
             >
-              <span>Learn More</span>
+              
+              <span class="relative z-10">Learn More</span>
               <ChevronDown 
-                className="w-5 h-5 transition-transform duration-300 group-hover:translate-y-1" 
+                className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:-rotate-90" 
                 client:load 
               />
             </button>
@@ -68,6 +94,5 @@ import { ChevronDown } from "lucide-react";
     }
   }
 
-  // Make function globally available
   (window as any).scrollToNextSection = scrollToNextSection;
-</script> 
+</script>

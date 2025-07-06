@@ -1,11 +1,12 @@
 ---
 import { Image } from "astro:assets";
 import ThemeSwitcher from "../ThemeSwitcher.tsx";
-import { Menu } from "lucide-react";
+import { Menu, UserPlus } from "lucide-react";
+// import AnnouncementBanner from "../AnnouncementBanner.astro";
 ---
 
 <!-- bg-[url('/gdgoc_bg.svg')] bg-cover bg-center bg-no-repeat -->
-<header class="fixed top-0 left-0 right-0 z-50 border-b border-gray-200 dark:border-gray-800 backdrop-blur-md bg-white/80 dark:bg-gray-900/80">
+<header class="fixed top-0 left-0 right-0 z-50 m-4 rounded-full dark:border-gray-800 backdrop-blur-md bg-white/40 shadow-sm dark:bg-gray-900/80">
   <div class="px-4 sm:px-6 lg:px-8 w-full">
     <div class="flex items-center justify-between h-16">
       <div class="flex items-center">
@@ -17,13 +18,13 @@ import { Menu } from "lucide-react";
             height={40}
             class="w-10 h-10"
           />
-          <span class="text-xl font-bold text-black dark:text-white">
+          <span class="text-xl font-bold bg-gradient-to-r from-gdgoc-primary-green via-gdgoc-primary-yellow to-gdgoc-secondary-green dark:from-white dark:via-gdgoc-secondary-blue dark:to-gdgoc-secondary-green bg-clip-text text-transparent leading-tight">
             GDGoC USC
           </span>
         </a>
       </div>
 
-      <nav class="hidden md:flex items-center space-x-8">
+      <nav class="hidden lg:flex items-center space-x-8">
         <a
           href="#about"
           class="text-gray-700 dark:text-gray-300 hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-primary-blue transition-colors duration-200 font-medium"
@@ -55,13 +56,14 @@ import { Menu } from "lucide-react";
         
         <a
           href="#membership"
-          class="hidden sm:inline-flex px-4 py-2 bg-gdgoc-primary-green hover:bg-gdgoc-primary-green/90 text-white font-medium rounded-full transition-colors duration-200"
+          class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-gdgoc-primary-green hover:bg-gdgoc-primary-green/90 text-white font-medium rounded-full transition-colors duration-200"
         >
-          Register as a Member
+          <UserPlus className="w-5 h-5" />
+          Register
         </a>
         
         <button
-          class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+          class="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
           aria-label="Open menu"
           id="mobile-menu-button"
         >
@@ -70,7 +72,7 @@ import { Menu } from "lucide-react";
       </div>
     </div>
 
-    <div class="md:hidden hidden" id="mobile-menu">
+    <div class="lg:hidden hidden" id="mobile-menu">
       <div class="px-2 pt-2 pb-3 space-y-1 border-t border-gray-200 dark:border-gray-700">
         <a
           href="#about"
@@ -100,6 +102,8 @@ import { Menu } from "lucide-react";
     </div>
   </div>
 </header>
+
+<!-- <AnnouncementBanner /> -->
 
 <script>
   const mobileMenuButton = document.getElementById('mobile-menu-button');
