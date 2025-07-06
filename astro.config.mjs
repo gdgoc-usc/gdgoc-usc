@@ -7,6 +7,9 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://usc.gdgoc.tech',
+  server: {
+    host: true
+  },
   integrations: [react()],
 
   vite: {
