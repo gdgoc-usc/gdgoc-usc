@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope Variable", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  
+  /* GDGoC Brand Colors */
+  --color-gdgoc-primary-blue: #4285f4;
+  --color-gdgoc-secondary-blue: #5e94eb;
+  --color-gdgoc-primary-green: #34a853;
+  --color-gdgoc-secondary-green: #80bc6e;
+  --color-gdgoc-tertiary-green: #d5d581;
+  --color-gdgoc-primary-red: #ea4335;
+  --color-gdgoc-secondary-red: #f28b81;
+  --color-gdgoc-primary-yellow: #fbbc04;
+  --color-gdgoc-primary-orange: #fb893b;
+}
+
+@custom-variant dark (&:is(.dark *));
+
+*, body {
+  font-family: var(--font-sans);
+}
+
+html {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+html {
+  background-color: #ffffff;
+  color: #111827;
+}
+
+html.dark {
+  background-color: #111827;
+  color: #f9fafb;
+}
+
+.container {
+  max-width: 1200px;
+}
