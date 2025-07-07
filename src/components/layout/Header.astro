@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import ThemeSwitcher from "../ThemeSwitcher.tsx";
 import { Menu, UserPlus } from "lucide-react";
+import ShinyText from "../ShinyText";
 // import AnnouncementBanner from "../AnnouncementBanner.astro";
 ---
 
@@ -59,7 +60,7 @@ import { Menu, UserPlus } from "lucide-react";
           class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-gdgoc-primary-green hover:bg-gdgoc-primary-green/90 text-white font-medium rounded-full transition-colors duration-200"
         >
           <UserPlus className="w-5 h-5" />
-          Register
+            <ShinyText text="Register" disabled={false} speed={3} className='custom-class' />
         </a>
         
         <button
