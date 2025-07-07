@@ -1,18 +1,29 @@
 ---
 import { Image } from "astro:assets";
 import { ChevronDown, Code, Users } from "lucide-react";
+import Squares from '../components/FlowingGrid';
 ---
 
 <section 
   id="hero" 
   class="relative min-h-screen w-full flex items-center justify-center overflow-hidden"
 >
-  <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-green-50 to-yellow-50 dark:from-gray-900 dark:via-gdgoc-primary-blue/10 dark:to-gdgoc-primary-green/10"></div>
-  <div class="absolute inset-0 overflow-hidden pointer-events-none">
-    <div class="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-gdgoc-primary-blue/10 to-gdgoc-primary-green/10 rounded-full blur-3xl animate-pulse"></div>
-    <div class="absolute bottom-32 left-16 w-64 h-64 bg-gradient-to-br from-gdgoc-primary-green/10 to-gdgoc-primary-yellow/10 rounded-full blur-2xl animate-pulse" style="animation-delay: 2s;"></div>
+  <div class="absolute inset-0 z-0">
+    <Squares 
+      direction="diagonal" 
+      speed={0.5} 
+      borderColor="rgba(66, 133, 244, 0.3)" 
+      squareSize={60}
+      hoverFillColor="rgba(66, 133, 244, 0.1)"
+      client:load
+    />
   </div>
 
+  <!-- commented out for now
+  <div class="absolute inset-0 z-1 bg-gradient-to-br from-white/20 via-white/5 to-white/10 dark:from-black/20 dark:via-black/5 dark:to-black/10 backdrop-blur-[1px]"></div> -->
+
+  <div class="absolute inset-0 z-2 bg-gradient-to-br from-blue-50/80 via-green-50/80 to-yellow-50/80 dark:from-gray-900/80 dark:via-gdgoc-primary-blue/5 dark:to-gdgoc-primary-green/5"></div>
+  <!-- start of the content -->
   <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col md:flex-row items-center justify-center gap-12 lg:gap-20 max-w-7xl mx-auto">
       <div class="flex justify-center lg:justify-start">
@@ -24,7 +35,7 @@ import { ChevronDown, Code, Users } from "lucide-react";
               alt="Google Developer Groups on Campus USC Logo"
               width={300}
               height={300}
-              class="w-32 h-32 md:w-64 md:h-64 lg:w-80 lg:h-80 drop-shadow-2xl transform group-hover:rotate-3 transition-all duration-500"
+              class="w-32 h-32 md:w-64 md:h-64 lg:w-80 lg:h-80 drop-shadow-2xl transform rotate-3 group-hover:rotate-0 transition-all duration-500"
             />
             <div class="absolute -top-4 -right-4 p-3 bg-gdgoc-primary-blue/20 backdrop-blur-sm rounded-2xl border border-white/20">
               <Code className="w-6 h-6 text-gdgoc-primary-blue dark:text-gdgoc-secondary-blue" />
@@ -51,9 +62,9 @@ import { ChevronDown, Code, Users } from "lucide-react";
                 alt="USC Logo"
                 width={64}
                 height={64}
-                class="w-8 h-8 lg:w-12 lg:h-12 drop-shadow-2xl transform group-hover:rotate-3 transition-all duration-500"
+                class="w-8 h-8 md:lg:w-10 md:lg:h-10 drop-shadow-2xl transform group-hover:rotate-3 transition-all duration-500"
             />
-            <h3 class="text-lg lg:text-xl font-semibold bg-gradient-to-t from-gdgoc-primary-green to-gdgoc-secondary-green dark:from-gdgoc-primary-green dark:to-gdgoc-secondary-green bg-clip-text text-transparent">
+            <h3 class="text-md lg:text-lg font-semibold bg-gradient-to-t from-gdgoc-primary-green to-gdgoc-secondary-green dark:from-gdgoc-primary-green dark:to-gdgoc-secondary-green bg-clip-text text-transparent">
               University of San Carlos
             </h3>
           </div>
