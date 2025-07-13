@@ -1,4 +1,4 @@
-import { useEffect, useRef, type FC } from "react";
+import { useEffect, useRef, type FC, useState } from "react";
 import { gsap } from "gsap";
 
 interface GridMotionProps {
@@ -10,6 +10,7 @@ const GridMotion: FC<GridMotionProps> = ({
   items = [],
   gradientColor = "black",
 }) => {
+  const [isDark, setIsDark] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
   const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
   const mouseXRef = useRef<number>(window.innerWidth / 2);
@@ -24,6 +25,19 @@ const GridMotion: FC<GridMotionProps> = ({
     items.length > 0 ? items.slice(0, totalItems) : defaultItems;
 
   useEffect(() => {
+    const checkDarkMode = () => {
+      const isDarkMode = document.documentElement.classList.contains('dark');
+      setIsDark(isDarkMode);
+    };
+
+    checkDarkMode();
+
+    const observer = new MutationObserver(checkDarkMode);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
     gsap.ticker.lagSmoothing(0);
 
     const handleMouseMove = (e: MouseEvent): void => {
@@ -65,6 +79,7 @@ const GridMotion: FC<GridMotionProps> = ({
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       removeAnimationLoop();
+      observer.disconnect();
     };
   }, []);
 
@@ -73,7 +88,7 @@ const GridMotion: FC<GridMotionProps> = ({
       <section
         className="w-full h-screen overflow-hidden relative flex items-center justify-center"
         style={{
-          background: `radial-gradient(circle, ${gradientColor} 0%, transparent 100%)`,
+          background: `radial-gradient(circle, ${isDark ? 'black' : 'white'} 0%, transparent 100%)`,
         }}
       >
         <div className="absolute inset-0 pointer-events-none z-[4] bg-[length:250px]"></div>
@@ -91,7 +106,7 @@ const GridMotion: FC<GridMotionProps> = ({
                 const content = combinedItems[rowIndex * 7 + itemIndex];
                 return (
                   <div key={itemIndex} className="relative">
-                    <div className="relative w-full h-full overflow-hidden rounded-[10px] bg-[#111] flex items-center justify-center text-white text-[1.5rem]">
+                    <div className="relative w-full h-full overflow-hidden rounded-[10px] bg-white dark:bg-[#111] flex items-center justify-center text-black dark:text-white text-[1.5rem]">
                       {typeof content === "string" &&
                       (content.startsWith("http") || content.startsWith("/")) ? (
                         <div
