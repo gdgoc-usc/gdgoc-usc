@@ -7,8 +7,6 @@ export default function ThemeSwitcher() {
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "light";
     setTheme(savedTheme);
-    // Theme is already initialized by the suspense loader, so we don't need to toggle here
-    // document.documentElement.classList.toggle("dark", savedTheme === "dark");
   }, []);
 
   const toggleTheme = () => {

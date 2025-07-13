@@ -10,10 +10,8 @@ export default function AnimationPreferencesModal({ className = "" }: AnimationP
   const [preferencesSet, setPreferencesSet] = useState(false);
 
   useEffect(() => {
-    // Check if user has already set preferences
     const hasSetPreferences = localStorage.getItem('animation-preferences-set');
     if (!hasSetPreferences) {
-      // Show modal after a short delay
       const timer = setTimeout(() => {
         setIsVisible(true);
       }, 1000);
@@ -26,7 +24,6 @@ export default function AnimationPreferencesModal({ className = "" }: AnimationP
     localStorage.setItem('animations-enabled', 'true');
     setPreferencesSet(true);
     setIsVisible(false);
-    // Remove reduced motion class if it exists
     document.documentElement.classList.remove('reduced-motion');
   };
 
@@ -35,12 +32,10 @@ export default function AnimationPreferencesModal({ className = "" }: AnimationP
     localStorage.setItem('animations-enabled', 'false');
     setPreferencesSet(true);
     setIsVisible(false);
-    // Add reduced motion class
     document.documentElement.classList.add('reduced-motion');
   };
 
   const handleClose = () => {
-    // Default to enabling animations if user closes without choosing
     localStorage.setItem('animation-preferences-set', 'true');
     localStorage.setItem('animations-enabled', 'true');
     setPreferencesSet(true);

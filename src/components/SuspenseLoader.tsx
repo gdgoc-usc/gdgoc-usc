@@ -104,7 +104,6 @@ export default function SuspenseLoader({ onLoadComplete, timeout = 5000 }: Suspe
       
       setTimeout(() => updateProgress(10), 100);
       
-      // Set a timeout to ensure the loader doesn't block content indefinitely
       timeoutId = setTimeout(() => {
         console.warn('SuspenseLoader timeout reached, hiding loader');
         updateProgress(100);
@@ -116,19 +115,15 @@ export default function SuspenseLoader({ onLoadComplete, timeout = 5000 }: Suspe
         
         await waitForComponents();
         
-        // Clear the timeout since we completed successfully
         clearTimeout(timeoutId);
         
         updateProgress(100);
         
-        // Finally hide the loader
         setTimeout(hideLoader, 200);
       } catch (error) {
         console.warn('Some assets failed to load, continuing anyway:', error);
-        // Clear the timeout since we're proceeding anyway
         clearTimeout(timeoutId);
         
-        // Even if assets fail, still wait for components and hide loader
         await waitForComponents();
         updateProgress(100);
         setTimeout(hideLoader, 200);
@@ -137,17 +132,14 @@ export default function SuspenseLoader({ onLoadComplete, timeout = 5000 }: Suspe
 
     initializeApp();
 
-    // Cleanup timeout on unmount
     return () => {
       if (timeoutId) {
         clearTimeout(timeoutId);
       }
-      // Remove loading class
       document.body.classList.remove('loading');
     };
   }, [onLoadComplete, timeout]);
 
-  // Don't render anything if not visible (better for SEO)
   if (!isVisible) {
     return null;
   }

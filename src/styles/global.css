@@ -1,100 +1,5 @@
 @import "tailwindcss";
-
-@font-face {
-  font-family: "Product Sans";
-  src: url("/fonts/ProductSans-Thin.ttf") format("truetype");
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Product Sans";
-  src: url("/fonts/ProductSans-ThinItalic.ttf") format("truetype");
-  font-weight: 100;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Product Sans";
-  src: url("/fonts/ProductSans-Light.ttf") format("truetype");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Product Sans";
-  src: url("/fonts/ProductSans-LightItalic.ttf") format("truetype");
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Product Sans";
-  src: url("/fonts/ProductSans-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Product Sans";
-  src: url("/fonts/ProductSans-Italic.ttf") format("truetype");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Product Sans";
-  src: url("/fonts/ProductSans-Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Product Sans";
-  src: url("/fonts/ProductSans-MediumItalic.ttf") format("truetype");
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Product Sans";
-  src: url("/fonts/ProductSans-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Product Sans";
-  src: url("/fonts/ProductSans-BoldItalic.ttf") format("truetype");
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Product Sans";
-  src: url("/fonts/ProductSans-Black.ttf") format("truetype");
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Product Sans";
-  src: url("/fonts/ProductSans-BlackItalic.ttf") format("truetype");
-  font-weight: 900;
-  font-style: italic;
-  font-display: swap;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme {
   --font-sans:
@@ -114,8 +19,6 @@
   --color-gdgoc-primary-orange: #fb893b;
 }
 
-@custom-variant dark (&:is(.dark *));
-
 *,
 body {
   font-family: var(--font-sans);
@@ -125,9 +28,6 @@ html {
   transition:
     background-color 0.2s ease,
     color 0.2s ease;
-}
-
-html {
   background-color: #ffffff;
   color: #111827;
 }
@@ -180,19 +80,6 @@ html.dark {
     transparent,
     rgba(255, 255, 255, 0.3)
   );
-}
-
-@keyframes shine {
-  0% {
-    background-position: 100%;
-  }
-  100% {
-    background-position: -100%;
-  }
-}
-
-.animate-shine {
-  animation: shine 5s linear infinite;
 }
 
 #suspense-loader {
@@ -314,7 +201,7 @@ body.loading {
     transition: opacity 0.1s ease-out;
   }
   
-  /* Chromatic Aberration edge effect */
+  /* Chromatic Aberration  */
   #main-header::after {
     content: "";
     position: absolute;
@@ -372,14 +259,6 @@ body.loading {
         transparent 70%,
         rgba(0, 0, 255, calc(0.02 * var(--border-opacity)))
       );
-  }
-
-  #main-header.mobile-menu-open {
-    @apply rounded-2xl;
-  }
-
-  #main-header.mobile-menu-closing {
-    @apply rounded-2xl;
   }
 
   #mobile-menu {
