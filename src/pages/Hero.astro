@@ -1,79 +1,76 @@
 ---
 import { Image } from "astro:assets";
 import { ChevronDown, Code, Users } from "lucide-react";
-import Squares from '../components/FlowingGrid';
+import Squares from '@/components/react-bits/FlowingGrid';
+import AnimatedHeroText from '@/components/animated/AnimatedHeroText';
 ---
 
 <section 
   id="hero" 
   class="relative min-h-screen w-full flex items-center justify-center overflow-hidden"
 >
-  <div class="absolute inset-0 z-0">
+  <!-- Animated background -->
+  <div class="absolute inset-0 bg-cover bg-[position:left_center] sm:bg-[length:120%] sm:bg-[position:left_center] md:bg-cover md:bg-center bg-no-repeat animate-bg-reveal" style="background-image: url('/gdgoc_bg_1.svg');"></div>
+  <!-- <div class="absolute inset-0 -z-25">
     <Squares 
       direction="diagonal" 
       speed={0.5} 
       borderColor="rgba(66, 133, 244, 0.3)" 
       squareSize={60}
-      hoverFillColor="rgba(66, 133, 244, 0.1)"
+      hoverFillColor="rgba(66, 133, 244, 0.2)"
       client:load
     />
-  </div>
+  </div> -->
 
   <!-- commented out for now
   <div class="absolute inset-0 z-1 bg-gradient-to-br from-white/20 via-white/5 to-white/10 dark:from-black/20 dark:via-black/5 dark:to-black/10 backdrop-blur-[1px]"></div> -->
 
-  <div class="absolute inset-0 z-2 bg-gradient-to-br from-blue-50/80 via-green-50/80 to-yellow-50/80 dark:from-gray-900/80 dark:via-gdgoc-primary-blue/5 dark:to-gdgoc-primary-green/5"></div>
-  <!-- start of the content -->
-  <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col md:flex-row items-center justify-center gap-12 lg:gap-20 max-w-7xl mx-auto">
-      <div class="flex justify-center lg:justify-start">
-        <div class="relative group">
-          <div class="absolute inset-0 bg-white/10 dark:bg-white/5 backdrop-blur-xl rounded-3xl border border-white/20 dark:border-white/10 shadow-xl transform group-hover:scale-105 transition-all duration-500"></div>
-          <div class="relative p-8 lg:p-12">
-            <Image
-              src="/gdgoc_pfp.png"
-              alt="Google Developer Groups on Campus USC Logo"
-              width={300}
-              height={300}
-              class="w-32 h-32 md:w-64 md:h-64 lg:w-80 lg:h-80 drop-shadow-2xl transform rotate-3 group-hover:rotate-0 transition-all duration-500"
-            />
-            <div class="absolute -top-4 -right-4 p-3 bg-gdgoc-primary-blue/20 backdrop-blur-sm rounded-2xl border border-white/20">
-              <Code className="w-6 h-6 text-gdgoc-primary-blue dark:text-gdgoc-secondary-blue" />
-            </div>
-            <div class="absolute -bottom-4 -left-4 p-3 bg-gdgoc-primary-green/20 backdrop-blur-sm rounded-2xl border border-white/20">
-              <Users className="w-6 h-6 text-gdgoc-primary-green dark:text-gdgoc-secondary-green" />
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- <div class="absolute pointer-events-none inset-0 -z-20 bg-gradient-to-br from-white via-white/80 to-white/80 dark:from-gray-900/80 dark:via-gdgoc-primary-blue/5 dark:to-gdgoc-primary-green/5"></div> -->
 
-      <div class="flex flex-col justify-center text-center md:text-left">
+  <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col items-center justify-center max-w-4xl mx-auto">
+      <div class="flex flex-col justify-center text-center items-center w-full">
         <div class="space-y-6">
-          <h2 class="text-xl md:text-4xl lg:text-5xl font-bold text-black dark:text-white leading-relaxed">
+          <AnimatedHeroText 
+            className="text-center text-5xl md:text-7xl lg:text-8xl font-medium text-black dark:text-white leading-[0.99] tracking-[-1.44px] lg:tracking-[-3.72px] text-balance mb-6"
+            client:load
+          >
             Google Developer Groups
-            <span class="block text-xl lg:text-2xl font-medium text-gray-600 dark:text-gray-300 mt-1">
+            <span class="block text-xl lg:text-2xl font-normal text-gray-600 dark:text-gray-300 mt-1 tracking-normal">
               on Campus
             </span>
-          </h2>
+          </AnimatedHeroText>
           
-          <div class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gdgoc-primary-green/10 to-gdgoc-secondary-green/10 backdrop-blur-sm rounded-full border border-gdgoc-primary-green/30 dark:border-gdgoc-secondary-green/20">
-                <Image
-                src="/usc_logo.svg"
-                alt="USC Logo"
-                width={64}
-                height={64}
-                class="w-8 h-8 md:lg:w-10 md:lg:h-10 drop-shadow-2xl transform group-hover:rotate-3 transition-all duration-500"
+          <AnimatedHeroText 
+            className="inline-flex items-center gap-2 px-6 py-3 bg-none border-gdgoc-primary-green border-2 bg-gradient-to-r from-gdgoc-primary-green/10 to-gdgoc-secondary-green/10 backdrop-blur-sm rounded-full mt-6"
+            delay={0.2}
+            client:load
+          >
+            <Image
+              src="/usc_logo.svg"
+              alt="USC Logo"
+              width={64}
+              height={64}
+              class="w-8 h-8 md:lg:w-10 md:lg:h-10 drop-shadow-2xl transform group-hover:rotate-3 transition-all duration-500"
             />
-            <h3 class="text-md lg:text-lg font-semibold bg-gradient-to-t from-gdgoc-primary-green to-gdgoc-secondary-green dark:from-gdgoc-primary-green dark:to-gdgoc-secondary-green bg-clip-text text-transparent">
+            <h3 class="text-md lg:text-lg font-semibold text-gdgoc-primary-green tracking-normal">
               University of San Carlos
             </h3>
-          </div>
+          </AnimatedHeroText>
           
-          <p class="text-base lg:text-lg text-gray-600 dark:text-gray-300 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+          <AnimatedHeroText 
+            className="text-base lg:text-lg text-gray-600 dark:text-gray-300 max-w-lg mx-auto leading-relaxed mt-6"
+            delay={0.4}
+            client:load
+          >
             Join our community of passionate developers, innovators, and tech enthusiasts building the future together.
-          </p>
+          </AnimatedHeroText>
           
-          <div>
+          <AnimatedHeroText 
+            className="flex justify-center mt-6"
+            delay={0.6}
+            client:load
+          >
             <button 
               onclick="scrollToNextSection()"
               class="group relative inline-flex items-center gap-3 px-8 py-4 md:px-10 md:py-5 border-1 border-gdgoc-primary-blue bg-gdgoc-primary-blue text-white hover:bg-transparent hover:text-gdgoc-secondary-blue dark:hover:text-gdgoc-secondary-blue hover:border-gdgoc-primary-blue font-semibold rounded-full transition-all duration-200 transform hover:cursor-pointer overflow-hidden"
@@ -86,7 +83,7 @@ import Squares from '../components/FlowingGrid';
                 client:load 
               />
             </button>
-          </div>
+          </AnimatedHeroText>
         </div>
       </div>
       

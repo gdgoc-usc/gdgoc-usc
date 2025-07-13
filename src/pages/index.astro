@@ -1,7 +1,10 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/layout/Header.astro';
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/layout/Header.astro';
 import Hero from './Hero.astro';
+import About from "./About.astro";
+import Events from './Events.astro';
+
 ---
 
 <Layout 
@@ -12,12 +15,7 @@ import Hero from './Hero.astro';
   <main class="w-full">
     <Hero />
     
-    <section id="about" class="min-h-screen w-full flex items-center justify-center bg-white dark:bg-gray-900">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">About GDGoC</h2>
-        <p class="text-xl text-gray-600 dark:text-gray-300">Coming soon...</p>
-      </div>
-    </section>
+    <About />
 
     <section id="team" class="min-h-screen w-full flex items-center justify-center bg-gray-50 dark:bg-gray-800">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -33,11 +31,7 @@ import Hero from './Hero.astro';
       </div>
     </section>
 
-    <section id="events" class="min-h-screen w-full flex items-center justify-center bg-gray-50 dark:bg-gray-800">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Events</h2>
-        <p class="text-xl text-gray-600 dark:text-gray-300">Coming soon...</p>
-      </div>
-    </section>
+    
+	<Events />
   </main>
 </Layout>
