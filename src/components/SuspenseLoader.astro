@@ -1,0 +1,102 @@
+<div id="suspense-loader" class="fixed inset-0 z-[9999] flex items-center justify-center bg-white dark:bg-gray-900 transition-all duration-500">
+  <div class="flex flex-col items-center space-y-6">
+    <div class="relative">
+      <img 
+        src="/gdgoc_logo.svg" 
+        alt="GDGoC Logo" 
+        class="w-20 h-20 md:w-24 md:h-24 animate-pulse"
+      />
+      <div class="absolute inset-0 w-20 h-20 md:w-24 md:h-24 border-4 border-gdgoc-primary-blue border-t-transparent rounded-full animate-spin"></div>
+    </div>
+    
+    <div class="text-center space-y-2">
+      <h2 class="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white">
+        GDGoC USC
+      </h2>
+      <p class="text-sm md:text-base text-gray-600 dark:text-gray-300">
+        Loading amazing things...
+      </p>
+    </div>
+    
+    <div class="flex space-x-2">
+      <div class="w-2 h-2 bg-gdgoc-primary-blue rounded-full animate-bounce"></div>
+      <div class="w-2 h-2 bg-gdgoc-primary-green rounded-full animate-bounce" style="animation-delay: 0.1s;"></div>
+      <div class="w-2 h-2 bg-gdgoc-primary-red rounded-full animate-bounce" style="animation-delay: 0.2s;"></div>
+      <div class="w-2 h-2 bg-gdgoc-primary-yellow rounded-full animate-bounce" style="animation-delay: 0.3s;"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initializeTheme() {
+    const savedTheme = localStorage.getItem("theme") || "light";
+    document.documentElement.classList.toggle("dark", savedTheme === "dark");
+  }
+
+  // Wait for all components to be ready
+  function waitForComponents() {
+    return new Promise<void>((resolve) => {
+      // Wait for DOM to be ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          const images = document.querySelectorAll('img');
+          let loadedImages = 0;
+          
+          if (images.length === 0) {
+            setTimeout(resolve, 100);
+            return;
+          }
+
+          images.forEach(img => {
+            if (img.complete) {
+              loadedImages++;
+              if (loadedImages === images.length) {
+                // Wait a bit for React components to hydrate
+                setTimeout(resolve, 100);
+              }
+            } else {
+              img.addEventListener('load', () => {
+                loadedImages++;
+                if (loadedImages === images.length) {
+                  // Wait a bit for React components to hydrate
+                  setTimeout(resolve, 100);
+                }
+              });
+              img.addEventListener('error', () => {
+                loadedImages++;
+                if (loadedImages === images.length) {
+                  // Wait a bit for React components to hydrate
+                  setTimeout(resolve, 100);
+                }
+              });
+            }
+          });
+        });
+      } else {
+        // Wait a bit for React components to hydrate
+        setTimeout(resolve, 100);
+      }
+    });
+  }
+
+  function hideLoader() {
+    const loader = document.getElementById('suspense-loader');
+    if (loader) {
+      loader.style.opacity = '0';
+      loader.style.pointerEvents = 'none';
+      setTimeout(() => {
+        loader.style.display = 'none';
+      }, 500);
+    }
+  }
+
+  async function initializeApp() {
+    initializeTheme();
+    
+    await waitForComponents();
+    
+    setTimeout(hideLoader, 200);
+  }
+
+  initializeApp();
+</script> 

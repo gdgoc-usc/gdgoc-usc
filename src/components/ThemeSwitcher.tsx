@@ -1,20 +1,21 @@
-import { useState, useEffect } from 'react';
-import { Sun, Moon } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { Sun, Moon } from "lucide-react";
 
 export default function ThemeSwitcher() {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState("light");
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem("theme") || "light";
     setTheme(savedTheme);
-    document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+    // Theme is already initialized by the suspense loader, so we don't need to toggle here
+    // document.documentElement.classList.toggle("dark", savedTheme === "dark");
   }, []);
 
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
+    const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
   };
 
   return (
@@ -26,15 +27,15 @@ export default function ThemeSwitcher() {
       <div className="w-5 h-5 relative">
         <Sun
           className={`absolute inset-0 w-5 h-5 transition-opacity duration-200 ${
-            theme === 'light' ? 'opacity-100' : 'opacity-0'
+            theme === "light" ? "opacity-100" : "opacity-0"
           }`}
         />
         <Moon
           className={`absolute inset-0 w-5 h-5 transition-opacity duration-200 ${
-            theme === 'dark' ? 'opacity-100' : 'opacity-0'
+            theme === "dark" ? "opacity-100" : "opacity-0"
           }`}
         />
       </div>
     </button>
   );
-} 
+}
