@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 interface ShinyTextProps {
   text: string;
@@ -13,11 +13,20 @@ const ShinyText: React.FC<ShinyTextProps> = ({
   speed = 5,
   className = "",
 }) => {
+  const [animationsEnabled, setAnimationsEnabled] = useState(true);
   const animationDuration = `${speed}s`;
+
+  useEffect(() => {
+    // Check if animations are disabled
+    const animationsDisabled = localStorage.getItem('animations-enabled') === 'false';
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    setAnimationsEnabled(!animationsDisabled && !prefersReducedMotion);
+  }, []);
 
   return (
     <div
-      className={`text-[#ffffff] bg-clip-text inline-block ${disabled ? "" : "animate-shine"} ${className}`}
+      className={`text-[#ffffff] bg-clip-text inline-block ${disabled || !animationsEnabled ? "" : "animate-shine"} ${className}`}
       style={{
         backgroundImage:
           "linear-gradient(120deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 60%)",

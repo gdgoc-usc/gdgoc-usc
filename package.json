@@ -18,6 +18,7 @@
     "@types/react-dom": "^19.1.6",
     "@vercel/analytics": "^1.5.0",
     "astro": "^5.11.0",
+    "gsap": "^3.13.0",
     "lucide-react": "^0.525.0",
     "motion": "^12.23.3",
     "prettier": "3.6.2",

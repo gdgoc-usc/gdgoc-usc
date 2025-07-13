@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { type ReactNode } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 
 interface AnimatedHeroTextProps {
   children: ReactNode;
@@ -8,6 +8,23 @@ interface AnimatedHeroTextProps {
 }
 
 const AnimatedHeroText = ({ children, className, delay = 0 }: AnimatedHeroTextProps) => {
+  const [animationsEnabled, setAnimationsEnabled] = useState(true);
+
+  useEffect(() => {
+    const animationsDisabled = localStorage.getItem('animations-enabled') === 'false';
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    setAnimationsEnabled(!animationsDisabled && !prefersReducedMotion);
+  }, []);
+
+  if (!animationsEnabled) {
+    return (
+      <h2 className={className}>
+        {children}
+      </h2>
+    );
+  }
+
   return (
     <motion.h2
       initial={{ 

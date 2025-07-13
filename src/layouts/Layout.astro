@@ -3,6 +3,7 @@ import '../styles/global.css';
 import type { LayoutProps } from '../config/layout.types';
 import Analytics from '@vercel/analytics/astro';
 import SuspenseLoader from '@/components/SuspenseLoader.astro';
+import AnimationPreferencesModal from '@/components/AnimationPreferencesModal';
 
 const { 
 	title = "GDGoC - University of San Carlos", 
@@ -88,19 +89,26 @@ const structuredData = {
 		
 		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 		
-		<!-- Prevent theme flash -->
 		<script is:inline>
 			const savedTheme = localStorage.getItem("theme") || "light";
 			document.documentElement.classList.toggle("dark", savedTheme === "dark");
 		</script>
 		
+		<script is:inline>
+			const animationsEnabled = localStorage.getItem("animations-enabled");
+			if (animationsEnabled === "false") {
+				document.documentElement.classList.add("reduced-motion");
+			}
+		</script>
+		
 		<title>{title}</title>
 	</head>
 	<body class="antialiased">
-		<SuspenseLoader />
+		<!-- <SuspenseLoader /> -->
 		<div class="min-h-screen w-full">
 			<slot />
 		</div>
+		<AnimationPreferencesModal client:load />
 		<Analytics />
 	</body>
 </html>

@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import ThemeSwitcher from "../ThemeSwitcher.tsx";
+import AnimationToggle from "../AnimationToggle.tsx";
 import { Menu, UserPlus } from "lucide-react";
 import ShinyText from "../react-bits/ShinyText.tsx";
 import HeaderLink from "./HeaderLink.astro";
@@ -14,7 +15,7 @@ const navLinks = [
 ];
 ---
 
-<!-- bg-[url('/gdgoc_bg.svg')] bg-cover bg-center bg-no-repeat -->
+<!-- bg-[url('/gdgoc_bg_1_compressed.svg')] bg-cover bg-center bg-no-repeat -->
 <header class="fixed top-0 left-0 right-0 z-50 rounded-none transition-all duration-300 ease-in-out">
   <div id="main-header" class="w-full">
   <div class="px-4 sm:px-6 lg:px-8 lg:py-2 w-full">
@@ -45,6 +46,7 @@ const navLinks = [
 
 
       <div class="flex items-center gap-4">
+        <AnimationToggle client:load />
         <ThemeSwitcher client:load />
         
         <a

@@ -209,6 +209,36 @@ html.dark {
 }
 
 @layer base {
+  .reduced-motion *,
+  .reduced-motion *::before,
+  .reduced-motion *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reduced-motion .animate-bg-reveal {
+    animation: none !important;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%) !important;
+  }
+
+  .reduced-motion .animate-shine {
+    animation: none !important;
+  }
+
+  .reduced-motion .animate-pulse {
+    animation: none !important;
+  }
+
+  .reduced-motion .animate-spin {
+    animation: none !important;
+  }
+
+  .reduced-motion .animate-bounce {
+    animation: none !important;
+  }
+
   #main-header {
     --blur-amount: 0px;
     --bg-opacity: 0;
