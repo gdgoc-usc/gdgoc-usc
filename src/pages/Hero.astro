@@ -1,8 +1,48 @@
 ---
 import { Image } from "astro:assets";
-import { ChevronDown, Code, Users } from "lucide-react";
+import { ChevronDown, Code, Users, Globe } from "lucide-react";
+import { siFacebook, siInstagram, siGithub, type SimpleIcon } from "simple-icons";
 import Squares from '@/components/react-bits/FlowingGrid';
 import AnimatedHeroText from '@/components/animated/AnimatedHeroText';
+
+type SocialLink = {
+  href: string;
+  label: string;
+  icon: SimpleIcon | string;
+  color: string;
+  type: "simple-icon" | "lucide";
+};
+
+const socialLinks: SocialLink[] = [
+  {
+    href: "https://www.facebook.com/gdgoc.sancarlos",
+    label: "Visit our Facebook page",
+    icon: siFacebook,
+    color: "text-gdgoc-primary-blue group-hover:text-gdgoc-secondary-blue",
+    type: "simple-icon"
+  },
+  {
+    href: "https://www.instagram.com/gdgoc.sancarlos",
+    label: "Visit our Instagram page", 
+    icon: siInstagram,
+    color: "text-gdgoc-primary-red group-hover:text-gdgoc-secondary-red",
+    type: "simple-icon"
+  },
+  {
+    href: "https://github.com/gdgoc-usc",
+    label: "Visit our GitHub repository",
+    icon: siGithub,
+    color: "text-gray-800 dark:text-white group-hover:text-gdgoc-primary-green",
+    type: "simple-icon"
+  },
+  {
+    href: "https://gdg.community.dev/gdg-on-campus-university-of-san-carlos-cebu-philippines/",
+    label: "Visit our website",
+    icon: "globe",
+    color: "text-gdgoc-primary-green group-hover:text-gdgoc-secondary-green",
+    type: "lucide"
+  }
+];
 ---
 
 <section 
@@ -25,6 +65,29 @@ import AnimatedHeroText from '@/components/animated/AnimatedHeroText';
             <span class="block text-xl lg:text-2xl font-normal text-gray-600 dark:text-gray-300 mt-1 tracking-normal">
               on Campus
             </span>
+            
+            <div class="flex justify-center items-center gap-4 mt-6">
+              {socialLinks.map((link) => (
+                <a 
+                  href={link.href}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="group p-3 rounded-full dark:bg-white/5 backdrop-blur-sm border dark:border-white/20 border-neutral-300 dark:hover:bg-white/20 dark:hover:border-white/40 transition-all duration-300 hover:scale-110"
+                  aria-label={link.label}
+                >
+                  {link.type === "lucide" ? (
+                    <Globe className={`w-6 h-6 ${link.color} transition-colors duration-300`} />
+                  ) : (
+                    <svg 
+                      class={`w-6 h-6 ${link.color} transition-colors duration-300`}
+                      fill="currentColor" 
+                      viewBox="0 0 24 24"
+                      set:html={typeof link.icon === 'string' ? '' : link.icon.svg}
+                    />
+                  )}
+                </a>
+              ))}
+            </div>
           </AnimatedHeroText>
           
           <AnimatedHeroText 
@@ -42,6 +105,7 @@ import AnimatedHeroText from '@/components/animated/AnimatedHeroText';
             <h3 class="text-md lg:text-lg font-semibold text-white sm:md:lg:text-gdgoc-primary-green tracking-normal">
               University of San Carlos
             </h3>
+            
           </AnimatedHeroText>
           
           <AnimatedHeroText 
