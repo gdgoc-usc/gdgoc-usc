@@ -169,7 +169,7 @@ export default function SuspenseLoader({ onLoadComplete, timeout = 5000 }: Suspe
             GDGoC USC
           </h2>
           <p className="text-sm md:text-base text-gray-600 dark:text-gray-300">
-            Loading amazing things...
+            Hello World!
           </p>
         </div>
         

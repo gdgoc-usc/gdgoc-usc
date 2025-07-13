@@ -3,7 +3,6 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { shaderMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 
-// Custom shader material for liquid glass effect
 const LiquidGlassMaterial = shaderMaterial(
   {
     uTime: 0,
