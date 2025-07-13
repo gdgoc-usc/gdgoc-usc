@@ -1,8 +1,107 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Product Sans";
+  src: url("/fonts/ProductSans-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Product Sans";
+  src: url("/fonts/ProductSans-ThinItalic.ttf") format("truetype");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Product Sans";
+  src: url("/fonts/ProductSans-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Product Sans";
+  src: url("/fonts/ProductSans-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Product Sans";
+  src: url("/fonts/ProductSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Product Sans";
+  src: url("/fonts/ProductSans-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Product Sans";
+  src: url("/fonts/ProductSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Product Sans";
+  src: url("/fonts/ProductSans-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Product Sans";
+  src: url("/fonts/ProductSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Product Sans";
+  src: url("/fonts/ProductSans-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Product Sans";
+  src: url("/fonts/ProductSans-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Product Sans";
+  src: url("/fonts/ProductSans-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 @theme {
-  --font-sans: "Manrope Variable", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  
+  --font-sans:
+    "Product Sans", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
   /* GDGoC Brand Colors */
   --color-gdgoc-primary-blue: #4285f4;
   --color-gdgoc-secondary-blue: #5e94eb;
@@ -17,12 +116,15 @@
 
 @custom-variant dark (&:is(.dark *));
 
-*, body {
+*,
+body {
   font-family: var(--font-sans);
 }
 
 html {
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 html {
@@ -31,57 +133,53 @@ html {
 }
 
 html.dark {
-  background-color: #111827;
+  background-color: #161616;
   color: #f9fafb;
 }
 
-.container {
-  max-width: 1200px;
-}
-
 .glass-card {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 
-      0 8px 32px rgba(0, 0, 0, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5),
-      inset 0 -1px 0 rgba(255, 255, 255, 0.1),
-      inset 0 0 20px 10px rgba(255, 255, 255, 0.1);
-    position: relative;
-    overflow: hidden;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 20px 10px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
 }
 
 .glass-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.8),
-      transparent
-    );
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
 }
 
 .glass-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 1px;
-    height: 100%;
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.8),
-      transparent,
-      rgba(255, 255, 255, 0.3)
-    );
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    transparent,
+    rgba(255, 255, 255, 0.3)
+  );
 }
 
 @keyframes shine {
@@ -95,4 +193,169 @@ html.dark {
 
 .animate-shine {
   animation: shine 5s linear infinite;
+}
+
+@keyframes bg-reveal {
+  0% {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+.animate-bg-reveal {
+  animation: bg-reveal 1.2s ease-out forwards;
+}
+
+@layer base {
+  #main-header {
+    --blur-amount: 0px;
+    --bg-opacity: 0;
+    --shadow-opacity: 0;
+    --border-opacity: 0;
+    --saturation: 100%;
+    --contrast: 100%;
+    --brightness: 100%;
+    
+    transition: 
+      backdrop-filter 0.1s ease-out,
+      background-color 0.1s ease-out,
+      box-shadow 0.1s ease-out,
+      border-radius 0.3s ease-in-out,
+      filter 0.1s ease-out;
+      
+    backdrop-filter: 
+      blur(var(--blur-amount)) 
+      saturate(var(--saturation)) 
+      contrast(var(--contrast)) 
+      brightness(var(--brightness));
+    
+    background: 
+      linear-gradient(135deg, 
+        rgba(255, 255, 255, calc(0.15 * var(--bg-opacity))), 
+        rgba(255, 255, 255, calc(0.05 * var(--bg-opacity)))
+      ),
+      linear-gradient(45deg, 
+        rgba(255, 0, 0, calc(0.02 * var(--bg-opacity))), 
+        transparent 50%, 
+        rgba(0, 0, 255, calc(0.02 * var(--bg-opacity)))
+      );
+    
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, calc(0.15 * var(--shadow-opacity))),
+      inset 0 1px 0 rgba(255, 255, 255, calc(0.4 * var(--shadow-opacity))),
+      inset 0 -1px 0 rgba(0, 0, 0, calc(0.1 * var(--shadow-opacity))),
+      0 0 0 1px rgba(255, 255, 255, calc(0.2 * var(--shadow-opacity))),
+      0 4px 16px rgba(255, 255, 255, calc(0.1 * var(--shadow-opacity)));
+    
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Liquid glass Reflection highlight */
+  #main-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, calc(0.8 * var(--border-opacity))),
+      transparent
+    );
+    opacity: var(--border-opacity);
+    transform: translateY(-1px);
+    transition: opacity 0.1s ease-out;
+  }
+  
+  /* Chromatic Aberration edge effect */
+  #main-header::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      linear-gradient(45deg, 
+        rgba(255, 0, 0, calc(0.03 * var(--border-opacity))), 
+        transparent 30%,
+        transparent 70%,
+        rgba(0, 0, 255, calc(0.03 * var(--border-opacity)))
+      );
+    opacity: var(--border-opacity);
+    border-radius: inherit;
+    pointer-events: none;
+    transition: opacity 0.1s ease-out;
+  }
+
+  html.dark #main-header {
+    background: 
+      linear-gradient(135deg, 
+        rgba(255, 255, 255, calc(0.08 * var(--bg-opacity))), 
+        rgba(255, 255, 255, calc(0.02 * var(--bg-opacity)))
+      ),
+      linear-gradient(45deg, 
+        rgba(255, 0, 0, calc(0.015 * var(--bg-opacity))), 
+        transparent 50%, 
+        rgba(0, 0, 255, calc(0.015 * var(--bg-opacity)))
+      );
+    
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, calc(0.4 * var(--shadow-opacity))),
+      inset 0 1px 0 rgba(255, 255, 255, calc(0.2 * var(--shadow-opacity))),
+      inset 0 -1px 0 rgba(0, 0, 0, calc(0.3 * var(--shadow-opacity))),
+      0 0 0 1px rgba(255, 255, 255, calc(0.15 * var(--shadow-opacity))),
+      0 4px 16px rgba(255, 255, 255, calc(0.05 * var(--shadow-opacity)));
+  }
+
+  html.dark #main-header::before {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, calc(0.6 * var(--border-opacity))),
+      transparent
+    );
+  }
+
+  html.dark #main-header::after {
+    background: 
+      linear-gradient(45deg, 
+        rgba(255, 0, 0, calc(0.02 * var(--border-opacity))), 
+        transparent 30%,
+        transparent 70%,
+        rgba(0, 0, 255, calc(0.02 * var(--border-opacity)))
+      );
+  }
+
+  #main-header.mobile-menu-open {
+    @apply rounded-2xl;
+  }
+
+  #main-header.mobile-menu-closing {
+    @apply rounded-2xl;
+  }
+
+  #mobile-menu {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition:
+      max-height 0.3s ease-in-out,
+      opacity 0.3s ease-in-out;
+  }
+
+  #main-header.mobile-menu-open #mobile-menu {
+    max-height: 300px;
+    opacity: 1;
+  }
+
+  #main-header.mobile-menu-closing #mobile-menu {
+    max-height: 0;
+    opacity: 0;
+  }
 }
