@@ -195,9 +195,7 @@ html.dark {
   animation: shine 5s linear infinite;
 }
 
-/* SEO-friendly loader styles */
 #suspense-loader {
-  /* Ensure content below is still accessible to crawlers */
   pointer-events: none;
 }
 
@@ -205,9 +203,7 @@ html.dark {
   pointer-events: auto;
 }
 
-/* Ensure page content is not hidden from crawlers */
 body.loading {
-  /* Content remains visible to search engines */
   visibility: visible;
 }
 
