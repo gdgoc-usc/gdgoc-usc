@@ -1,0 +1,154 @@
+---
+import { Globe, Users, Code2, Lightbulb, Target, Rocket } from 'lucide-react';
+import SpotlightCard from '@/components/react-bits/SpotlightCard';
+import { Image } from 'astro:assets';
+---
+    <section 
+      id="about" 
+      class="relative w-full overflow-hidden min-h-screen flex flex-col items-center justify-center py-12"
+    >  
+      <div class="absolute inset-0 z-2"></div>
+      <div class="relative z-10 container px-4 sm:px-6 lg:px-8 w-full">
+        <div class="w-full">
+          <div class="text-center mb-8">
+            <h1 class="text-3xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gdgoc-primary-blue via-gdgoc-primary-green to-gdgoc-primary-yellow mb-4 tracking-tighter flex flex-row items-center justify-center">
+                <Image
+                src="/gdgoc_logo.svg"
+                alt="GDGoC USC Logo"
+                width={40}
+                height={40}
+                class="w-12 h-12 md:w-24 md:h-24"
+              />
+              &nbsp; About GDGoC &nbsp;
+            </h1>
+            <p class="text-3xl text-gray-700 dark:text-gray-200 leading-relaxed mb-4 max-w-4xl mx-auto">
+              <strong class="text-gdgoc-primary-blue dark:text-gdgoc-secondary-blue">Google Developer Student Clubs - University of San Carlos</strong> 
+              is a hub mainly for student developers. We offer a supportive environment where students can connect with like-minded peers, 
+              fostering a space for collaboration and growth.
+            </p>
+            
+            <div class="p-4 bg-gradient-to-r from-gdgoc-primary-green/5 to-gdgoc-secondary-green/5 rounded-xl border border-gdgoc-primary-green/20 max-w-4xl mx-auto">
+              <p class="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                Through workshops, talks, and project-building activities, students can gain expertise in the latest technologies, 
+                empowering them to turn innovative ideas into impactful solutions that address real-world challenges.
+              </p>
+            </div>
+          </div>
+
+          
+
+          <div class="grid lg:grid-cols-2 gap-8">
+            <div class="space-y-6">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="p-2 bg-gradient-to-r from-gdgoc-primary-yellow/20 to-gdgoc-primary-orange/20 rounded-lg">
+                  <Lightbulb className="w-6 h-6 text-gdgoc-primary-yellow" />
+                </div>
+                <h2 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gdgoc-primary-blue to-gdgoc-secondary-blue">
+                  Our Vision
+                </h2>
+              </div>
+              
+              <div class="grid grid-cols-3 gap-3 mb-6">
+                  <div class="text-center p-3 bg-gradient-to-br from-gdgoc-primary-green/5 to-gdgoc-secondary-green/5 rounded-lg border border-gdgoc-primary-green/20">
+                    <div class="w-10 h-10 mx-auto mb-2 bg-gradient-to-br from-gdgoc-primary-blue to-gdgoc-secondary-blue rounded-lg flex items-center justify-center">
+                        <Users className="w-5 h-5 text-white" />
+                      </div>
+                      <h3 class="text-sm font-semibold text-gdgoc-primary-blue dark:text-gdgoc-secondary-blue mb-1">Community</h3>
+                      <p class="text-xs text-gray-600 dark:text-gray-300">Collective minds</p>
+                  </div>
+                
+                <div class="text-center p-3 bg-gradient-to-br from-gdgoc-primary-green/5 to-gdgoc-secondary-green/5 rounded-lg border border-gdgoc-primary-green/20">
+                  <div class="w-10 h-10 mx-auto mb-2 bg-gradient-to-br from-gdgoc-primary-green to-gdgoc-secondary-green rounded-lg flex items-center justify-center">
+                    <Code2 className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 class="text-sm font-semibold text-gdgoc-primary-green dark:text-gdgoc-secondary-green mb-1">Collaboration</h3>
+                  <p class="text-xs text-gray-600 dark:text-gray-300">Student uplift</p>
+                </div>
+                
+                <div class="text-center p-3 bg-gradient-to-br from-gdgoc-primary-yellow/5 to-gdgoc-primary-orange/5 rounded-lg border border-gdgoc-primary-yellow/20">
+                  <div class="w-10 h-10 mx-auto mb-2 bg-gradient-to-br from-gdgoc-primary-yellow to-gdgoc-primary-orange rounded-lg flex items-center justify-center">
+                    <Lightbulb className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 class="text-sm font-semibold text-gdgoc-primary-yellow dark:text-gdgoc-primary-orange mb-1">Innovation</h3>
+                  <p class="text-xs text-gray-600 dark:text-gray-300">Smart solutions</p>
+                </div>
+              </div>
+              
+              <blockquote class="p-4 bg-gradient-to-r from-gdgoc-primary-blue/5 to-gdgoc-primary-green/5 rounded-lg border border-gdgoc-primary-blue/20">
+                <p class="text-sm text-gray-700 dark:text-gray-200 leading-relaxed italic">
+                  "To be a community of collective minds that uplifts student's collaboration where its members can 
+                  <span class="text-gdgoc-primary-green font-semibold">discover</span>, 
+                  <span class="text-gdgoc-primary-blue font-semibold">develop</span>, and 
+                  <span class="text-gdgoc-primary-yellow font-semibold">deliver</span> 
+                  innovations to create meaningful technological solutions for the community."
+                </p>
+              </blockquote>
+            </div>
+
+            <div class="space-y-6">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="p-2 bg-gradient-to-r from-gdgoc-primary-red/20 to-gdgoc-primary-orange/20 rounded-lg">
+                  <Target className="w-6 h-6 text-gdgoc-primary-red" />
+                </div>
+                <h2 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gdgoc-primary-red to-gdgoc-primary-orange">
+                  Our Mission
+                </h2>
+              </div>
+              
+              <div class="grid grid-cols-2 gap-3 mb-6">
+                <div class="p-3 bg-gradient-to-br from-gdgoc-primary-blue/5 to-gdgoc-secondary-blue/5 rounded-lg border border-gdgoc-primary-blue/20">
+                  <div class="flex items-center gap-2 mb-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-gdgoc-primary-blue to-gdgoc-secondary-blue rounded-lg flex items-center justify-center">
+                      <span class="text-sm font-bold text-white">1</span>
+                    </div>
+                    <h3 class="text-sm font-semibold text-gdgoc-primary-blue dark:text-gdgoc-secondary-blue">Discover</h3>
+                  </div>
+                  <p class="text-xs text-gray-600 dark:text-gray-300">Identify problems and opportunities</p>
+                </div>
+                
+                <div class="p-3 bg-gradient-to-br from-gdgoc-primary-green/5 to-gdgoc-secondary-green/5 rounded-lg border border-gdgoc-primary-green/20">
+                  <div class="flex items-center gap-2 mb-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-gdgoc-primary-green to-gdgoc-secondary-green rounded-lg flex items-center justify-center">
+                      <span class="text-sm font-bold text-white">2</span>
+                    </div>
+                    <h3 class="text-sm font-semibold text-gdgoc-primary-green dark:text-gdgoc-secondary-green">Develop</h3>
+                  </div>
+                  <p class="text-xs text-gray-600 dark:text-gray-300">Build innovative solutions</p>
+                </div>
+                
+                <div class="p-3 bg-gradient-to-br from-gdgoc-primary-yellow/5 to-gdgoc-primary-orange/5 rounded-lg border border-gdgoc-primary-yellow/20">
+                  <div class="flex items-center gap-2 mb-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-gdgoc-primary-yellow to-gdgoc-primary-orange rounded-lg flex items-center justify-center">
+                      <span class="text-sm font-bold text-white">3</span>
+                    </div>
+                    <h3 class="text-sm font-semibold text-gdgoc-primary-yellow dark:text-gdgoc-primary-orange">Deliver</h3>
+                  </div>
+                  <p class="text-xs text-gray-600 dark:text-gray-300">Deploy impactful solutions</p>
+                </div>
+                
+                <div class="p-3 bg-gradient-to-br from-gdgoc-primary-red/5 to-gdgoc-secondary-red/5 rounded-lg border border-gdgoc-primary-red/20">
+                  <div class="flex items-center gap-2 mb-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-gdgoc-primary-red to-gdgoc-secondary-red rounded-lg flex items-center justify-center">
+                      <Rocket className="w-4 h-4 text-white" />
+                    </div>
+                    <h3 class="text-sm font-semibold text-gdgoc-primary-red dark:text-gdgoc-secondary-red">Impact</h3>
+                  </div>
+                  <p class="text-xs text-gray-600 dark:text-gray-300">Create meaningful change</p>
+                </div>
+              </div>
+              
+              <div class="bg-gradient-to-r from-gdgoc-primary-red/5 to-gdgoc-primary-orange/5 rounded-lg p-4 border border-gdgoc-primary-red/20">
+                <blockquote class="text-sm text-gray-700 dark:text-gray-200 leading-relaxed">
+                  "To <span class="text-gdgoc-primary-blue font-semibold">discover</span>, 
+                  <span class="text-gdgoc-primary-green font-semibold">develop</span>, and 
+                  <span class="text-gdgoc-primary-yellow font-semibold">deliver</span> 
+                  innovative solutions by creating an 
+                  <span class="text-gdgoc-primary-red font-semibold">impact</span> 
+                  on the community by solving real-life problems."
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
