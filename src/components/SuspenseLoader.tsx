@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 
 interface SuspenseLoaderProps {
   onLoadComplete?: () => void;
+  timeout?: number; 
 }
 
-export default function SuspenseLoader({ onLoadComplete }: SuspenseLoaderProps) {
+export default function SuspenseLoader({ onLoadComplete, timeout = 5000 }: SuspenseLoaderProps) {
   const [progress, setProgress] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
 
@@ -82,6 +83,7 @@ export default function SuspenseLoader({ onLoadComplete }: SuspenseLoaderProps) 
 
   const hideLoader = () => {
     setIsVisible(false);
+    document.body.classList.remove('loading');
     setTimeout(() => {
       onLoadComplete?.();
     }, 500);
@@ -93,16 +95,29 @@ export default function SuspenseLoader({ onLoadComplete }: SuspenseLoaderProps) 
   };
 
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    
+    document.body.classList.add('loading');
+    
     const initializeApp = async () => {
       initializeTheme();
       
-      // Start with a small progress to show loading has begun
       setTimeout(() => updateProgress(10), 100);
+      
+      // Set a timeout to ensure the loader doesn't block content indefinitely
+      timeoutId = setTimeout(() => {
+        console.warn('SuspenseLoader timeout reached, hiding loader');
+        updateProgress(100);
+        setTimeout(hideLoader, 200);
+      }, timeout);
       
       try {
         await preloadCriticalAssets();
         
         await waitForComponents();
+        
+        // Clear the timeout since we completed successfully
+        clearTimeout(timeoutId);
         
         updateProgress(100);
         
@@ -110,6 +125,9 @@ export default function SuspenseLoader({ onLoadComplete }: SuspenseLoaderProps) 
         setTimeout(hideLoader, 200);
       } catch (error) {
         console.warn('Some assets failed to load, continuing anyway:', error);
+        // Clear the timeout since we're proceeding anyway
+        clearTimeout(timeoutId);
+        
         // Even if assets fail, still wait for components and hide loader
         await waitForComponents();
         updateProgress(100);
@@ -118,8 +136,18 @@ export default function SuspenseLoader({ onLoadComplete }: SuspenseLoaderProps) 
     };
 
     initializeApp();
-  }, [onLoadComplete]);
 
+    // Cleanup timeout on unmount
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      // Remove loading class
+      document.body.classList.remove('loading');
+    };
+  }, [onLoadComplete, timeout]);
+
+  // Don't render anything if not visible (better for SEO)
   if (!isVisible) {
     return null;
   }
@@ -127,9 +155,12 @@ export default function SuspenseLoader({ onLoadComplete }: SuspenseLoaderProps) 
   return (
     <div 
       id="suspense-loader" 
-      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-white dark:bg-gray-900 transition-all duration-500 ${
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-gray-900 transition-all duration-500 ${
         !isVisible ? 'opacity-0 pointer-events-none' : ''
       }`}
+      aria-label="Loading page content"
+      role="status"
+      aria-live="polite"
     >
       <div className="flex flex-col items-center space-y-6">
         <div className="relative">
@@ -154,6 +185,10 @@ export default function SuspenseLoader({ onLoadComplete }: SuspenseLoaderProps) 
           <div 
             className="h-full bg-gradient-to-r from-gdgoc-primary-blue to-gdgoc-primary-green rounded-full transition-all duration-300 ease-out"
             style={{ width: `${progress}%` }}
+            aria-valuenow={progress}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            role="progressbar"
           ></div>
         </div>
         

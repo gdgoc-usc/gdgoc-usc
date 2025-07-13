@@ -195,6 +195,22 @@ html.dark {
   animation: shine 5s linear infinite;
 }
 
+/* SEO-friendly loader styles */
+#suspense-loader {
+  /* Ensure content below is still accessible to crawlers */
+  pointer-events: none;
+}
+
+#suspense-loader * {
+  pointer-events: auto;
+}
+
+/* Ensure page content is not hidden from crawlers */
+body.loading {
+  /* Content remains visible to search engines */
+  visibility: visible;
+}
+
 @keyframes bg-reveal {
   0% {
     clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
