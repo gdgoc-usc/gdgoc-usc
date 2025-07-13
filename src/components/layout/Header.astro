@@ -2,15 +2,24 @@
 import { Image } from "astro:assets";
 import ThemeSwitcher from "../ThemeSwitcher.tsx";
 import { Menu, UserPlus } from "lucide-react";
-import ShinyText from "../ShinyText";
-// import AnnouncementBanner from "../AnnouncementBanner.astro";
+import ShinyText from "../react-bits/ShinyText.tsx";
+import HeaderLink from "./HeaderLink.astro";
+import MobileHeaderLink from "./MobileHeaderLink.astro";
+
+const navLinks = [
+  { href: "#about", text: "About GDGoC" },
+  { href: "#team", text: "Meet our Team" },
+  { href: "#partners", text: "Our Partners" },
+  { href: "#events", text: "Events" },
+];
 ---
 
 <!-- bg-[url('/gdgoc_bg.svg')] bg-cover bg-center bg-no-repeat -->
-<header class="fixed top-0 left-0 right-0 z-50 m-4 rounded-full dark:border-gray-800 backdrop-blur-md bg-white/40 shadow-sm dark:bg-gray-900/80">
-  <div class="px-4 sm:px-6 lg:px-8 w-full">
+<header class="fixed top-0 left-0 right-0 z-50 rounded-none transition-all duration-300 ease-in-out">
+  <div id="main-header" class="w-full">
+  <div class="px-4 sm:px-6 lg:px-8 lg:py-2 w-full">
     <div class="flex items-center justify-between h-16">
-      <div class="flex items-center">
+      <div class="flex items-center sm:gap-8 md:lg:gap-12">
         <a href="/" class="flex items-center space-x-2">
           <Image
             src="/gdgoc_logo.svg"
@@ -19,38 +28,21 @@ import ShinyText from "../ShinyText";
             height={40}
             class="w-10 h-10"
           />
-          <span class="text-xl font-bold bg-gradient-to-r from-gdgoc-primary-green via-gdgoc-primary-yellow to-gdgoc-secondary-green dark:from-white dark:via-gdgoc-secondary-blue dark:to-gdgoc-secondary-green bg-clip-text text-transparent leading-tight">
-            GDGoC USC
-          </span>
+          <div class="flex flex-col">
+            <span class="hidden sm:md:lg:block text-xl font-bold bg-gradient-to-r from-gdgoc-primary-green via-gdgoc-primary-yellow to-gdgoc-secondary-green dark:from-white dark:via-gdgoc-secondary-blue dark:to-gdgoc-secondary-green bg-clip-text text-transparent leading-tight">
+              Google Developer Groups
+            </span>
+            <span class="hidden sm:md:lg:block font-light text-sm">University of San Carlos</span>
+          </div>
         </a>
+        <nav class="hidden lg:flex items-center space-x-8">
+          {navLinks.map((link) => (
+            <HeaderLink href={link.href} text={link.text} />
+          ))}
+        </nav>
       </div>
 
-      <nav class="hidden lg:flex items-center space-x-8">
-        <a
-          href="#about"
-          class="text-gray-700 dark:text-gray-300 hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-primary-blue transition-colors duration-200 font-medium"
-        >
-          About GDGoC
-        </a>
-        <a
-          href="#team"
-          class="text-gray-700 dark:text-gray-300 hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-primary-blue transition-colors duration-200 font-medium"
-        >
-          Meet our Team
-        </a>
-        <a
-          href="#partners"
-          class="text-gray-700 dark:text-gray-300 hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-primary-blue transition-colors duration-200 font-medium"
-        >
-          Our Partners
-        </a>
-        <a
-          href="#events"
-          class="text-gray-700 dark:text-gray-300 hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-primary-blue transition-colors duration-200 font-medium"
-        >
-          Events
-        </a>
-      </nav>
+
 
       <div class="flex items-center gap-4">
         <ThemeSwitcher client:load />
@@ -73,51 +65,100 @@ import ShinyText from "../ShinyText";
       </div>
     </div>
 
-    <div class="lg:hidden hidden" id="mobile-menu">
-      <div class="px-2 pt-2 pb-3 space-y-1 border-t border-gray-200 dark:border-gray-700">
+    <!-- Mobile Menu Inside Header -->
+    <div class="lg:hidden" id="mobile-menu">
+      <div class="px-2 pt-2 pb-4 space-y-1 border-t border-gray-200 dark:border-gray-700">
+        {navLinks.map((link) => (
+          <MobileHeaderLink href={link.href} text={link.text} />
+        ))}
         <a
-          href="#about"
-          class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium"
+          href="#membership"
+          class="block px-3 py-2 text-white bg-gdgoc-primary-green hover:bg-gdgoc-primary-green/90 transition-colors duration-200 font-medium rounded-lg text-center"
         >
-          About GDGoC
-        </a>
-        <a
-          href="#team"
-          class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium"
-        >
-          Meet our Team
-        </a>
-        <a
-          href="#partners"
-          class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium"
-        >
-          Our Partners
-        </a>
-        <a
-          href="#events"
-          class="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium"
-        >
-          Events
+          Register
         </a>
       </div>
     </div>
   </div>
+  </div>
 </header>
 
-<!-- <AnnouncementBanner /> -->
 
 <script>
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
+  const mainHeader = document.getElementById('main-header');
 
-  mobileMenuButton?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
+  function openMenu() {
+    mainHeader?.classList.add('mobile-menu-open');
+  }
+
+  function closeMenu() {
+    mainHeader?.classList.add('mobile-menu-closing');
+    
+    setTimeout(() => {
+      mainHeader?.classList.remove('mobile-menu-open');
+      mainHeader?.classList.remove('mobile-menu-closing');
+    }, 350);
+  }
+
+  mobileMenuButton?.addEventListener('click', (event) => {
+    event.stopPropagation();
+    
+    const isOpen = mainHeader?.classList.contains('mobile-menu-open');
+    
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
 
   document.addEventListener('click', (event) => {
     if (!mobileMenuButton?.contains(event.target as Node) && 
         !mobileMenu?.contains(event.target as Node)) {
-      mobileMenu?.classList.add('hidden');
+      if (mainHeader?.classList.contains('mobile-menu-open')) {
+        closeMenu();
+      }
     }
   });
+
+  // HEADER SCROLL EFFECT
+  // Progressively changes the header blur background as the user scrolls down. The config options are below:
+  // scrollRange => the amount of pixels needed for the user to scroll in order to reach the maximum blur
+  // maxBlur => amount of maximum blur
+  // maxBgOpacity => amount of maximum bg opacity
+
+  let lastScrollY = 0;
+  const scrollRange = 600; 
+  const maxBlur = 16; 
+  const maxBgOpacity = 0.85; 
+  const maxShadowOpacity = 1;
+  const maxBorderOpacity = 1; 
+
+  function updateHeaderOnScroll() {
+    const scrollY = window.scrollY;
+    
+    const scrollProgress = Math.min(scrollY / scrollRange, 1);
+    
+    const easedProgress = 1 - Math.pow(1 - scrollProgress, 3); 
+    
+    const blurAmount = easedProgress * maxBlur;
+    const bgOpacity = easedProgress * maxBgOpacity;
+    const shadowOpacity = easedProgress * maxShadowOpacity;
+    const borderOpacity = easedProgress * maxBorderOpacity;
+    
+    if (mainHeader) {
+      mainHeader.style.setProperty('--blur-amount', `${blurAmount}px`);
+      mainHeader.style.setProperty('--bg-opacity', bgOpacity.toString());
+      mainHeader.style.setProperty('--shadow-opacity', shadowOpacity.toString());
+      mainHeader.style.setProperty('--border-opacity', borderOpacity.toString());
+    }
+    
+    lastScrollY = scrollY;
+  }
+
+  window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
+  
+  updateHeaderOnScroll();
 </script>
