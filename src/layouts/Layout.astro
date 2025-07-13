@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import type { LayoutProps } from '../config/layout.types';
 import Analytics from '@vercel/analytics/astro';
-import SuspenseLoader from '@/components/SuspenseLoader.astro';
+import SuspenseLoader from '@/components/SuspenseLoader';
 import AnimationPreferencesModal from '@/components/AnimationPreferencesModal';
 
 const { 
@@ -104,7 +104,7 @@ const structuredData = {
 		<title>{title}</title>
 	</head>
 	<body class="antialiased">
-		<!-- <SuspenseLoader /> -->
+		<SuspenseLoader client:load />
 		<div class="min-h-screen w-full">
 			<slot />
 		</div>
