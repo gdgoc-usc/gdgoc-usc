@@ -11,14 +11,19 @@
   "dependencies": {
     "@astrojs/react": "^4.3.0",
     "@fontsource-variable/manrope": "^5.2.6",
+    "@react-three/drei": "^10.4.4",
+    "@react-three/fiber": "^9.2.0",
     "@tailwindcss/vite": "^4.1.11",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vercel/analytics": "^1.5.0",
     "astro": "^5.11.0",
     "lucide-react": "^0.525.0",
+    "motion": "^12.23.3",
+    "prettier": "3.6.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "tailwindcss": "^4.1.11"
+    "tailwindcss": "^4.1.11",
+    "three": "^0.178.0"
   }
 }
