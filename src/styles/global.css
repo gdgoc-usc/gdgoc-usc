@@ -256,7 +256,7 @@ body.loading {
       contrast(var(--contrast)) 
       brightness(var(--brightness));
     
-    background: 
+      background: 
       linear-gradient(135deg, 
         rgba(255, 255, 255, calc(0.15 * var(--bg-opacity))), 
         rgba(255, 255, 255, calc(0.05 * var(--bg-opacity)))
@@ -267,7 +267,7 @@ body.loading {
         rgba(0, 0, 255, calc(0.02 * var(--bg-opacity)))
       );
     
-    box-shadow: 
+      box-shadow: 
       0 8px 32px rgba(0, 0, 0, calc(0.15 * var(--shadow-opacity))),
       inset 0 1px 0 rgba(255, 255, 255, calc(0.4 * var(--shadow-opacity))),
       inset 0 -1px 0 rgba(0, 0, 0, calc(0.1 * var(--shadow-opacity))),
@@ -278,24 +278,7 @@ body.loading {
     overflow: hidden;
   }
   
-  /* Liquid glass Reflection highlight */
-  #main-header::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, calc(0.8 * var(--border-opacity))),
-      transparent
-    );
-    opacity: var(--border-opacity);
-    transform: translateY(-1px);
-    transition: opacity 0.1s ease-out;
-  }
+
   
   /* Chromatic Aberration  */
   #main-header::after {
@@ -338,14 +321,7 @@ body.loading {
       0 4px 16px rgba(255, 255, 255, calc(0.05 * var(--shadow-opacity)));
   }
 
-  html.dark #main-header::before {
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, calc(0.6 * var(--border-opacity))),
-      transparent
-    );
-  }
+
 
   html.dark #main-header::after {
     background: 

@@ -48,25 +48,25 @@ export default function AnimationPreferencesModal({ className = "" }: AnimationP
 
   return (
     <div className={`fixed bottom-4 left-4 z-50 max-w-sm ${className}`}>
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 p-6 backdrop-blur-sm">
+      <div className="bg-white dark:bg-neutral-800 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 p-6 backdrop-blur-sm">
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-gdgoc-primary-blue rounded-lg flex items-center justify-center">
               <Zap className="w-4 h-4 text-white" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            <h3 className="text-lg font-semibold text-neutral-900 dark:text-white">
               Animation Preferences
             </h3>
           </div>
           <button
             onClick={handleClose}
-            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+            className="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
         
-        <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+        <p className="text-sm text-neutral-600 dark:text-neutral-300 mb-4">
           Would you like to enable animations for a more engaging experience, or disable them for better performance?
         </p>
         
@@ -80,7 +80,7 @@ export default function AnimationPreferencesModal({ className = "" }: AnimationP
           </button>
           <button
             onClick={handleDisableAnimations}
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-sm font-medium"
+            className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-sm font-medium"
           >
             <ZapOff className="w-4 h-4" />
             Disable
