@@ -147,7 +147,7 @@ export default function SuspenseLoader({ onLoadComplete, timeout = 5000 }: Suspe
   return (
     <div 
       id="suspense-loader" 
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-gray-900 transition-all duration-500 ${
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-neutral-900 transition-all duration-500 ${
         !isVisible ? 'opacity-0 pointer-events-none' : ''
       }`}
       aria-label="Loading page content"

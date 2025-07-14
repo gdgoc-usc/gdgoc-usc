@@ -8,10 +8,12 @@ import HeaderLink from "./HeaderLink.astro";
 import MobileHeaderLink from "./MobileHeaderLink.astro";
 
 const navLinks = [
-  { href: "#about", text: "About GDGoC" },
-  { href: "#team", text: "Meet our Team" },
-  { href: "#partners", text: "Our Partners" },
+  { href: "#about", text: "About GDG" },
+  { href: "#team", text: "Our Team" },
+  { href: "#partners", text: "Partners" },
   { href: "#events", text: "Events" },
+  { href: "#merch", text: "Merch" },
+  { href: "#contact", text: "Contact Us" },
 ];
 ---
 
@@ -128,6 +130,7 @@ const navLinks = [
   // scrollRange => the amount of pixels needed for the user to scroll in order to reach the maximum blur
   // maxBlur => amount of maximum blur
   // maxBgOpacity => amount of maximum bg opacity
+  // Also takes into account the reduced motion preference
 
   let lastScrollY = 0;
   const scrollRange = 600; 
@@ -138,21 +141,34 @@ const navLinks = [
 
   function updateHeaderOnScroll() {
     const scrollY = window.scrollY;
+    const prefersReducedMotion = document.documentElement.classList.contains('reduced-motion');
     
-    const scrollProgress = Math.min(scrollY / scrollRange, 1);
-    
-    const easedProgress = 1 - Math.pow(1 - scrollProgress, 3); 
-    
-    const blurAmount = easedProgress * maxBlur;
-    const bgOpacity = easedProgress * maxBgOpacity;
-    const shadowOpacity = easedProgress * maxShadowOpacity;
-    const borderOpacity = easedProgress * maxBorderOpacity;
-    
-    if (mainHeader) {
-      mainHeader.style.setProperty('--blur-amount', `${blurAmount}px`);
-      mainHeader.style.setProperty('--bg-opacity', bgOpacity.toString());
-      mainHeader.style.setProperty('--shadow-opacity', shadowOpacity.toString());
-      mainHeader.style.setProperty('--border-opacity', borderOpacity.toString());
+    if (prefersReducedMotion) {
+      const scrollProgress = Math.min(scrollY / scrollRange, 1);
+      const easedProgress = 1 - Math.pow(1 - scrollProgress, 3);
+      const bgOpacity = easedProgress; 
+      
+      if (mainHeader) {
+        mainHeader.style.setProperty('--blur-amount', '0px');
+        mainHeader.style.setProperty('--bg-opacity', bgOpacity.toString());
+        mainHeader.style.setProperty('--shadow-opacity', '0');
+        mainHeader.style.setProperty('--border-opacity', '0');
+      }
+    } else {
+      const scrollProgress = Math.min(scrollY / scrollRange, 1);
+      const easedProgress = 1 - Math.pow(1 - scrollProgress, 3); 
+      
+      const blurAmount = easedProgress * maxBlur;
+      const bgOpacity = easedProgress * maxBgOpacity;
+      const shadowOpacity = easedProgress * maxShadowOpacity;
+      const borderOpacity = easedProgress * maxBorderOpacity;
+      
+      if (mainHeader) {
+        mainHeader.style.setProperty('--blur-amount', `${blurAmount}px`);
+        mainHeader.style.setProperty('--bg-opacity', bgOpacity.toString());
+        mainHeader.style.setProperty('--shadow-opacity', shadowOpacity.toString());
+        mainHeader.style.setProperty('--border-opacity', borderOpacity.toString());
+      }
     }
     
     lastScrollY = scrollY;

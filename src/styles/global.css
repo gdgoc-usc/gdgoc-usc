@@ -234,6 +234,21 @@ body.loading {
     animation: none !important;
   }
 
+  .reduced-motion #main-header {
+    backdrop-filter: none !important;
+    background: rgba(255, 255, 255, var(--bg-opacity));
+    box-shadow: 0 1px 3px rgba(0, 0, 0, calc(0.1 * var(--shadow-opacity))) !important;
+  }
+
+  html.dark.reduced-motion #main-header {
+    background: rgba(22, 22, 22, var(--bg-opacity)) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, calc(0.3 * var(--shadow-opacity))) !important;
+  }
+
+  .reduced-motion #main-header::after {
+    display: none !important;
+  }
+
   #main-header {
     --blur-amount: 0px;
     --bg-opacity: 0;
