@@ -1,0 +1,191 @@
+---
+import SpotlightCard from '@/components/react-bits/SpotlightCard';
+import { Image } from 'astro:assets';
+
+
+
+const leadership = [
+  { role: 'Lead', description: 'Overall leadership and strategic direction' },
+  { role: 'Chief Operations Officer', description: 'Operational management and execution' },
+  { role: 'Chief Marketing Officer', description: 'Marketing strategy and brand management' },
+  { role: 'Chief Human Relations Officer', description: 'Member relations and community building' },
+  { role: 'Chief Technology Officer', description: 'Technical strategy and innovation' },
+  { role: 'Chief Finance Officer', description: 'Financial planning and resource management' }
+];
+
+const externalRelations = [
+  { role: 'External Relations Head', description: 'Partnership development and external communications' },
+  { role: 'External Relations Officer', description: 'External stakeholder engagement' },
+  { role: 'International Relations Officer', description: 'Global partnerships and international outreach' }
+];
+
+const marketing = [
+  { role: 'Media Engagement Head', description: 'Media relations and public communications' },
+  { role: 'Public Information Officer', description: 'Public information and outreach' },
+  { role: 'Creatives Head', description: 'Creative content and visual design' }
+];
+
+const operations = [
+{ role: 'Executive Secretary', description: 'Administrative coordination and documentation' },
+{ role: 'Executive Assistant', description: 'Executive support and operational assistance' },
+  { role: 'Events Manager', description: 'Event planning and execution' }
+];
+
+const finance = [
+  { role: 'Finance Officer', description: 'Financial operations and reporting' }
+];
+
+const technology = [
+  { role: 'Data Science Officer', description: 'Data analytics and insights' },
+  { role: 'AI/ML Officer', description: 'Artificial Intelligence and Machine Learning initiatives' },
+  { role: 'Web Dev Officer', description: 'Web development and digital platforms' }
+];
+---
+
+  <section 
+    id="team" 
+    class="relative w-full overflow-hidden min-h-screen flex flex-col items-center justify-center py-12"
+  >  
+ 
+    <div class="relative z-10 container px-4 sm:px-6 lg:px-8 w-full">
+      <div class="w-full">
+        <div class="text-center mb-12">
+          <div class="flex flex-col gap-2">
+            <Image
+              src="/gdgoc_logo.svg"
+              alt="GDGoC Logo"
+              width={128}
+              height={128}
+              class="w-24 h-24 md:w-32 md:h-32 mt-2 sm:mt-0 sm:mx-auto sm:mb-6"
+            />
+            <h1 class="text-4xl md:text-6xl font-bold text-black dark:text-white mb-4 tracking-tighter">
+              Our Team
+            </h1>
+          </div>
+          <p class="text-xl sm:text-2xl md:text-3xl text-gray-700 dark:text-gray-200 leading-relaxed mb-8 max-w-4xl mx-auto">
+            Meet the dedicated leaders driving innovation and community at 
+            <strong class="text-gdgoc-primary-blue dark:text-gdgoc-secondary-blue"> GDGoC USC</strong>
+          </p>
+        </div>
+
+        <div class="max-w-7xl mx-auto space-y-16">
+          <!-- Leadership Section -->
+          <div class="team-section">
+            <h2 class="section-title">Leadership</h2>
+            <div class="team-grid">
+              {leadership.map((member) => (
+                <SpotlightCard 
+                  className="team-card bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-200 dark:border-gray-700"
+                  spotlightColor="rgba(66, 133, 244, 0.25)"
+                  client:load
+                >
+                  <div class="role-badge">Leadership</div>
+                  <h3 class="role-title">{member.role}</h3>
+                  <p class="role-description">{member.description}</p>
+                </SpotlightCard>
+              ))}
+            </div>
+          </div>
+
+          <!-- External Relations Section -->
+          <div class="team-section">
+            <h2 class="section-title">External Relations</h2>
+            <div class="team-grid">
+              {externalRelations.map((member) => (
+                <SpotlightCard 
+                  className="team-card bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-200 dark:border-gray-700"
+                  spotlightColor="rgba(52, 168, 83, 0.25)"
+                  client:load
+                >
+                  <div class="role-badge">External Relations</div>
+                  <h3 class="role-title">{member.role}</h3>
+                  <p class="role-description">{member.description}</p>
+                </SpotlightCard>
+              ))}
+            </div>
+          </div>
+
+          <!-- Communications Section -->
+          <div class="team-section">
+            <h2 class="section-title">Marketing</h2>
+            <div class="team-grid">
+              {marketing.map((member) => (
+                <SpotlightCard 
+                  className="team-card bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-200 dark:border-gray-700"
+                  spotlightColor="rgba(251, 188, 4, 0.25)"
+                  client:load
+                >
+                  <div class="role-badge">Marketing</div>
+                  <h3 class="role-title">{member.role}</h3>
+                  <p class="role-description">{member.description}</p>
+                </SpotlightCard>
+              ))}
+            </div>
+          </div>
+
+          <!-- Operations Section -->
+          <div class="team-section">
+            <h2 class="section-title">Operations</h2>
+            <div class="team-grid">
+              {operations.map((member) => (
+                <SpotlightCard 
+                  className="team-card bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-200 dark:border-gray-700"
+                  spotlightColor="rgba(234, 67, 53, 0.25)"
+                  client:load
+                >
+                  <div class="role-badge">Operations</div>
+                  <h3 class="role-title">{member.role}</h3>
+                  <p class="role-description">{member.description}</p>
+                </SpotlightCard>
+              ))}
+            </div>
+          </div>
+
+          <!-- Technology Section -->
+          <div class="team-section">
+            <h2 class="section-title">Technology</h2>
+            <div class="team-grid">
+              {technology.map((member) => (
+                <SpotlightCard 
+                  className="team-card bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-200 dark:border-gray-700"
+                  spotlightColor="rgba(66, 133, 244, 0.25)"
+                  client:load
+                >
+                  <div class="role-badge">Technology</div>
+                  <h3 class="role-title">{member.role}</h3>
+                  <p class="role-description">{member.description}</p>
+                </SpotlightCard>
+              ))}
+            </div>
+          </div>
+
+          <!-- Finance Section -->
+          <div class="team-section">
+            <h2 class="section-title">Finance</h2>
+            <div class="team-grid">
+              {finance.map((member) => (
+                <SpotlightCard 
+                  className="team-card bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-200 dark:border-gray-700"
+                  spotlightColor="rgba(52, 168, 83, 0.25)"
+                  client:load
+                >
+                  <div class="role-badge">Finance</div>
+                  <h3 class="role-title">{member.role}</h3>
+                  <p class="role-description">{member.description}</p>
+                </SpotlightCard>
+              ))}
+            </div>
+          </div>
+
+        </div>
+        <div class="text-center mt-16">
+          <div class="p-6 bg-gradient-to-r from-gdgoc-primary-green/5 to-gdgoc-secondary-green/5 rounded-xl border border-gdgoc-primary-green/20 max-w-4xl mx-auto">
+            <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+              Our diverse team brings together expertise from various fields to create an inclusive, 
+              innovative, and supportive environment for student developers at USC.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
