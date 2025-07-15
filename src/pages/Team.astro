@@ -1,44 +1,126 @@
 ---
 import SpotlightCard from '@/components/react-bits/SpotlightCard';
+import AnimatedTeamImage from '@/components/animated/AnimatedTeamImage';
 import { Image } from 'astro:assets';
 
 
 
 const leadership = [
-  { role: 'Lead', description: 'Overall leadership and strategic direction' },
-  { role: 'Chief Operations Officer', description: 'Operational management and execution' },
-  { role: 'Chief Marketing Officer', description: 'Marketing strategy and brand management' },
-  { role: 'Chief Human Relations Officer', description: 'Member relations and community building' },
-  { role: 'Chief Technology Officer', description: 'Technical strategy and innovation' },
-  { role: 'Chief Finance Officer', description: 'Financial planning and resource management' }
+  { 
+    role: 'Lead',
+    name: 'John Paul Denaya',
+    imageUrl: '/members/iohann.jpg'
+  },
+  { 
+    role: 'Lead',
+    name: 'Homer Adriel Dorin',
+    imageUrl: '/members/homer.jpg'
+  },
+  {
+    role: 'Chief Operations Officer', 
+    name: 'Matt Erron Cabarrubias',
+    imageUrl: '/members/matt.JPG'
+  },
+  {
+    role: 'Chief Marketing Officer',
+    name: 'Jon Pierre Baltazar',
+    imageUrl: '/members/marketing_jp.jpg'
+  },
+  {
+    role: 'Chief Technology Officer',
+    name: 'Geri Gian Epanto',
+    imageUrl: '/members/gian.jpg'
+  },
+  {
+    role: 'Chief Finance Officer',
+    name: 'Yza Hilary Alagon',
+    imageUrl: '/members/yza.jpg'
+  },
+  {
+    role: 'Chief Human Relations Officer',
+    name: 'Jewel Monsalud',
+    imageUrl: '/members/jewel.jpg'
+  },
 ];
 
 const externalRelations = [
-  { role: 'External Relations Head', description: 'Partnership development and external communications' },
-  { role: 'External Relations Officer', description: 'External stakeholder engagement' },
-  { role: 'International Relations Officer', description: 'Global partnerships and international outreach' }
+  {
+    role: 'External Relations Head',
+    description: 'Partnership development and external communications',
+    imageUrl: ''
+  },
+  {
+    role: 'External Relations Officer',
+    description: 'External stakeholder engagement',
+    imageUrl: ''
+  },
+  {
+    role: 'International Relations Officer',
+    description: 'Global partnerships and international outreach',
+    imageUrl: ''
+  }
 ];
 
 const marketing = [
-  { role: 'Media Engagement Head', description: 'Media relations and public communications' },
-  { role: 'Public Information Officer', description: 'Public information and outreach' },
-  { role: 'Creatives Head', description: 'Creative content and visual design' }
+  {
+    role: 'Media Engagement Head',
+    description: 'Media relations and public communications',
+    imageUrl: ''
+  },
+  {
+    role: 'Public Information Officer',
+    description: 'Public information and outreach',
+    imageUrl: ''
+  },
+  {
+    role: 'Creatives Head',
+    description: 'Creative content and visual design',
+    imageUrl: ''
+  }
 ];
 
 const operations = [
-{ role: 'Executive Secretary', description: 'Administrative coordination and documentation' },
-{ role: 'Executive Assistant', description: 'Executive support and operational assistance' },
-  { role: 'Events Manager', description: 'Event planning and execution' }
+  {
+    role: 'Executive Secretary',
+    description: 'Administrative coordination and documentation',
+    imageUrl: ''
+  },
+  {
+    role: 'Executive Assistant',
+    description: 'Executive support and operational assistance',
+    imageUrl: ''
+  },
+  {
+    role: 'Events Manager',
+    description: 'Event planning and execution',
+    imageUrl: ''
+  }
 ];
 
 const finance = [
-  { role: 'Finance Officer', description: 'Financial operations and reporting' }
+  {
+    role: 'Finance Officer',
+    description: 'Financial operations and reporting',
+    imageUrl: ''
+  }
 ];
 
 const technology = [
-  { role: 'Data Science Officer', description: 'Data analytics and insights' },
-  { role: 'AI/ML Officer', description: 'Artificial Intelligence and Machine Learning initiatives' },
-  { role: 'Web Dev Officer', description: 'Web development and digital platforms' }
+  {
+    role: 'Data Science Officer',
+    description: 'Data analytics and insights',
+    imageUrl: ''
+  },
+  {
+    role: 'AI/ML Officer',
+    description: 'Artificial Intelligence and Machine Learning initiatives',
+    imageUrl: ''
+  },
+  {
+    role: 'Web Dev Officer',
+    description: 'Web development and digital platforms',
+    imageUrl: ''
+  }
 ];
 ---
 
@@ -49,15 +131,8 @@ const technology = [
  
     <div class="relative z-10 container px-4 sm:px-6 lg:px-8 w-full">
       <div class="w-full">
-        <div class="text-center mb-12">
+        <div class="text-center my-12">
           <div class="flex flex-col gap-2">
-            <Image
-              src="/gdgoc_logo.svg"
-              alt="GDGoC Logo"
-              width={128}
-              height={128}
-              class="w-24 h-24 md:w-32 md:h-32 mt-2 sm:mt-0 sm:mx-auto sm:mb-6"
-            />
             <h1 class="text-4xl md:text-6xl font-bold text-black dark:text-white mb-4 tracking-tighter">
               Our Team
             </h1>
@@ -75,14 +150,24 @@ const technology = [
             <div class="team-grid">
               {leadership.map((member) => (
                 <SpotlightCard 
-                  className="team-card bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-200 dark:border-gray-700"
-                  spotlightColor="rgba(66, 133, 244, 0.25)"
-                  client:load
-                >
+                className="team-card h-[420px] bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-200 dark:border-gray-700 relative overflow-hidden !p-0"
+                spotlightColor="rgba(66, 133, 244, 0.25)"
+                client:load
+              >
+                {member.imageUrl && (
+                  <AnimatedTeamImage 
+                    src={member.imageUrl}
+                    alt={member.role + ' photo'}
+                    className="absolute inset-0 w-full h-full"
+                    client:load
+                  />
+                )}
+                <div class="absolute bottom-0 right-0 z-30 flex flex-col items-end justify-end p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent w-full h-full pointer-events-none">
                   <div class="role-badge">Leadership</div>
-                  <h3 class="role-title">{member.role}</h3>
-                  <p class="role-description">{member.description}</p>
-                </SpotlightCard>
+                  <h3 class="role-title text-white drop-shadow-lg">{member.role}</h3>
+                  <p class="role-name text-white/90 drop-shadow-md">{member.name}</p>
+                </div>
+              </SpotlightCard>
               ))}
             </div>
           </div>

@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import ThemeSwitcher from "../ThemeSwitcher.tsx";
 import AnimationToggle from "../AnimationToggle.tsx";
-import { Menu, UserPlus } from "lucide-react";
+import { Menu, X, UserPlus } from "lucide-react";
 import ShinyText from "../react-bits/ShinyText.tsx";
 import HeaderLink from "./HeaderLink.astro";
 import MobileHeaderLink from "./MobileHeaderLink.astro";
@@ -62,20 +62,21 @@ const navLinks = [
           aria-label="Open menu"
           id="mobile-menu-button"
         >
-          <Menu className="w-6 h-6" />
+          <Menu className="w-6 h-6" id="menu-icon" />
+          <X className="w-6 h-6 hidden" id="close-icon" />
         </button>
       </div>
     </div>
 
     <!-- Mobile Menu Inside Header -->
     <div class="lg:hidden" id="mobile-menu">
-      <div class="px-2 pt-2 pb-4 space-y-1 border-t border-gray-200 dark:border-gray-700">
+      <div class="px-2 pb-4 space-y-1">
         {navLinks.map((link) => (
           <MobileHeaderLink href={link.href} text={link.text} />
         ))}
         <a
           href="#membership"
-          class="block px-3 py-2 text-white bg-gdgoc-primary-green hover:bg-gdgoc-primary-green/90 transition-colors duration-200 font-medium rounded-lg text-center"
+          class="block px-3 py-2 mt-4 text-white bg-gdgoc-primary-green hover:bg-gdgoc-primary-green/90 transition-colors duration-200 font-medium rounded-lg text-center"
         >
           Register
         </a>
@@ -90,13 +91,19 @@ const navLinks = [
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
   const mainHeader = document.getElementById('main-header');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
 
   function openMenu() {
     mainHeader?.classList.add('mobile-menu-open');
+    menuIcon?.classList.add('hidden');
+    closeIcon?.classList.remove('hidden');
   }
 
   function closeMenu() {
     mainHeader?.classList.add('mobile-menu-closing');
+    menuIcon?.classList.remove('hidden');
+    closeIcon?.classList.add('hidden');
     
     setTimeout(() => {
       mainHeader?.classList.remove('mobile-menu-open');

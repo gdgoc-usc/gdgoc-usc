@@ -7,7 +7,7 @@
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-  /* GDGoC Brand Colors */
+  /* GDGoC brand colors */
   --color-gdgoc-primary-blue: #4285f4;
   --color-gdgoc-secondary-blue: #5e94eb;
   --color-gdgoc-primary-green: #34a853;
@@ -353,12 +353,12 @@ body.loading {
     overflow: hidden;
     opacity: 0;
     transition:
-      max-height 0.3s ease-in-out,
-      opacity 0.3s ease-in-out;
+      max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   #main-header.mobile-menu-open #mobile-menu {
-    max-height: 300px;
+    max-height: 360px;
     opacity: 1;
   }
 
@@ -389,10 +389,10 @@ body.loading {
   }
 
   .role-title {
-    @apply text-xl font-semibold text-black dark:text-white mb-3 leading-tight;
+    @apply text-xl font-semibold text-black dark:text-white leading-tight;
   }
 
-  .role-description {
+  .role-name {
     @apply text-gray-600 dark:text-gray-300 leading-relaxed;
   }
 
@@ -405,5 +405,81 @@ body.loading {
     .team-grid {
       @apply grid-cols-1;
     }
+  }
+
+  .animated-team-image {
+    transition: transform 0.3s ease;
+  }
+
+  .animated-team-image:hover {
+    transform: scale(1.02);
+  }
+
+  .animated-team-image img {
+    will-change: transform, filter, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .animated-team-image * {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animated-team-image,
+    .animated-team-image * {
+      transition: none !important;
+      animation: none !important;
+      transform: none !important;
+    }
+    
+    .animated-team-image img {
+      filter: none !important;
+    }
+  }
+
+  @keyframes subtle-shift {
+    0% {
+      background-position: 0 0, 0 0;
+    }
+    100% {
+      background-position: 2px 2px, -2px -2px;
+    }
+  }
+
+  @keyframes pixel-shift {
+    0% {
+      background-position: 0 0, 0 0;
+    }
+    50% {
+      background-position: 4px 4px, -4px -4px;
+    }
+    100% {
+      background-position: 0 0, 0 0;
+    }
+  }
+
+  .team-card .role-title {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+
+  .team-card .role-name {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  }
+
+  .team-card .role-badge {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  }
+
+  .team-card.h-\[420px\] {
+    padding: 0 !important;
+  }
+
+  .team-card .animated-team-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
 }
