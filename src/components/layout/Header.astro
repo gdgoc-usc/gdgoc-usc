@@ -3,7 +3,6 @@ import { Image } from "astro:assets";
 import ThemeSwitcher from "../ThemeSwitcher.tsx";
 import AnimationToggle from "../AnimationToggle.tsx";
 import { Menu, X, UserPlus } from "lucide-react";
-import ShinyText from "../react-bits/ShinyText.tsx";
 import HeaderLink from "./HeaderLink.astro";
 import MobileHeaderLink from "./MobileHeaderLink.astro";
 
@@ -13,7 +12,7 @@ const navLinks = [
   { href: "#partners", text: "Partners" },
   { href: "#events", text: "Events" },
   { href: "#merch", text: "Merch" },
-  { href: "#contact", text: "Contact Us" },
+  { href: "#footer", text: "Contact Us" },
 ];
 ---
 
@@ -54,7 +53,7 @@ const navLinks = [
           class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-gdgoc-primary-green hover:bg-gdgoc-primary-green/90 text-white font-medium rounded-full transition-colors duration-200"
         >
           <UserPlus className="w-5 h-5" />
-            <ShinyText text="Register" disabled={false} speed={3} className='custom-class' />
+            <h1 class='custom-class'>Register</h1>
         </a>
         
         <button
