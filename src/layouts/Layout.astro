@@ -98,7 +98,8 @@ const structuredData = {
 		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 		
 		<script is:inline>
-			const savedTheme = localStorage.getItem("theme") || "light";
+			const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+			const savedTheme = localStorage.getItem("theme") || systemTheme;
 			document.documentElement.classList.toggle("dark", savedTheme === "dark");
 		</script>
 		
