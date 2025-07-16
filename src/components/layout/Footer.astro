@@ -1,0 +1,189 @@
+---
+import { Image } from "astro:assets";
+import { socialLinks } from "@/config/social.data";
+import { Globe, Mail, MapPin, Calendar, Users, Code } from "lucide-react";
+
+const currentYear = new Date().getFullYear();
+
+const footerNavLinks = [
+  { href: "#about", text: "About GDG" },
+  { href: "#team", text: "Our Team" },
+  { href: "#partners", text: "Partners" },
+  { href: "#events", text: "Events" },
+  { href: "#merch", text: "Merch" },
+  { href: "#contact", text: "Contact Us" },
+];
+
+const quickLinks = [
+  { href: "https://developers.google.com/community/gdg", text: "GDG Program", icon: Globe },
+  { href: "https://gdg.community.dev/gdg-on-campus-university-of-san-carlos-cebu-philippines/", text: "Join Our Community", icon: Users },
+  { href: "mailto:gdgoc.sancarlos@gmail.com", text: "Email Us", icon: Mail },
+  { href: "https://www.google.com/maps/place/University+of+San+Carlos", text: "Find Us", icon: MapPin },
+];
+
+const resources = [
+  { href: "https://developers.google.com/", text: "Google for Developers" },
+  { href: "https://cloud.google.com/", text: "Google Cloud" },
+  { href: "https://firebase.google.com/", text: "Firebase" },
+  { href: "https://android.dev/", text: "Android Developers" },
+  { href: "https://web.dev/", text: "Web.dev" },
+  { href: "https://ai.google.dev/", text: "Google AI" },
+];
+---
+
+<footer id="footer" class="relative bg-white dark:bg-neutral-900 border-t border-gray-200 dark:border-neutral-700">
+  <div class="absolute inset-0 opacity-5 dark:opacity-10">
+    <div class="absolute inset-0 bg-gradient-to-br from-gdgoc-primary-blue via-gdgoc-primary-green to-gdgoc-primary-yellow"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+      <div class="space-y-8">
+        <div class="flex items-start space-x-4">
+          <Image
+            src="/gdgoc_logo.svg"
+            alt="GDGoC USC Logo"
+            width={60}
+            height={60}
+            class="w-15 h-15"
+          />
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-gdgoc-primary-green via-gdgoc-primary-yellow to-gdgoc-secondary-green dark:from-white dark:via-gdgoc-secondary-blue dark:to-gdgoc-secondary-green bg-clip-text text-transparent leading-tight">
+              Google Developer Groups
+            </h2>
+            <p class="text-xl font-medium text-gray-700 dark:text-gray-300">
+              on Campus
+            </p>
+            <p class="text-lg text-gdgoc-secondary-green dark:text-gdgoc-secondary-blue font-semibold">
+              University of San Carlos
+            </p>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="space-y-4">
+          <p class="text-gray-600 dark:text-gray-400 text-base leading-relaxed">
+            Building the next generation of developers through technology, community, and innovation. 
+            Join us in exploring the latest in web development, mobile apps, cloud computing, and AI.
+          </p>
+          <div class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+            <MapPin className="w-4 h-4" />
+            <span>Cebu City, Philippines</span>
+          </div>
+        </div>
+
+        <!-- Social Links -->
+        <div class="space-y-4">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Connect with Us</h3>
+          <div class="flex space-x-4">
+            {socialLinks.map((social) => (
+              <a
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                class="group flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-neutral-800 hover:bg-gdgoc-primary-blue/10 dark:hover:bg-gdgoc-primary-blue/20 transition-all duration-200 hover:scale-110"
+              >
+                {social.type === "simple-icon" ? (
+                  <svg
+                    class={`w-6 h-6 ${social.color}`}
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d={typeof social.icon === 'string' ? social.icon : social.icon.path} />
+                  </svg>
+                ) : (
+                  <Globe className={`w-6 h-6 ${social.color}`} />
+                )}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side - Links and Information -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <!-- Navigation Links -->
+        <div class="space-y-4">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Navigation</h3>
+          <ul class="space-y-3">
+            {footerNavLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-gray-600 dark:text-gray-400 hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-secondary-blue transition-colors duration-200 text-sm"
+                >
+                  {link.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="space-y-4">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Quick Links</h3>
+          <ul class="space-y-3">
+            {quickLinks.map((link) => {
+              const IconComponent = link.icon;
+              return (
+                <li>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-secondary-blue transition-colors duration-200 text-sm group"
+                  >
+                    <IconComponent className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
+                    <span>{link.text}</span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div class="space-y-4 sm:col-span-2">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Developer Resources</h3>
+          <div class="grid grid-cols-2 gap-3">
+            {resources.map((resource) => (
+              <a
+                href={resource.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-gray-600 dark:text-gray-400 hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-secondary-blue transition-colors duration-200 text-sm"
+              >
+                {resource.text}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Section -->
+    <div class="mt-12 pt-8 border-t border-gray-200 dark:border-neutral-700">
+      <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+        <div class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-500 dark:text-gray-400">
+          <p>© {currentYear} Google Developer Groups on Campus - University of San Carlos</p>
+          <div class="flex space-x-4">
+            <a href="#" class="hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-secondary-blue transition-colors duration-200">
+              Privacy Policy
+            </a>
+            <a href="#" class="hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-secondary-blue transition-colors duration-200">
+              Terms of Service
+            </a>
+            <a href="#" class="hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-secondary-blue transition-colors duration-200">
+              Code of Conduct
+            </a>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+          <Code className="w-4 h-4" />
+          <span>Built with ❤️ by GDGoC USC Team</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
