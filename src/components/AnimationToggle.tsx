@@ -43,7 +43,7 @@ export default function AnimationToggle() {
       </button>
       
       {showTooltip && (
-        <div className="absolute left-full top-1/2 transform -translate-y-1/2 ml-2 px-3 py-2 text-sm text-white bg-gray-900 dark:bg-gray-700 rounded-lg shadow-lg whitespace-nowrap z-[60]">
+        <div className="absolute left-full top-1/2 transform -translate-y-1/2 ml-2 px-3 py-2 text-sm text-white bg-gray-900 dark:bg-gray-700 rounded-lg shadow-lg whitespace-nowrap z-[60] hidden sm:block">
           {animationsEnabled ? "Disable animations" : "Enable animations"}
           <div className="absolute right-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent border-r-gray-900 dark:border-r-gray-700"></div>
         </div>
