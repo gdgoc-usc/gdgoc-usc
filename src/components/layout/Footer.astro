@@ -32,7 +32,25 @@ const resources = [
 ---
 
 <footer id="footer" class="relative bg-white dark:bg-neutral-900 border-t border-gray-200 dark:border-neutral-700">
-  <div class="absolute inset-0 opacity-5 dark:opacity-10">
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute inset-0 w-full h-full">
+      <svg
+        class="w-full h-full object-cover opacity-90 dark:opacity-70"
+        viewBox="0 0 16 9"
+        preserveAspectRatio="xMidYMid slice"
+        style="aspect-ratio: 16/9;"
+      >
+        <image
+          href="/footer_bg.svg"
+          width="16"
+          height="9"
+          preserveAspectRatio="xMidYMid slice"
+        />
+      </svg>
+    </div>
+  </div>
+
+  <div class="absolute inset-0 opacity-5 dark:opacity-5">
     <div class="absolute inset-0 bg-gradient-to-br from-gdgoc-primary-blue via-gdgoc-primary-green to-gdgoc-primary-yellow"></div>
   </div>
 
@@ -63,7 +81,7 @@ const resources = [
         <!-- Description -->
         <div class="space-y-4">
           <p class="text-gray-600 dark:text-gray-400 text-base leading-relaxed">
-            Building the next generation of developers through technology, community, and innovation. 
+            Building the next generation of developers through technology, community, and innovation.
             Join us in exploring the latest in web development, mobile apps, cloud computing, and AI.
           </p>
           <div class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
@@ -160,7 +178,7 @@ const resources = [
 
     <div class="mt-12 pt-8 border-t border-gray-200 dark:border-neutral-700">
       <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-        <div class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-500 dark:text-gray-400">
+        <div class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-500 dark:text-gray-100">
           <p>© {currentYear} Google Developer Groups on Campus - University of San Carlos</p>
           <div class="flex space-x-4">
             <a href="#" class="hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-secondary-blue transition-colors duration-200">
@@ -174,7 +192,7 @@ const resources = [
             </a>
           </div>
         </div>
-        <div class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+        <div class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-100">
           <Code className="w-4 h-4" />
           <span>Built with ❤️ by GDGoC USC Team</span>
         </div>
