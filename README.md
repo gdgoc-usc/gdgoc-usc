@@ -3,15 +3,6 @@
 <div align="center">
   <img src="public/home_screenshot.png" alt="GDGOC USC Home Screenshot" width="800"/>
 </div>
-
-## 📖 Description
-
-The official website for Google Developer Groups On Campus at the University of San Carlos. This
-modern web application serves as the central hub for our developer community, featuring information
-about events, members, and resources for students passionate about technology and development.
-
-## 🛠️ Tech Stack
-
 <div align="center">
 
 ![Astro](https://img.shields.io/badge/Astro-FF5D01?style=for-the-badge&logo=astro&logoColor=white)
@@ -23,6 +14,9 @@ about events, members, and resources for students passionate about technology an
 ![Bun](https://img.shields.io/badge/Bun-000000?style=for-the-badge&logo=bun&logoColor=white)
 
 </div>
+The official website for Google Developer Groups On Campus at the University of San Carlos. This
+modern web application serves as the central hub for our developer community, featuring information
+about events, members, and resources for students passionate about technology and development.
 
 ## 🚀 Getting Started
 
