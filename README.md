@@ -3,6 +3,7 @@
 <div align="center">
   <img src="public/home_screenshot.png" alt="GDGOC USC Home Screenshot" width="800"/>
 </div>
+
 <div align="center">
 
 ![Astro](https://img.shields.io/badge/Astro-FF5D01?style=for-the-badge&logo=astro&logoColor=white)
