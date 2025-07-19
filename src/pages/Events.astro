@@ -1,70 +1,93 @@
 ---
-import { Image } from "astro:assets";
+import { Image } from 'astro:assets';
 ---
 
-<div class="my-16">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gdgoc-primary-blue via-gdgoc-primary-green to-gdgoc-primary-yellow mb-4">
-        Our Events & Activities
-      </h2>
-      <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-        Engaging experiences that bring our community together and foster learning
-      </p>
+<div class='my-16'>
+  <div class='text-center mb-12'>
+    <h2
+      class='text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gdgoc-primary-blue via-gdgoc-primary-green to-gdgoc-primary-yellow mb-4'
+    >
+      Our Events & Activities
+    </h2>
+    <p class='text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto'>
+      Engaging experiences that bring our community together and foster learning
+    </p>
+  </div>
+
+  <div class='grid md:grid-cols-3 gap-8 max-w-6xl mx-auto'>
+    <div
+      class='group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gdgoc-primary-blue/5 to-gdgoc-secondary-blue/5 border border-gdgoc-primary-blue/20 hover:border-gdgoc-primary-blue/40 transition-all duration-300 hover:shadow-xl hover:shadow-gdgoc-primary-blue/10'
+    >
+      <div class='aspect-video overflow-hidden rounded-t-2xl'>
+        <Image
+          src='/events/ideathon.jpg'
+          alt='GDGoC USC Ideathon - Students collaborating on innovative ideas'
+          width={400}
+          height={225}
+          class='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
+        />
+      </div>
+      <div class='p-6'>
+        <h3
+          class='text-xl font-bold text-gdgoc-primary-blue dark:text-gdgoc-secondary-blue mb-2'
+        >
+          Ideathon
+        </h3>
+        <p class='text-sm text-gray-600 dark:text-gray-300 leading-relaxed'>
+          Collaborative brainstorming sessions where students generate
+          innovative solutions to real-world problems.
+        </p>
+      </div>
     </div>
-    
-    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-      <div class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gdgoc-primary-blue/5 to-gdgoc-secondary-blue/5 border border-gdgoc-primary-blue/20 hover:border-gdgoc-primary-blue/40 transition-all duration-300 hover:shadow-xl hover:shadow-gdgoc-primary-blue/10">
-        <div class="aspect-video overflow-hidden rounded-t-2xl">
-          <Image
-            src="/events/ideathon.jpg"
-            alt="GDGoC USC Ideathon - Students collaborating on innovative ideas"
-            width={400}
-            height={225}
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-        </div>
-        <div class="p-6">
-          <h3 class="text-xl font-bold text-gdgoc-primary-blue dark:text-gdgoc-secondary-blue mb-2">Ideathon</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-            Collaborative brainstorming sessions where students generate innovative solutions to real-world problems.
-          </p>
-        </div>
-      </div>
 
-      <div class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gdgoc-primary-green/5 to-gdgoc-secondary-green/5 border border-gdgoc-primary-green/20 hover:border-gdgoc-primary-green/40 transition-all duration-300 hover:shadow-xl hover:shadow-gdgoc-primary-green/10">
-        <div class="aspect-video overflow-hidden rounded-t-2xl">
-          <Image
-            src="/events/infosession.jpg"
-            alt="GDGoC USC Information Session - Introduction to our community"
-            width={400}
-            height={225}
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-        </div>
-        <div class="p-6">
-          <h3 class="text-xl font-bold text-gdgoc-primary-green dark:text-gdgoc-secondary-green mb-2">Info Session</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-            Welcome sessions introducing new members to our community, goals, and upcoming opportunities.
-          </p>
-        </div>
+    <div
+      class='group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gdgoc-primary-green/5 to-gdgoc-secondary-green/5 border border-gdgoc-primary-green/20 hover:border-gdgoc-primary-green/40 transition-all duration-300 hover:shadow-xl hover:shadow-gdgoc-primary-green/10'
+    >
+      <div class='aspect-video overflow-hidden rounded-t-2xl'>
+        <Image
+          src='/events/infosession.jpg'
+          alt='GDGoC USC Information Session - Introduction to our community'
+          width={400}
+          height={225}
+          class='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
+        />
       </div>
+      <div class='p-6'>
+        <h3
+          class='text-xl font-bold text-gdgoc-primary-green dark:text-gdgoc-secondary-green mb-2'
+        >
+          Info Session
+        </h3>
+        <p class='text-sm text-gray-600 dark:text-gray-300 leading-relaxed'>
+          Welcome sessions introducing new members to our community, goals, and
+          upcoming opportunities.
+        </p>
+      </div>
+    </div>
 
-      <div class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gdgoc-primary-yellow/5 to-gdgoc-primary-orange/5 border border-gdgoc-primary-yellow/20 hover:border-gdgoc-primary-yellow/40 transition-all duration-300 hover:shadow-xl hover:shadow-gdgoc-primary-yellow/10">
-        <div class="aspect-video overflow-hidden rounded-t-2xl">
-          <Image
-            src="/events/techfortomorow.jpg"
-            alt="Tech for Tomorrow - Future-focused technology discussions"
-            width={400}
-            height={225}
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-        </div>
-        <div class="p-6">
-          <h3 class="text-xl font-bold text-gdgoc-primary-yellow dark:text-gdgoc-primary-orange mb-2">Tech for Tomorrow</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
-            Forward-thinking workshops exploring emerging technologies and their impact on society.
-          </p>
-        </div>
+    <div
+      class='group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gdgoc-primary-yellow/5 to-gdgoc-primary-orange/5 border border-gdgoc-primary-yellow/20 hover:border-gdgoc-primary-yellow/40 transition-all duration-300 hover:shadow-xl hover:shadow-gdgoc-primary-yellow/10'
+    >
+      <div class='aspect-video overflow-hidden rounded-t-2xl'>
+        <Image
+          src='/events/techfortomorow.jpg'
+          alt='Tech for Tomorrow - Future-focused technology discussions'
+          width={400}
+          height={225}
+          class='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
+        />
+      </div>
+      <div class='p-6'>
+        <h3
+          class='text-xl font-bold text-gdgoc-primary-yellow dark:text-gdgoc-primary-orange mb-2'
+        >
+          Tech for Tomorrow
+        </h3>
+        <p class='text-sm text-gray-600 dark:text-gray-300 leading-relaxed'>
+          Forward-thinking workshops exploring emerging technologies and their
+          impact on society.
+        </p>
       </div>
     </div>
   </div>
+</div>

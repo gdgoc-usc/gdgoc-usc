@@ -1,90 +1,99 @@
 ---
-import { Image } from "astro:assets";
-import ThemeSwitcher from "../ThemeSwitcher.tsx";
-import AnimationToggle from "../AnimationToggle.tsx";
-import { Menu, X, UserPlus } from "lucide-react";
-import HeaderLink from "./HeaderLink.astro";
-import MobileHeaderLink from "./MobileHeaderLink.astro";
+import { Image } from 'astro:assets';
+import ThemeSwitcher from '../ThemeSwitcher.tsx';
+import AnimationToggle from '../AnimationToggle.tsx';
+import { Menu, X, UserPlus } from 'lucide-react';
+import HeaderLink from './HeaderLink.astro';
+import MobileHeaderLink from './MobileHeaderLink.astro';
 
 const navLinks = [
-  { href: "#about", text: "About GDG" },
-  { href: "#team", text: "Our Team" },
-  { href: "#partners", text: "Partners" },
-  { href: "#events", text: "Events" },
-  { href: "#merch", text: "Merch" },
-  { href: "#footer", text: "Contact Us" },
+  { href: '#about', text: 'About GDG' },
+  { href: '#team', text: 'Our Team' },
+  { href: '#partners', text: 'Partners' },
+  { href: '#events', text: 'Events' },
+  { href: '#merch', text: 'Merch' },
+  { href: '#footer', text: 'Contact Us' },
 ];
 ---
 
 <!-- bg-[url('/gdgoc_bg_1_compressed.svg')] bg-cover bg-center bg-no-repeat -->
-<header class="fixed top-0 left-0 right-0 z-50 rounded-none transition-all duration-300 ease-in-out">
-  <div id="main-header" class="w-full">
-  <div class="px-4 sm:px-6 lg:px-8 lg:py-2 w-full">
-    <div class="flex items-center justify-between h-16">
-      <div class="flex items-center sm:gap-8 md:lg:gap-12">
-        <a href="/" class="flex items-center space-x-2">
-          <Image
-            src="/gdgoc_logo.svg"
-            alt="GDGoC USC Logo"
-            width={40}
-            height={40}
-            class="w-10 h-10"
-          />
-          <div class="flex flex-col">
-            <span class="hidden sm:md:lg:block text-xl font-bold bg-gradient-to-r from-gdgoc-primary-green via-gdgoc-primary-yellow to-gdgoc-secondary-green dark:from-white dark:via-gdgoc-secondary-blue dark:to-gdgoc-secondary-green bg-clip-text text-transparent leading-tight">
-              Google Developer Groups
-            </span>
-            <span class="hidden sm:md:lg:block font-light text-sm">University of San Carlos</span>
-          </div>
-        </a>
-        <nav class="hidden lg:flex items-center space-x-8">
-          {navLinks.map((link) => (
-            <HeaderLink href={link.href} text={link.text} />
-          ))}
-        </nav>
-      </div>
+<header
+  class='fixed top-0 left-0 right-0 z-50 rounded-none transition-all duration-300 ease-in-out'
+>
+  <div id='main-header' class='w-full'>
+    <div class='px-4 sm:px-6 lg:px-8 lg:py-2 w-full'>
+      <div class='flex items-center justify-between h-16'>
+        <div class='flex items-center sm:gap-8 md:lg:gap-12'>
+          <a href='/' class='flex items-center space-x-2'>
+            <Image
+              src='/gdgoc_logo.svg'
+              alt='GDGoC USC Logo'
+              width={40}
+              height={40}
+              class='w-10 h-10'
+            />
+            <div class='flex flex-col'>
+              <span
+                class='hidden sm:md:lg:block text-xl font-bold bg-gradient-to-r from-gdgoc-primary-green via-gdgoc-primary-yellow to-gdgoc-secondary-green dark:from-white dark:via-gdgoc-secondary-blue dark:to-gdgoc-secondary-green bg-clip-text text-transparent leading-tight'
+              >
+                Google Developer Groups
+              </span>
+              <span class='hidden sm:md:lg:block font-light text-sm'
+                >University of San Carlos</span
+              >
+            </div>
+          </a>
+          <nav class='hidden lg:flex items-center space-x-8'>
+            {
+              navLinks.map(link => (
+                <HeaderLink href={link.href} text={link.text} />
+              ))
+            }
+          </nav>
+        </div>
 
-      <div class="flex items-center gap-4">
-        <AnimationToggle client:load />
-        <ThemeSwitcher client:load />
-        
-        <a
-          href="#membership"
-          class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-gdgoc-primary-green hover:bg-gdgoc-primary-green/90 text-white font-medium rounded-full transition-colors duration-200"
-        >
-          <UserPlus className="w-5 h-5" />
+        <div class='flex items-center gap-4'>
+          <AnimationToggle client:load />
+          <ThemeSwitcher client:load />
+
+          <a
+            href='#membership'
+            class='hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-gdgoc-primary-green hover:bg-gdgoc-primary-green/90 text-white font-medium rounded-full transition-colors duration-200'
+          >
+            <UserPlus className='w-5 h-5' />
             <h1 class='custom-class'>Register</h1>
-        </a>
-        
-        <button
-          class="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
-          aria-label="Open menu"
-          id="mobile-menu-button"
-        >
-          <Menu className="w-6 h-6" id="menu-icon" />
-          <X className="w-6 h-6 hidden" id="close-icon" />
-        </button>
-      </div>
-    </div>
+          </a>
 
-    <!-- Mobile Menu Inside Header -->
-    <div class="lg:hidden" id="mobile-menu">
-      <div class="px-2 pb-4 space-y-1">
-        {navLinks.map((link) => (
-          <MobileHeaderLink href={link.href} text={link.text} />
-        ))}
-        <a
-          href="#membership"
-          class="block px-3 py-2 mt-4 text-white bg-gdgoc-primary-green hover:bg-gdgoc-primary-green/90 transition-colors duration-200 font-medium rounded-lg text-center"
-        >
-          Register
-        </a>
+          <button
+            class='lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200'
+            aria-label='Open menu'
+            id='mobile-menu-button'
+          >
+            <Menu className='w-6 h-6' id='menu-icon' />
+            <X className='w-6 h-6 hidden' id='close-icon' />
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Inside Header -->
+      <div class='lg:hidden' id='mobile-menu'>
+        <div class='px-2 pb-4 space-y-1'>
+          {
+            navLinks.map(link => (
+              <MobileHeaderLink href={link.href} text={link.text} />
+            ))
+          }
+          <a
+            href='#membership'
+            class='block px-3 py-2 mt-4 text-white bg-gdgoc-primary-green hover:bg-gdgoc-primary-green/90 transition-colors duration-200 font-medium rounded-lg text-center'
+          >
+            Register
+          </a>
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </header>
-
 
 <script>
   const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -103,18 +112,18 @@ const navLinks = [
     mainHeader?.classList.add('mobile-menu-closing');
     menuIcon?.classList.remove('hidden');
     closeIcon?.classList.add('hidden');
-    
+
     setTimeout(() => {
       mainHeader?.classList.remove('mobile-menu-open');
       mainHeader?.classList.remove('mobile-menu-closing');
     }, 350);
   }
 
-  mobileMenuButton?.addEventListener('click', (event) => {
+  mobileMenuButton?.addEventListener('click', event => {
     event.stopPropagation();
-    
+
     const isOpen = mainHeader?.classList.contains('mobile-menu-open');
-    
+
     if (isOpen) {
       closeMenu();
     } else {
@@ -122,9 +131,11 @@ const navLinks = [
     }
   });
 
-  document.addEventListener('click', (event) => {
-    if (!mobileMenuButton?.contains(event.target as Node) && 
-        !mobileMenu?.contains(event.target as Node)) {
+  document.addEventListener('click', event => {
+    if (
+      !mobileMenuButton?.contains(event.target as Node) &&
+      !mobileMenu?.contains(event.target as Node)
+    ) {
       if (mainHeader?.classList.contains('mobile-menu-open')) {
         closeMenu();
       }
@@ -139,21 +150,22 @@ const navLinks = [
   // Also takes into account the reduced motion preference
 
   let lastScrollY = 0;
-  const scrollRange = 600; 
-  const maxBlur = 16; 
-  const maxBgOpacity = 0.85; 
+  const scrollRange = 600;
+  const maxBlur = 16;
+  const maxBgOpacity = 0.85;
   const maxShadowOpacity = 1;
-  const maxBorderOpacity = 1; 
+  const maxBorderOpacity = 1;
 
   function updateHeaderOnScroll() {
     const scrollY = window.scrollY;
-    const prefersReducedMotion = document.documentElement.classList.contains('reduced-motion');
-    
+    const prefersReducedMotion =
+      document.documentElement.classList.contains('reduced-motion');
+
     if (prefersReducedMotion) {
       const scrollProgress = Math.min(scrollY / scrollRange, 1);
       const easedProgress = 1 - Math.pow(1 - scrollProgress, 3);
-      const bgOpacity = easedProgress; 
-      
+      const bgOpacity = easedProgress;
+
       if (mainHeader) {
         mainHeader.style.setProperty('--blur-amount', '0px');
         mainHeader.style.setProperty('--bg-opacity', bgOpacity.toString());
@@ -162,25 +174,31 @@ const navLinks = [
       }
     } else {
       const scrollProgress = Math.min(scrollY / scrollRange, 1);
-      const easedProgress = 1 - Math.pow(1 - scrollProgress, 3); 
-      
+      const easedProgress = 1 - Math.pow(1 - scrollProgress, 3);
+
       const blurAmount = easedProgress * maxBlur;
       const bgOpacity = easedProgress * maxBgOpacity;
       const shadowOpacity = easedProgress * maxShadowOpacity;
       const borderOpacity = easedProgress * maxBorderOpacity;
-      
+
       if (mainHeader) {
         mainHeader.style.setProperty('--blur-amount', `${blurAmount}px`);
         mainHeader.style.setProperty('--bg-opacity', bgOpacity.toString());
-        mainHeader.style.setProperty('--shadow-opacity', shadowOpacity.toString());
-        mainHeader.style.setProperty('--border-opacity', borderOpacity.toString());
+        mainHeader.style.setProperty(
+          '--shadow-opacity',
+          shadowOpacity.toString()
+        );
+        mainHeader.style.setProperty(
+          '--border-opacity',
+          borderOpacity.toString()
+        );
       }
     }
-    
+
     lastScrollY = scrollY;
   }
 
   window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
-  
+
   updateHeaderOnScroll();
 </script>

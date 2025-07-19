@@ -158,21 +158,27 @@ const LiquidGlassMaterial = shaderMaterial(
 function LiquidGlassPlane({ scrollProgress }: { scrollProgress: number }) {
   const meshRef = useRef<THREE.Mesh>(null);
   const { viewport, gl } = useThree();
-  
+
   // Create render target for background
   const renderTarget = useMemo(() => {
-    return new THREE.WebGLRenderTarget(gl.domElement.width, gl.domElement.height);
+    return new THREE.WebGLRenderTarget(
+      gl.domElement.width,
+      gl.domElement.height
+    );
   }, [gl]);
-  
-  useFrame((state) => {
+
+  useFrame(state => {
     if (meshRef.current) {
       const material = meshRef.current.material as any;
       material.uniforms.uTime.value = state.clock.elapsedTime;
       material.uniforms.uScrollProgress.value = scrollProgress;
-      material.uniforms.uResolution.value.set(gl.domElement.width, gl.domElement.height);
+      material.uniforms.uResolution.value.set(
+        gl.domElement.width,
+        gl.domElement.height
+      );
     }
   });
-  
+
   return (
     <mesh ref={meshRef} position={[0, 0, 0]}>
       <planeGeometry args={[viewport.width, viewport.height]} />
@@ -187,7 +193,10 @@ interface LiquidGlassProps {
   className?: string;
 }
 
-export default function LiquidGlass({ scrollProgress, className }: LiquidGlassProps) {
+export default function LiquidGlass({
+  scrollProgress,
+  className,
+}: LiquidGlassProps) {
   return (
     <div className={`absolute inset-0 ${className}`}>
       <Canvas>
@@ -195,4 +204,4 @@ export default function LiquidGlass({ scrollProgress, className }: LiquidGlassPr
       </Canvas>
     </div>
   );
-} 
+}

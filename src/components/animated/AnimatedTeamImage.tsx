@@ -6,12 +6,16 @@ interface AnimatedTeamImageProps {
   className?: string;
 }
 
-const AnimatedTeamImage: React.FC<AnimatedTeamImageProps> = ({ src, alt, className = '' }) => {
+const AnimatedTeamImage: React.FC<AnimatedTeamImageProps> = ({
+  src,
+  alt,
+  className = '',
+}) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <div 
+    <div
       className={`animated-team-image relative overflow-hidden group cursor-pointer ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -20,21 +24,17 @@ const AnimatedTeamImage: React.FC<AnimatedTeamImageProps> = ({ src, alt, classNa
         src={src}
         alt={alt}
         className={`absolute inset-0 w-full h-full object-cover object-center transition-all duration-[800ms] ease-out ${
-          isHovered 
-            ? 'opacity-100 scale-105' 
-            : 'opacity-0 scale-100'
+          isHovered ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
         }`}
         onLoad={() => setIsLoaded(true)}
-        loading="lazy"
+        loading='lazy'
       />
-      
+
       <img
         src={src}
         alt={alt}
         className={`absolute inset-0 w-full h-full object-cover object-center transition-all duration-[800ms] ease-out ${
-          isHovered 
-            ? 'opacity-0 scale-110' 
-            : 'opacity-100 scale-100'
+          isHovered ? 'opacity-0 scale-110' : 'opacity-100 scale-100'
         }`}
         style={{
           filter: `
@@ -46,14 +46,16 @@ const AnimatedTeamImage: React.FC<AnimatedTeamImageProps> = ({ src, alt, classNa
             saturate(${isHovered ? '40%' : '100%'})
             ${isHovered ? 'blur(3px)' : ''}
           `,
-          imageRendering: 'pixelated'
+          imageRendering: 'pixelated',
         }}
-        loading="lazy"
+        loading='lazy'
       />
 
-      <div 
+      <div
         className={`absolute inset-0 transition-all duration-500 ease-out pointer-events-none mix-blend-hard-light ${
-          isHovered ? 'opacity-0 scale-110' : 'opacity-40 dark:opacity-60 scale-100'
+          isHovered
+            ? 'opacity-0 scale-110'
+            : 'opacity-40 dark:opacity-60 scale-100'
         }`}
         style={{
           background: `
@@ -87,14 +89,16 @@ const AnimatedTeamImage: React.FC<AnimatedTeamImageProps> = ({ src, alt, classNa
             )
           `,
           backgroundSize: '24px 24px, 12px 12px, 12px 12px',
-          imageRendering: 'pixelated'
+          imageRendering: 'pixelated',
         }}
       />
 
       {/* Stronger dithering pattern overlay */}
-      <div 
+      <div
         className={`absolute inset-0 mix-blend-multiply transition-all duration-700 ease-out ${
-          isHovered ? 'opacity-0 scale-105' : 'opacity-30 dark:opacity-50 scale-100'
+          isHovered
+            ? 'opacity-0 scale-105'
+            : 'opacity-30 dark:opacity-50 scale-100'
         }`}
         style={{
           background: `
@@ -113,12 +117,12 @@ const AnimatedTeamImage: React.FC<AnimatedTeamImageProps> = ({ src, alt, classNa
           `,
           backgroundSize: '8px 8px, 8px 8px',
           backgroundPosition: '0 0, 4px 4px',
-          imageRendering: 'pixelated'
+          imageRendering: 'pixelated',
         }}
       />
 
       {/* Chunky pixel noise texture */}
-      <div 
+      <div
         className={`absolute inset-0 mix-blend-overlay transition-all duration-600 ${
           isHovered ? 'opacity-0' : 'opacity-25 dark:opacity-40'
         }`}
@@ -148,15 +152,17 @@ const AnimatedTeamImage: React.FC<AnimatedTeamImageProps> = ({ src, alt, classNa
             )
           `,
           imageRendering: 'pixelated',
-          animation: isHovered ? 'none' : 'pixel-shift 3s ease-in-out infinite alternate'
+          animation: isHovered
+            ? 'none'
+            : 'pixel-shift 3s ease-in-out infinite alternate',
         }}
       />
-      
+
       {!isLoaded && (
-        <div className="absolute inset-0 bg-gradient-to-br from-gdgoc-primary-blue/10 to-gdgoc-secondary-blue/10 animate-pulse" />
+        <div className='absolute inset-0 bg-gradient-to-br from-gdgoc-primary-blue/10 to-gdgoc-secondary-blue/10 animate-pulse' />
       )}
-      
-      <div className="absolute inset-0 bg-gradient-to-t from-black/30 dark:from-black/50 via-black/5 dark:via-black/10 to-transparent pointer-events-none z-10" />
+
+      <div className='absolute inset-0 bg-gradient-to-t from-black/30 dark:from-black/50 via-black/5 dark:via-black/10 to-transparent pointer-events-none z-10' />
     </div>
   );
 };

@@ -3,34 +3,43 @@ import Layout from '@/layouts/Layout.astro';
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
 import Hero from './Hero.astro';
-import About from "./About.astro";
+import About from './About.astro';
 import Team from './Team.astro';
-
 ---
 
 <Layout
-  title="GDGoC USC - Google Developer Groups on Campus"
-  description="Join the Google Developer Groups on Campus at University of San Carlos. Learn, build, and connect with fellow developers."
+  title='GDGoC USC - Google Developer Groups on Campus'
+  description='Join the Google Developer Groups on Campus at University of San Carlos. Learn, build, and connect with fellow developers.'
 >
   <Header />
-  <main class="w-full">
+  <main class='w-full'>
     <Hero />
 
     <About />
 
     <Team />
 
-    <section id="partners" class="min-h-screen w-full flex items-center justify-center bg-white dark:bg-neutral-900">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Our Partners</h2>
-        <p class="text-xl text-gray-600 dark:text-gray-300">Coming soon...</p>
+    <section
+      id='partners'
+      class='min-h-screen w-full flex items-center justify-center bg-white dark:bg-neutral-900'
+    >
+      <div class='container mx-auto px-4 sm:px-6 lg:px-8 text-center'>
+        <h2 class='text-4xl font-bold text-gray-900 dark:text-white mb-4'>
+          Our Partners
+        </h2>
+        <p class='text-xl text-gray-600 dark:text-gray-300'>Coming soon...</p>
       </div>
     </section>
 
-    <section id="events" class="min-h-screen w-full flex items-center justify-center bg-white dark:bg-neutral-900">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Events</h2>
-        <p class="text-xl text-gray-600 dark:text-gray-300">Coming soon...</p>
+    <section
+      id='events'
+      class='min-h-screen w-full flex items-center justify-center bg-white dark:bg-neutral-900'
+    >
+      <div class='container mx-auto px-4 sm:px-6 lg:px-8 text-center'>
+        <h2 class='text-4xl font-bold text-gray-900 dark:text-white mb-4'>
+          Events
+        </h2>
+        <p class='text-xl text-gray-600 dark:text-gray-300'>Coming soon...</p>
       </div>
     </section>
   </main>

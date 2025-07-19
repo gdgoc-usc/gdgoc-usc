@@ -1,103 +1,128 @@
 ---
-import { Image } from "astro:assets";
-import { ChevronDown, Globe } from "lucide-react";
+import { Image } from 'astro:assets';
+import { ChevronDown, Globe } from 'lucide-react';
 import Squares from '@/components/react-bits/FlowingGrid';
 import AnimatedHeroText from '@/components/animated/AnimatedHeroText';
 import { socialLinks } from '@/config/social.data';
 ---
 
-<section 
-  id="hero" 
-  class="relative min-h-screen w-full flex items-center justify-center overflow-hidden"
+<section
+  id='hero'
+  class='relative min-h-screen w-full flex items-center justify-center overflow-hidden'
 >
-<!-- This one is for mobile view, since I kinda noticed that the large size SVG is laggy -->
-<div class="absolute inset-0 bg-cover opacity-50 bg-[position:left_center] sm:bg-[length:120%] sm:bg-[position:left_center] md:bg-cover md:bg-center bg-no-repeat animate-bg-reveal md:hidden" style="background-image: url('/gdgoc_bg_1_picture.png');"></div>
-<!-- This is for desktop view -->
-<div class="absolute inset-0 bg-cover bg-[position:left_center] sm:bg-[length:120%] sm:bg-[position:left_center] md:bg-cover md:bg-center bg-no-repeat animate-bg-reveal hidden md:block" style="background-image: url('/gdgoc_bg_1_compressed.svg');"></div>
-  <div class="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col items-center justify-center max-w-4xl mx-auto">
-      <div class="flex flex-col justify-center text-center items-center w-full">
-        <div class="space-y-6">
-          <AnimatedHeroText 
-            className="text-center text-5xl md:text-7xl lg:text-8xl font-medium text-black dark:text-white leading-[0.99] tracking-[-1.44px] lg:tracking-[-3.72px] text-balance mb-6"
+  <!-- This one is for mobile view, since I kinda noticed that the large size SVG is laggy -->
+  <div
+    class='absolute inset-0 bg-cover opacity-50 bg-[position:left_center] sm:bg-[length:120%] sm:bg-[position:left_center] md:bg-cover md:bg-center bg-no-repeat animate-bg-reveal md:hidden'
+    style="background-image: url('/gdgoc_bg_1_picture.png');"
+  >
+  </div>
+  <!-- This is for desktop view -->
+  <div
+    class='absolute inset-0 bg-cover bg-[position:left_center] sm:bg-[length:120%] sm:bg-[position:left_center] md:bg-cover md:bg-center bg-no-repeat animate-bg-reveal hidden md:block'
+    style="background-image: url('/gdgoc_bg_1_compressed.svg');"
+  >
+  </div>
+  <div class='relative z-10 container mx-auto px-4 sm:px-6 lg:px-8'>
+    <div class='flex flex-col items-center justify-center max-w-4xl mx-auto'>
+      <div class='flex flex-col justify-center text-center items-center w-full'>
+        <div class='space-y-6'>
+          <AnimatedHeroText
+            className='text-center text-5xl md:text-7xl lg:text-8xl font-medium text-black dark:text-white leading-[0.99] tracking-[-1.44px] lg:tracking-[-3.72px] text-balance mb-6'
             client:load
           >
-            <span class="text-gdgoc-primary-blue">G</span><span class="text-gdgoc-primary-red">o</span><span class="text-gdgoc-primary-yellow">o</span><span class="text-gdgoc-primary-blue">g</span><span class="text-gdgoc-primary-green">l</span><span class="text-gdgoc-primary-red">e</span> <span class="text-gray-600 dark:text-gray-200">Developer Groups</span>
-            <span class="block text-xl lg:text-2xl font-normal text-gray-600 dark:text-gray-300 mt-1 tracking-normal">
+            <span class='text-gdgoc-primary-blue'>G</span><span
+              class='text-gdgoc-primary-red'>o</span
+            ><span class='text-gdgoc-primary-yellow'>o</span><span
+              class='text-gdgoc-primary-blue'>g</span
+            ><span class='text-gdgoc-primary-green'>l</span><span
+              class='text-gdgoc-primary-red'>e</span
+            >
+            <span class='text-gray-600 dark:text-gray-200'
+              >Developer Groups</span
+            >
+            <span
+              class='block text-xl lg:text-2xl font-normal text-gray-600 dark:text-gray-300 mt-1 tracking-normal'
+            >
               on Campus
             </span>
-            
-            <div class="flex justify-center items-center gap-4 mt-6">
-              {socialLinks.map((link) => (
-                <a 
-                  href={link.href}
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  class="group p-3 rounded-full dark:bg-white/5 backdrop-blur-sm border dark:border-white/20 border-neutral-300 dark:hover:bg-white/20 dark:hover:border-white/40 transition-all duration-300 hover:scale-110"
-                  aria-label={link.label}
-                >
-                  {link.type === "lucide" ? (
-                    <Globe className={`w-6 h-6 ${link.color} transition-colors duration-300`} />
-                  ) : (
-                    <svg 
-                      class={`w-6 h-6 ${link.color} transition-colors duration-300`}
-                      fill="currentColor" 
-                      viewBox="0 0 24 24"
-                      set:html={typeof link.icon === 'string' ? '' : link.icon.svg}
-                    />
-                  )}
-                </a>
-              ))}
+
+            <div class='flex justify-center items-center gap-4 mt-6'>
+              {
+                socialLinks.map(link => (
+                  <a
+                    href={link.href}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    class='group p-3 rounded-full dark:bg-white/5 backdrop-blur-sm border dark:border-white/20 border-neutral-300 dark:hover:bg-white/20 dark:hover:border-white/40 transition-all duration-300 hover:scale-110'
+                    aria-label={link.label}
+                  >
+                    {link.type === 'lucide' ? (
+                      <Globe
+                        className={`w-6 h-6 ${link.color} transition-colors duration-300`}
+                      />
+                    ) : (
+                      <svg
+                        class={`w-6 h-6 ${link.color} transition-colors duration-300`}
+                        fill='currentColor'
+                        viewBox='0 0 24 24'
+                        set:html={
+                          typeof link.icon === 'string' ? '' : link.icon.svg
+                        }
+                      />
+                    )}
+                  </a>
+                ))
+              }
             </div>
           </AnimatedHeroText>
-          
-          <AnimatedHeroText 
-            className="inline-flex items-center gap-2 px-6 py-3 border-gdgoc-primary-green border-2 bg-gdgoc-primary-green sm:md:lg:bg-transparent backdrop-blur-sm rounded-full mt-6"
+
+          <AnimatedHeroText
+            className='inline-flex items-center gap-2 px-6 py-3 border-gdgoc-primary-green border-2 bg-gdgoc-primary-green sm:md:lg:bg-transparent backdrop-blur-sm rounded-full mt-6'
             delay={0.2}
             client:load
           >
             <Image
-              src="/usc_logo.svg"
-              alt="USC Logo"
+              src='/usc_logo.svg'
+              alt='USC Logo'
               width={64}
               height={64}
-              class="w-8 h-8 md:lg:w-10 md:lg:h-10 drop-shadow-2xl transform group-hover:rotate-3 transition-all duration-500"
+              class='w-8 h-8 md:lg:w-10 md:lg:h-10 drop-shadow-2xl transform group-hover:rotate-3 transition-all duration-500'
             />
-            <h3 class="text-md lg:text-lg font-semibold text-white sm:md:lg:text-gdgoc-primary-green tracking-normal">
+            <h3
+              class='text-md lg:text-lg font-semibold text-white sm:md:lg:text-gdgoc-primary-green tracking-normal'
+            >
               University of San Carlos
             </h3>
-            
           </AnimatedHeroText>
-          
-          <AnimatedHeroText 
-            className="text-base lg:text-lg text-gray-700 dark:text-gray-100 max-w-lg mx-auto leading-relaxed mt-6"
+
+          <AnimatedHeroText
+            className='text-base lg:text-lg text-gray-700 dark:text-gray-100 max-w-lg mx-auto leading-relaxed mt-6'
             delay={0.4}
             client:load
           >
-            Join our community of passionate developers, innovators, and tech enthusiasts building the future together.
+            Join our community of passionate developers, innovators, and tech
+            enthusiasts building the future together.
           </AnimatedHeroText>
-          
-          <AnimatedHeroText 
-            className="flex justify-center mt-6"
+
+          <AnimatedHeroText
+            className='flex justify-center mt-6'
             delay={0.6}
             client:load
           >
-            <button 
-              onclick="scrollToNextSection()"
-              class="group relative inline-flex items-center gap-3 px-8 py-4 md:px-10 md:py-5 border-1 border-gdgoc-primary-blue bg-gdgoc-primary-blue text-white hover:bg-transparent hover:text-gdgoc-secondary-blue dark:hover:text-gdgoc-secondary-blue hover:border-gdgoc-primary-blue font-semibold rounded-full transition-all duration-200 transform hover:cursor-pointer overflow-hidden"
-              aria-label="Learn more about GDGoC USC"
+            <button
+              onclick='scrollToNextSection()'
+              class='group relative inline-flex items-center gap-3 px-8 py-4 md:px-10 md:py-5 border-1 border-gdgoc-primary-blue bg-gdgoc-primary-blue text-white hover:bg-transparent hover:text-gdgoc-secondary-blue dark:hover:text-gdgoc-secondary-blue hover:border-gdgoc-primary-blue font-semibold rounded-full transition-all duration-200 transform hover:cursor-pointer overflow-hidden'
+              aria-label='Learn more about GDGoC USC'
             >
-              
-              <span class="relative z-10">Learn More</span>
-              <ChevronDown 
-                className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:-rotate-90" 
-                client:load 
+              <span class='relative z-10'>Learn More</span>
+              <ChevronDown
+                className='relative z-10 w-5 h-5 transition-transform duration-300 group-hover:-rotate-90'
+                client:load
               />
             </button>
           </AnimatedHeroText>
         </div>
       </div>
-      
     </div>
   </div>
 </section>
@@ -106,9 +131,9 @@ import { socialLinks } from '@/config/social.data';
   function scrollToNextSection() {
     const aboutSection = document.getElementById('about');
     if (aboutSection) {
-      aboutSection.scrollIntoView({ 
+      aboutSection.scrollIntoView({
         behavior: 'smooth',
-        block: 'start'
+        block: 'start',
       });
     }
   }

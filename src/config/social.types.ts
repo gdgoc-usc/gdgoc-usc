@@ -1,9 +1,9 @@
-import type { SimpleIcon } from "simple-icons";
+import type { SimpleIcon } from 'simple-icons';
 
 export type SocialLink = {
   href: string;
   label: string;
   icon: SimpleIcon | string;
   color: string;
-  type: "simple-icon" | "lucide";
+  type: 'simple-icon' | 'lucide';
 };
