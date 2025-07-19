@@ -9,6 +9,51 @@ import {
   finance,
   technology,
 } from '@/config/team.data';
+
+const allTeamMembers = [
+  ...leadership.map(member => ({
+    ...member,
+    displayName: member.name,
+    department: 'Leadership',
+    color: 'rgba(66, 133, 244, 0.25)' as const,
+  })),
+  ...externalRelations.map(member => ({
+    ...member,
+    displayName: member.role,
+    department: 'External Relations',
+    color: 'rgba(52, 168, 83, 0.25)' as const,
+  })),
+  ...marketing.map(member => ({
+    ...member,
+    displayName: member.role,
+    department: 'Marketing',
+    color: 'rgba(251, 188, 4, 0.25)' as const,
+  })),
+  ...operations.map(member => ({
+    ...member,
+    displayName: member.role,
+    department: 'Operations',
+    color: 'rgba(234, 67, 53, 0.25)' as const,
+  })),
+  ...finance.map(member => ({
+    ...member,
+    displayName: member.role,
+    department: 'Finance',
+    color: 'rgba(52, 168, 83, 0.25)' as const,
+  })),
+  ...technology.map(member => ({
+    ...member,
+    displayName: member.role,
+    department: 'Technology',
+    color: 'rgba(66, 133, 244, 0.25)' as const,
+  })),
+];
+
+const infiniteTeamMembers = [
+  ...allTeamMembers,
+  ...allTeamMembers,
+  ...allTeamMembers,
+];
 ---
 
 <section
@@ -34,153 +79,165 @@ import {
           >
         </p>
       </div>
+    </div>
+  </div>
 
-      <div class='max-w-7xl mx-auto space-y-16'>
-        <!-- Leadership Section -->
-        <div class='team-section'>
-          <h2 class='section-title'>Leadership</h2>
-          <div class='team-grid'>
-            {
-              leadership.map(member => (
-                <SpotlightCard
-                  className='team-card h-[420px] bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-200 dark:border-gray-700 relative overflow-hidden !p-0'
-                  spotlightColor='rgba(66, 133, 244, 0.25)'
-                  client:load
-                >
-                  {member.imageUrl && (
-                    <AnimatedTeamImage
-                      src={member.imageUrl}
-                      alt={member.role + ' photo'}
-                      className='absolute inset-0 w-full h-full'
-                      client:load
-                    />
-                  )}
-                  <div class='absolute bottom-0 right-0 z-30 flex flex-col items-end justify-end p-6 bg-gradient-to-t from-black/80 via-black/40 to-transparent w-full h-full pointer-events-none'>
-                    <div class='role-badge'>Leadership</div>
-                    <h3 class='role-title text-white drop-shadow-lg'>
-                      {member.role}
-                    </h3>
-                    <p class='role-name text-white/90 drop-shadow-md'>
-                      {member.name}
-                    </p>
-                  </div>
-                </SpotlightCard>
-              ))
-            }
-          </div>
-        </div>
+  <div class='w-screen relative h-[650px] overflow-hidden'>
+    <div
+      class='absolute left-0 top-0 w-16 h-full bg-gradient-to-r from-white/60 dark:from-gray-900/60 to-transparent z-20 pointer-events-none'
+    >
+    </div>
+    <div
+      class='absolute right-0 top-0 w-16 h-full bg-gradient-to-l from-white/60 dark:from-gray-900/60 to-transparent z-20 pointer-events-none'
+    >
+    </div>
 
-        <!-- External Relations Section -->
-        <div class='team-section'>
-          <h2 class='section-title'>External Relations</h2>
-          <div class='team-grid'>
-            {
-              externalRelations.map(member => (
-                <SpotlightCard
-                  className='team-card bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-200 dark:border-gray-700'
-                  spotlightColor='rgba(52, 168, 83, 0.25)'
+    <div
+      id='team-carousel'
+      class='flex items-center h-full gap-1 px-2 overflow-x-auto overflow-y-hidden scrollbar-hide'
+      style='scroll-behavior: smooth; -webkit-overflow-scrolling: touch;'
+    >
+      {
+        infiniteTeamMembers.map((member, index) => (
+          <div
+            class='carousel-item flex-shrink-0 transition-all duration-300 ease-out'
+            data-index={index}
+          >
+            <SpotlightCard
+              className='team-card h-[550px] w-[380px] bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-200 dark:border-gray-700 relative overflow-hidden !p-0'
+              spotlightColor={member.color}
+              client:load
+            >
+              {member.imageUrl && (
+                <AnimatedTeamImage
+                  src={member.imageUrl}
+                  alt={member.role + ' photo'}
+                  className='absolute inset-0 w-full h-full'
                   client:load
-                >
-                  <div class='role-badge'>External Relations</div>
-                  <h3 class='role-title'>{member.role}</h3>
-                  <p class='role-description'>{member.description}</p>
-                </SpotlightCard>
-              ))
-            }
+                />
+              )}
+              <div class='absolute bottom-0 right-0 z-30 flex flex-col items-end justify-end p-6 bg-gradient-to-t from-black/90 via-black/50 to-transparent w-full h-full pointer-events-none'>
+                <div class='role-badge bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full mb-2 border border-white/30'>
+                  {member.department}
+                </div>
+                <h3 class='role-title text-white drop-shadow-lg text-xl font-bold mb-1 text-right'>
+                  {member.role}
+                </h3>
+                <p class='role-name text-white/90 drop-shadow-md text-lg text-right'>
+                  {member.displayName}
+                </p>
+              </div>
+            </SpotlightCard>
           </div>
-        </div>
+        ))
+      }
+    </div>
+  </div>
 
-        <!-- Communications Section -->
-        <div class='team-section'>
-          <h2 class='section-title'>Marketing</h2>
-          <div class='team-grid'>
-            {
-              marketing.map(member => (
-                <SpotlightCard
-                  className='team-card bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-200 dark:border-gray-700'
-                  spotlightColor='rgba(251, 188, 4, 0.25)'
-                  client:load
-                >
-                  <div class='role-badge'>Marketing</div>
-                  <h3 class='role-title'>{member.role}</h3>
-                  <p class='role-description'>{member.description}</p>
-                </SpotlightCard>
-              ))
-            }
-          </div>
-        </div>
-
-        <!-- Operations Section -->
-        <div class='team-section'>
-          <h2 class='section-title'>Operations</h2>
-          <div class='team-grid'>
-            {
-              operations.map(member => (
-                <SpotlightCard
-                  className='team-card bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-200 dark:border-gray-700'
-                  spotlightColor='rgba(234, 67, 53, 0.25)'
-                  client:load
-                >
-                  <div class='role-badge'>Operations</div>
-                  <h3 class='role-title'>{member.role}</h3>
-                  <p class='role-description'>{member.description}</p>
-                </SpotlightCard>
-              ))
-            }
-          </div>
-        </div>
-
-        <!-- Technology Section -->
-        <div class='team-section'>
-          <h2 class='section-title'>Technology</h2>
-          <div class='team-grid'>
-            {
-              technology.map(member => (
-                <SpotlightCard
-                  className='team-card bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-200 dark:border-gray-700'
-                  spotlightColor='rgba(66, 133, 244, 0.25)'
-                  client:load
-                >
-                  <div class='role-badge'>Technology</div>
-                  <h3 class='role-title'>{member.role}</h3>
-                  <p class='role-description'>{member.description}</p>
-                </SpotlightCard>
-              ))
-            }
-          </div>
-        </div>
-
-        <!-- Finance Section -->
-        <div class='team-section'>
-          <h2 class='section-title'>Finance</h2>
-          <div class='team-grid'>
-            {
-              finance.map(member => (
-                <SpotlightCard
-                  className='team-card bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-200 dark:border-gray-700'
-                  spotlightColor='rgba(52, 168, 83, 0.25)'
-                  client:load
-                >
-                  <div class='role-badge'>Finance</div>
-                  <h3 class='role-title'>{member.role}</h3>
-                  <p class='role-description'>{member.description}</p>
-                </SpotlightCard>
-              ))
-            }
-          </div>
-        </div>
-      </div>
-      <div class='text-center mt-16'>
-        <div
-          class='p-6 bg-gradient-to-r from-gdgoc-primary-green/5 to-gdgoc-secondary-green/5 rounded-xl border border-gdgoc-primary-green/20 max-w-4xl mx-auto'
-        >
-          <p class='text-lg text-gray-600 dark:text-gray-300 leading-relaxed'>
-            Our diverse team brings together expertise from various fields to
-            create an inclusive, innovative, and supportive environment for
-            student developers at USC.
-          </p>
-        </div>
+  <div class='relative z-10 container px-4 sm:px-6 lg:px-8 w-full'>
+    <div class='text-center mt-16'>
+      <div
+        class='p-6 bg-gradient-to-r from-gdgoc-primary-green/5 to-gdgoc-secondary-green/5 rounded-xl border border-gdgoc-primary-green/20 max-w-4xl mx-auto'
+      >
+        <p class='text-lg text-gray-600 dark:text-gray-300 leading-relaxed'>
+          Our diverse team brings together expertise from various fields to
+          create an inclusive, innovative, supportive environment for student
+          developers at USC.
+        </p>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel-item {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  #team-carousel:hover {
+    /* No animation to pause */
+  }
+
+  .role-badge {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .team-card {
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06),
+      0 10px 25px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  .team-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04),
+      0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .team-card {
+      height: 480px;
+      width: 320px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .team-card {
+      height: 420px;
+      width: 280px;
+    }
+  }
+</style>
+
+<script>
+  const carousel = document.getElementById('team-carousel');
+  const items = document.querySelectorAll('.carousel-item');
+
+  if (carousel && items.length > 0) {
+    carousel.scrollLeft = carousel.scrollWidth / 3;
+    carousel.addEventListener('wheel', e => {
+      e.preventDefault();
+      const scrollAmount = e.deltaX !== 0 ? e.deltaX : e.deltaY;
+      if (carousel) {
+        carousel.scrollLeft += scrollAmount * 3;
+      }
+    });
+
+    let touchStartX = 0;
+    let touchStartScrollLeft = 0;
+
+    carousel.addEventListener('touchstart', e => {
+      touchStartX = e.touches[0].clientX;
+      touchStartScrollLeft = carousel ? carousel.scrollLeft : 0;
+    });
+
+    carousel.addEventListener('touchmove', e => {
+      if (!touchStartX) return;
+
+      const touchX = e.touches[0].clientX;
+      const diff = touchStartX - touchX;
+      if (carousel) {
+        carousel.scrollLeft = touchStartScrollLeft + diff;
+      }
+    });
+
+    carousel.addEventListener('touchend', () => {
+      touchStartX = 0;
+    });
+  }
+</script>
