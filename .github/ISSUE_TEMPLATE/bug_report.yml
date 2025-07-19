@@ -1,0 +1,138 @@
+name: 🐛 Bug Report
+description: File a bug report to help us improve the project
+title: '[BUG]: '
+labels: ['bug', 'triage']
+assignees: [SampleAssignee]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report! 🐛
+        Please provide as much detail as possible to help us understand and reproduce the issue.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 🔍 Bug Description
+      description: A clear and concise description of what the bug is
+      placeholder: Describe the bug...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: 🔄 Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: ✅ Expected Behavior
+      description: A clear and concise description of what you expected to happen
+      placeholder: What should have happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: ❌ Actual Behavior
+      description: A clear and concise description of what actually happened
+      placeholder: What actually happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: 📸 Screenshots
+      description: If applicable, add screenshots to help explain your problem
+      placeholder: Drag and drop screenshots here or paste image URLs
+
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: 🌐 Browser
+      description: Which browser(s) are you experiencing this issue on?
+      multiple: true
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+        - Opera
+        - Other (please specify in additional context)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: devices
+    attributes:
+      label: 📱 Device Type
+      description: What device type are you using?
+      options:
+        - Desktop
+        - Mobile
+        - Tablet
+        - Other (please specify in additional context)
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: 💻 Operating System
+      description: What operating system are you using?
+      placeholder: e.g., Windows 11, macOS Sonoma, Ubuntu 22.04
+    validations:
+      required: true
+
+  - type: input
+    id: browser-version
+    attributes:
+      label: 🔢 Browser Version
+      description: What version of the browser are you using?
+      placeholder: e.g., Chrome 120.0.0.0
+
+  - type: textarea
+    id: console-errors
+    attributes:
+      label: 🚨 Console Errors
+      description: Please copy and paste any relevant console errors
+      render: shell
+      placeholder: |
+        Paste console errors here...
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: 📋 Additional Context
+      description: Add any other context about the problem here
+      placeholder: |
+        - Does this happen consistently?
+        - Are there any workarounds?
+        - Any other relevant information?
+
+  - type: checkboxes
+    id: pre-submission-checklist
+    attributes:
+      label: ✅ Pre-submission Checklist
+      description: Please verify you have completed the following before submitting
+      options:
+        - label: I have searched existing issues to ensure this bug hasn't been reported before
+          required: true
+        - label: I have provided all the requested information above
+          required: true
+        - label: I have tested this on the latest version of the application
+          required: true
+        - label: I understand that incomplete bug reports may be closed without investigation
+          required: true

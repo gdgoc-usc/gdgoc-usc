@@ -1,0 +1,190 @@
+name: ✨ Feature Request
+description: Suggest an idea or enhancement for the project
+title: '[FEATURE]: '
+labels: ['enhancement', 'feature-request', 'triage']
+assignees: [SampleAssignee]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest a new feature! ✨
+        Please provide as much detail as possible to help us understand your request.
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: 🎯 Feature Description
+      description: A clear and concise description of the feature you'd like to see implemented
+      placeholder: Describe the feature in detail...
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: 🔍 Problem Statement
+      description: What problem does this feature solve? Is your feature request related to a problem?
+      placeholder: |
+        I'm always frustrated when...
+        The current system doesn't support...
+        Users are unable to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: 💡 Proposed Solution
+      description: Describe the solution you'd like to see implemented
+      placeholder: I would like to see...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 🔄 Alternative Solutions
+      description: Describe any alternative solutions or features you've considered
+      placeholder: |
+        Alternative approach 1: ...
+        Alternative approach 2: ...
+        I also considered...
+
+  - type: dropdown
+    id: feature-type
+    attributes:
+      label: 🏷️ Feature Type
+      description: What type of feature is this?
+      options:
+        - New Component
+        - UI/UX Enhancement
+        - Performance Improvement
+        - Developer Experience
+        - Integration
+        - Documentation
+        - Accessibility
+        - Mobile Optimization
+        - API Enhancement
+        - Other (please specify in additional context)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: ⚡ Priority Level
+      description: How important is this feature to you?
+      options:
+        - Low - Nice to have
+        - Medium - Would improve user experience
+        - High - Essential for my use case
+        - Critical - Blocking current workflow
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: affected-areas
+    attributes:
+      label: 🎯 Affected Areas
+      description: Which areas of the application would this feature affect?
+      options:
+        - label: Homepage/Landing page
+        - label: Navigation/Header
+        - label: Team section
+        - label: Events section
+        - label: About section
+        - label: Footer
+        - label: Mobile responsiveness
+        - label: Performance
+        - label: Accessibility
+        - label: SEO
+        - label: Developer tools
+        - label: Build process
+        - label: Testing
+        - label: Documentation
+
+  - type: textarea
+    id: user-stories
+    attributes:
+      label: 👥 User Stories
+      description: Write user stories that describe how this feature would be used
+      placeholder: |
+        As a [type of user], I want [feature] so that [benefit/value]
+
+        Example:
+        - As a visitor, I want to filter events by date so that I can find upcoming events easily
+        - As a team member, I want to update my profile information so that my details stay current
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: ✅ Acceptance Criteria
+      description: Define what "done" looks like for this feature
+      placeholder: |
+        - [ ] Feature works on desktop browsers
+        - [ ] Feature works on mobile devices
+        - [ ] Feature is accessible (WCAG compliant)
+        - [ ] Feature has appropriate error handling
+        - [ ] Feature includes tests
+        - [ ] Feature is documented
+
+  - type: textarea
+    id: mockups-designs
+    attributes:
+      label: 🎨 Mockups/Designs
+      description: If you have any mockups, wireframes, or design ideas, please share them here
+      placeholder: |
+        Drag and drop images here or paste image URLs
+        Links to Figma, Sketch, or other design files are also welcome
+
+  - type: textarea
+    id: technical-considerations
+    attributes:
+      label: ⚙️ Technical Considerations
+      description: Any technical requirements, constraints, or considerations for this feature?
+      placeholder: |
+        - Should integrate with existing Astro/React setup
+        - Performance considerations
+        - Third-party dependencies needed
+        - Browser compatibility requirements
+        - Accessibility requirements
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: 📋 Additional Context
+      description: Add any other context, examples, or relevant information
+      placeholder: |
+        - Links to similar implementations
+        - Research or articles supporting this feature
+        - User feedback or requests
+        - Business justification
+
+  - type: checkboxes
+    id: implementation-offer
+    attributes:
+      label: 🚀 Implementation
+      description: Are you willing to help implement this feature?
+      options:
+        - label: I'm willing to submit a pull request for this feature
+        - label: I can help with design/mockups
+        - label: I can help with testing
+        - label: I can help with documentation
+        - label: I'd like to collaborate but need guidance
+        - label: I'm just suggesting the idea
+
+  - type: checkboxes
+    id: pre-submission-checklist
+    attributes:
+      label: ✅ Pre-submission Checklist
+      description: Please verify you have completed the following before submitting
+      options:
+        - label: I have searched existing issues and feature requests to avoid duplicates
+          required: true
+        - label: This feature aligns with the project's goals and scope
+          required: true
+        - label: I have provided sufficient detail for the development team to understand the request
+          required: true
+        - label: I understand that feature requests are evaluated based on project priorities and resources
+          required: true
