@@ -12,7 +12,7 @@
 
 <img src="public/home_screenshot.png" alt="GDGOC USC Home Screenshot" width="800"/>
 
-</div>
+## </div>
 
 The official website for Google Developer Groups On Campus at the University of San Carlos. This
 modern web application serves as the central hub for our developer community, featuring information
