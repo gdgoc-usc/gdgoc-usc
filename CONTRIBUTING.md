@@ -87,7 +87,7 @@ gdgoc-usc/
 │   ├── components/        # React components
 │   │   ├── animated/      # Animation components
 │   │   ├── layout/        # Layout components (Header, Footer)
-│   │   ├── react-bits/    # Interactive React components
+│   │   ├── react-bits/    # From reactbits.dev
 │   │   └── __tests__/     # Component tests
 │   ├── config/            # Configuration files and data
 │   ├── layouts/           # Astro layouts
@@ -166,25 +166,11 @@ Then create a Pull Request on GitHub.
 - Avoid `any` type - use `unknown` if necessary
 - Use type assertions sparingly
 
-### React Components
-
-- Use functional components with hooks
-- Props should be properly typed with interfaces
-- Use meaningful component and prop names
-- Keep components focused and single-purpose
-
-### Styling
-
-- Use Tailwind CSS classes
-- Follow mobile-first responsive design
-- Use semantic HTML elements
-- Ensure accessibility (WCAG AA compliance)
-
 ### File Naming
 
 - Use PascalCase for components: `TeamCard.tsx`
 - Use camelCase for utilities: `formatDate.ts`
-- Use kebab-case for pages: `about-us.astro`
+- Use (preferably) single-word, PascalCase for pages: `About.astro` (not `AboutUs.astro`)
 - Use lowercase for directories: `components/`
 
 ### Code Organization
@@ -317,7 +303,6 @@ describe('ComponentName', () => {
 1. Changes merged to `main` branch
 2. GitHub Actions runs CI/CD pipeline
 3. Automated deployment to Vercel
-4. Slack notification sent to team
 
 ## 🤝 Community Guidelines
 
@@ -335,15 +320,6 @@ describe('ComponentName', () => {
 - **Pull Requests**: Code review and collaboration
 - **Discord**: Real-time chat (link in README)
 
-### Recognition
-
-We recognize contributors in:
-
-- README contributors section
-- Release notes
-- Social media shoutouts
-- Community events
-
 ## 🆘 Getting Help
 
 ### Resources
@@ -356,7 +332,7 @@ We recognize contributors in:
 
 - **Project Maintainers**: Tag `@maintainers` in issues
 - **Discord Community**: Join our Discord server
-- **Email**: gdgoc.usc@gmail.com
+- **Email**: gdscsancarlos.externals@gmail.com
 
 ### Common Issues
 
