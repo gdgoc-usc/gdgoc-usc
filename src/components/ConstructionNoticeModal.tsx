@@ -11,6 +11,15 @@ export default function ConstructionNoticeModal({
   const [isVisible, setIsVisible] = useState(false);
   const [animationModalVisible, setAnimationModalVisible] = useState(false);
 
+  // dev environment w/o env variables
+  if (
+    typeof window !== 'undefined' &&
+    (window.location.hostname === 'localhost' ||
+      window.location.hostname === '127.0.0.1')
+  ) {
+    return null;
+  }
+
   useEffect(() => {
     const checkForLoaderCompletion = () => {
       const loader = document.getElementById('suspense-loader');
