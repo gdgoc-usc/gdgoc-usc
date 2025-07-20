@@ -105,7 +105,7 @@ export default function SuspenseLoader({
       setTimeout(() => updateProgress(10), 100);
 
       timeoutId = setTimeout(() => {
-        console.warn('SuspenseLoader timeout reached, hiding loader');
+        // console.warn('SuspenseLoader timeout reached, hiding loader');
         updateProgress(100);
         setTimeout(hideLoader, 200);
       }, timeout);
@@ -120,8 +120,8 @@ export default function SuspenseLoader({
         updateProgress(100);
 
         setTimeout(hideLoader, 200);
-      } catch (error) {
-        console.warn('Some assets failed to load, continuing anyway:', error);
+      } catch {
+        // console.warn('Some assets failed to load, continuing anyway:', error);
         clearTimeout(timeoutId);
 
         await waitForComponents();

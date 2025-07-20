@@ -4,6 +4,7 @@ import type { LayoutProps } from '../config/layout.types';
 import Analytics from '@vercel/analytics/astro';
 import SuspenseLoader from '@/components/SuspenseLoader';
 import AnimationPreferencesModal from '@/components/AnimationPreferencesModal';
+import ConstructionNoticeModal from '@/components/ConstructionNoticeModal';
 
 const {
   title = 'GDGoC - University of San Carlos',
@@ -136,6 +137,7 @@ const structuredData = {
       <slot />
     </div>
     <AnimationPreferencesModal client:load />
+    <ConstructionNoticeModal client:load />
     <Analytics />
   </body>
 </html>
