@@ -12,7 +12,7 @@ const {
   keywords = 'Google Developer Groups, GDG, USC, University of San Carlos, programming, technology, web development, mobile development, cloud computing, AI, machine learning',
   author = 'GDGoC USC',
   canonical = Astro.url.href,
-  ogImage = '/gdgoc_pfp.png',
+  ogImage = '/og-image.jpg',
   twitterSite = '@gdgoc_usc',
   twitterCreator = '@gdgoc_usc',
   noIndex = false,
@@ -52,8 +52,9 @@ const structuredData = {
     <link rel='preconnect' href='https://fonts.googleapis.com' />
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
 
+    <link rel='icon' href='/favicon.ico' sizes='any' />
     <link rel='icon' type='image/svg+xml' href='/gdgoc_logo.svg' />
-    <link rel='apple-touch-icon' href='/gdgoc_logo.svg' />
+    <link rel='apple-touch-icon' href='/apple-touch-icon.png' />
 
     <meta name='theme-color' content='#4285f4' />
     <meta name='msapplication-TileColor' content='#4285f4' />
@@ -83,8 +84,8 @@ const structuredData = {
     <meta property='og:description' content={description} />
     <meta property='og:image' content={new URL(ogImage, siteUrl).href} />
     <meta property='og:image:width' content='1200' />
-    <meta property='og:image:height' content='1200' />
-    <meta property='og:image:type' content='image/png' />
+    <meta property='og:image:height' content='630' />
+    <meta property='og:image:type' content='image/jpg' />
     <meta property='og:image:alt' content={`${title} - ${description}`} />
     <meta property='og:url' content={canonicalUrl} />
     <meta property='og:locale' content='en_US' />
