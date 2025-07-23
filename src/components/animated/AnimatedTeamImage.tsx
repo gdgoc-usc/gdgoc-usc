@@ -57,7 +57,7 @@ const AnimatedTeamImage: React.FC<AnimatedTeamImageProps> = ({
 
   return (
     <div
-      className={`animated-team-image relative overflow-hidden group cursor-pointer ${className}`}
+      className={`animated-team-image rounded-3xl relative overflow-hidden group cursor-pointer ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -65,7 +65,7 @@ const AnimatedTeamImage: React.FC<AnimatedTeamImageProps> = ({
       <img
         src={src}
         alt={alt}
-        className={`absolute inset-0 w-full h-full object-cover object-center transition-all duration-500 ease-out ${
+        className={`absolute inset-0 w-full h-full rouned-3xl object-cover object-center transition-all duration-500 ease-out ${
           isHovered ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
         }`}
         onLoad={() => setIsLoaded(true)}
@@ -76,7 +76,7 @@ const AnimatedTeamImage: React.FC<AnimatedTeamImageProps> = ({
       <img
         src={src}
         alt={alt}
-        className={`absolute inset-0 w-full h-full object-cover object-center transition-all duration-500 ease-out ${
+        className={`absolute inset-0 w-full h-full rounded-3xl object-cover object-center transition-all duration-500 ease-out ${
           isHovered ? 'opacity-0 scale-110' : 'opacity-100 scale-100'
         }`}
         style={{

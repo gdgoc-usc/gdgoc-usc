@@ -104,7 +104,7 @@ const infiniteTeamMembers = [
             data-index={index}
           >
             <SpotlightCard
-              className='team-card h-[550px] w-[380px] bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-200 dark:border-gray-700 relative overflow-hidden !p-0'
+              className='team-card h-[550px] w-[380px] bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-200 dark:border-gray-700 border-2 relative overflow-hidden !p-0'
               spotlightColor={member.color}
               client:load
             >
@@ -164,10 +164,6 @@ const infiniteTeamMembers = [
     opacity: 1;
   }
 
-  #team-carousel:hover {
-    /* No animation to pause */
-  }
-
   .role-badge {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -188,7 +184,6 @@ const infiniteTeamMembers = [
       0 25px 50px -12px rgba(0, 0, 0, 0.25);
   }
 
-  /* Responsive adjustments */
   @media (max-width: 768px) {
     .team-card {
       height: 480px;
