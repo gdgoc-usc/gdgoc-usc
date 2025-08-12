@@ -1,0 +1,61 @@
+---
+import ThemeSwitcher from '@/components/ThemeSwitcher';
+import SocialLinkCard from '@/components/SocialLinkCard';
+import { socialLinks } from '@/config/social.data';
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout
+  title='GDGoC USC - Google Developer Groups on Campus'
+  description='Join the Google Developer Groups on Campus at University of San Carlos. Learn, build, and connect with fellow developers.'
+>
+  <body
+    class='min-h-screen bg-gradient-to-br from-white via-gray-50 to-blue-50 dark:bg-black transition-colors duration-300'
+  >
+    <div class='absolute top-4 right-4 z-10'>
+      <ThemeSwitcher client:load />
+    </div>
+
+    <div class='min-h-screen flex items-center justify-center px-4 py-8'>
+      <div class='w-full max-w-md mx-auto space-y-8'>
+        <div class='text-center space-y-4'>
+          <div class='w-24 h-24 mx-auto rounded-full bg-black p-[0.1rem]'>
+            <div
+              class='w-full h-full rounded-full bg-white dark:bg-black flex items-center justify-center overflow-hidden'
+            >
+              <img
+                src='/new_logo.svg'
+                alt='GDG on Campus USC Logo'
+                class='w-16 h-16 object-contain'
+              />
+            </div>
+          </div>
+
+          <div class=''>
+            <h1 class='text-2xl font-extrabold text-black dark:text-white'>
+              Google Developer Groups
+            </h1>
+            <p class='text-gray-600 dark:text-gray-300 text-sm leading-relaxed'>
+              University of San Carlos
+            </p>
+          </div>
+        </div>
+
+        <div class='space-y-2 flex flex-col gap-4'>
+          {
+            socialLinks.map(social => (
+              <SocialLinkCard social={social} client:load />
+            ))
+          }
+        </div>
+
+        <!-- Footer -->
+        <div class='text-center pt-4'>
+          <p class='text-xs text-gray-500 dark:text-gray-400'>
+            © 2025 Google Developer Groups on Campus - University of San Carlos
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</Layout>
