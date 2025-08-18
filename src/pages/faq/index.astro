@@ -1,0 +1,535 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/layout/Header.astro';
+import Footer from '@/components/layout/Footer.astro';
+import { Image } from 'astro:assets';
+
+type CategoryKey = 'general' | 'membership' | 'activities' | 'benefits';
+
+const faqs: Array<{
+  id: string;
+  question: string;
+  answer: string;
+  category: CategoryKey;
+}> = [
+  // General
+  {
+    id: 'what-is-gdgoc',
+    question: "Who is 'GDGoC' and what happened to GDSC?",
+    answer:
+      "As per Google's updated branding guidelines, we have to follow: Moving forward, all Google Developer Student Clubs (GDSC) are now referred to as Google Developers On Campus (GDGoC).",
+    category: 'general' as CategoryKey,
+  },
+  {
+    id: 'google-connection',
+    question: 'Is this connected directly to Google?',
+    answer:
+      "GDGoC is a Google-initiated program, but we're not Google employees or directly under Google's management. We do receive resources, learning materials, and speaker support from Google.",
+    category: 'general' as CategoryKey,
+  },
+  {
+    id: 'different-from-others',
+    question: 'How is this different from other tech orgs on campus?',
+    answer:
+      "We're not limited to purely academic or technical workshops. GDGoC is about community: building connections, exploring technology in fun and practical ways, and linking USC students to other GDGoC chapters in Cebu. That means more opportunities beyond the classroom.",
+    category: 'general' as CategoryKey,
+  },
+
+  // Membership
+  {
+    id: 'membership-cost',
+    question: 'Do I need to pay anything to be a member?',
+    answer: 'Nope! Membership is free.',
+    category: 'membership' as CategoryKey,
+  },
+  {
+    id: 'cs-only',
+    question: 'Is this only for CS/IT/IS students?',
+    answer:
+      'Nope. GDGoC USC is open to all students from any department. Tech is everywhere, and we welcome diverse perspectives!',
+    category: 'membership' as CategoryKey,
+  },
+  {
+    id: 'coding-requirement',
+    question: 'Do I need to know how to code to join?',
+    answer:
+      "Not at all! While coding knowledge can help you get more out of our activities, what matters most is curiosity and a love for technology. We'll make sure that, coder or not, you feel included and involved.",
+    category: 'membership' as CategoryKey,
+  },
+  {
+    id: 'non-tech-community',
+    question: 'Can non-tech students join just for the community aspect?',
+    answer:
+      "Yes! You don't necessarily have to be knowledgeable about tech to discuss it (We'll help you level up on that aspect!) As long as you respect the time, space, and context, you're welcome to initiate and join discussions, hangouts, and activities outside of tech.",
+    category: 'membership' as CategoryKey,
+  },
+  {
+    id: 'other-orgs',
+    question: 'Does GDGoC USC accept students from other orgs?',
+    answer:
+      "Absolutely! We welcome students from any organization or department, as long as you're curious about tech and open to learning.",
+    category: 'membership' as CategoryKey,
+  },
+  {
+    id: 'membership-application',
+    question: 'Do I need to apply for membership, or can I just attend events?',
+    answer:
+      'Some activities are open to everyone, but certain events are exclusive to registered members.',
+    category: 'membership' as CategoryKey,
+  },
+  {
+    id: 'time-commitment',
+    question: 'How much time commitment does it take to stay active?',
+    answer:
+      "We ask members to join at least one event every two months. Activity isn't only about attendance, but long-term inactivity (ghosting) may result in removal from our Community GC.",
+    category: 'membership' as CategoryKey,
+  },
+  {
+    id: 'onboarding-start',
+    question: 'When will you start onboarding?',
+    answer:
+      "We're still getting things ready! In the meantime, do join our Discord and start interacting with current and previous members. Feel free to ask any other questions you may have on there, and we'd be happy to help!",
+    category: 'membership' as CategoryKey,
+  },
+
+  // Activities
+  {
+    id: 'events-activities',
+    question: 'What kind of events or activities do you usually hold?',
+    answer: `• Hands-on workshops
+• Study groups and interest circles (e.g., Web Dev, AI/ML, Data Science)
+• Tech discussions in casual spaces (even a Minecraft server!)
+• Online tutorials
+• Chill community hangouts`,
+    category: 'activities' as CategoryKey,
+  },
+  {
+    id: 'learning-networking-projects',
+    question: 'Is this more about learning, networking, or building projects?',
+    answer:
+      'All of the above. Learning is our focus, but networking and projects naturally grow out of our community efforts.',
+    category: 'activities' as CategoryKey,
+  },
+  {
+    id: 'what-to-do',
+    question: 'What am I supposed to do in this organization?',
+    answer:
+      "Be present. Join workshops and community activities, share ideas, learn from others, and contribute to the conversations that keep our org alive. GDGoC USC isn't about high-stakes commitment; it's about being part of a community, so at the very least, go meet new people! We're simply providing the space and means to make that easier : )",
+    category: 'activities' as CategoryKey,
+  },
+  {
+    id: 'join-all-events',
+    question: 'Do I need to join all events?',
+    answer:
+      "No, but the more you participate, the more you'll get out of it. Some activities will be members-only.",
+    category: 'activities' as CategoryKey,
+  },
+  {
+    id: 'after-info-session',
+    question: 'What happens after the Info Session? How do I stay involved?',
+    answer:
+      'Stick around! We have community spaces where announcements, discussions, and activities happen. Engagement is simple: watch for updates, join events, and connect with fellow members.',
+    category: 'activities' as CategoryKey,
+  },
+
+  // Benefits
+  {
+    id: 'what-to-gain',
+    question: 'What do I actually gain from being part of GDGoC?',
+    answer: `• A supportive tech community
+• Connections with peers and industry professionals
+• Learning resources and study groups
+• Opportunities to collaborate on projects
+• Access to Cebu-wide and cross-university/cross-organization events
+• A space to share ideas, build skills, and make an impact`,
+    category: 'benefits' as CategoryKey,
+  },
+  {
+    id: 'certificates',
+    question:
+      'Will I get a certificate or recognition if I join your activities?',
+    answer:
+      'Yes — but only for bigger events where active participation is key. Some of these certificates may also come in the form of badges, which will grant you certain privileges (mechanics are yet to be finalized!)',
+    category: 'benefits' as CategoryKey,
+  },
+  {
+    id: 'career-opportunities',
+    question: 'Do you offer internships or career opportunities?',
+    answer:
+      'Not directly. But our network includes alumni and members already in the industry, making it easier for you to connect with people who can open doors — if you take the initiative.',
+    category: 'benefits' as CategoryKey,
+  },
+  {
+    id: 'become-better-programmer',
+    question: 'Can this org help me become a better programmer?',
+    answer:
+      "Yes, but it depends on your initiative. The community gives you study groups, peers, and resources. The rest is how much you're willing to engage and practice.",
+    category: 'benefits' as CategoryKey,
+  },
+  {
+    id: 'datacamp',
+    question: "I heard you guys offer DataCamp. What's that?",
+    answer:
+      "DataCamp is an online learning platform where you can sharpen your skills in data science, machine learning, and Python. For GDGoC USC, access to DataCamp is exclusive to members — but unlike last year, it's not just a sign-up-and-get type of deal. This year, you'll have to earn it by being an active part of our community. We'll be announcing the exact mechanics soon, but think of it as a reward for showing up, learning, and growing with us.",
+    category: 'benefits' as CategoryKey,
+  },
+];
+
+const categories: Record<CategoryKey, { name: string; color: string }> = {
+  general: { name: 'General', color: 'gdgoc-primary-blue' },
+  membership: { name: 'Membership', color: 'gdgoc-primary-green' },
+  activities: { name: 'Activities', color: 'gdgoc-primary-yellow' },
+  benefits: { name: 'Benefits', color: 'gdgoc-primary-red' },
+};
+---
+
+<Layout
+  title='FAQ - GDGoC USC'
+  description='Frequently Asked Questions about Google Developer Groups on Campus at University of San Carlos'
+  keywords='FAQ, questions, answers, GDGoC, USC, Google Developer Groups, membership, events, activities'
+>
+  <Header />
+  <main class='w-full pt-16'>
+    <section
+      class='relative w-full pt-16 bg-gradient-to-br from-white via-gray-50 to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900'
+    >
+      <div class='container mx-auto px-4 sm:px-6 lg:px-8'>
+        <div class='text-center'>
+          <div class='flex justify-center mb-6'>
+            <Image
+              src='/gdgoc_logo.svg'
+              alt='GDGoC Logo'
+              width={80}
+              height={80}
+              class='w-16 h-16 md:w-20 md:h-20'
+            />
+          </div>
+          <h1
+            class='text-4xl md:text-6xl font-bold text-black dark:text-white mb-4 tracking-tight'
+          >
+            Frequently Asked Questions
+          </h1>
+          <p
+            class='text-xl md:text-2xl text-gray-700 dark:text-gray-200 leading-relaxed max-w-3xl mx-auto'
+          >
+            Everything you need to know about <strong
+              class='text-gdgoc-primary-blue dark:text-gdgoc-secondary-blue'
+              >Google Developer Groups on Campus</strong
+            > at University of San Carlos
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class='w-full pt-8 pb-16 bg-white dark:bg-neutral-900'>
+      <div class='container mx-auto px-4 sm:px-6 lg:px-8'>
+        <div class='flex flex-wrap justify-center gap-3 mb-12'>
+          <button
+            class='filter-btn px-6 py-3 rounded-full font-medium transition-all duration-300 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 active cursor-pointer'
+            data-category='all'
+          >
+            All Questions
+          </button>
+          {
+            Object.entries(categories).map(([key, category]) => (
+              <button
+                class={`filter-btn px-6 py-3 rounded-full font-medium transition-all duration-300 bg-${category.color}/10 hover:bg-${category.color}/20 text-${category.color} dark:text-${category.color} cursor-pointer`}
+                data-category={key}
+              >
+                {category.name}
+              </button>
+            ))
+          }
+        </div>
+
+        <div class='max-w-4xl mx-auto space-y-4'>
+          {
+            faqs.map((faq, index) => (
+              <div
+                class={`faq-item bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 hover:border-${categories[faq.category].color}/30`}
+                data-category={faq.category}
+              >
+                <button
+                  class='faq-question w-full px-6 py-6 text-left flex items-center justify-between group cursor-pointer'
+                  aria-expanded='false'
+                  data-target={`faq-${index}`}
+                >
+                  <div class='flex items-start gap-4 flex-1'>
+                    <span
+                      class={`inline-block px-3 py-1 text-xs font-medium rounded-full text-white bg-${categories[faq.category].color}`}
+                    >
+                      {categories[faq.category].name}
+                    </span>
+                    <h3
+                      class={`text-lg md:text-xl font-semibold text-gray-900 dark:text-white transition-colors duration-200 flex-1 group-hover:text-${categories[faq.category].color} dark:group-hover:text-${categories[faq.category].color}`}
+                    >
+                      {faq.question}
+                    </h3>
+                  </div>
+                  <svg
+                    class='faq-icon w-6 h-6 text-gray-500 dark:text-gray-400 transition-transform duration-200 flex-shrink-0 ml-4'
+                    fill='none'
+                    stroke='currentColor'
+                    viewBox='0 0 24 24'
+                  >
+                    <path
+                      stroke-linecap='round'
+                      stroke-linejoin='round'
+                      stroke-width='2'
+                      d='M19 9l-7 7-7-7'
+                    />
+                  </svg>
+                </button>
+                <div
+                  class='faq-answer overflow-hidden transition-all duration-300 max-h-0'
+                  id={`faq-${index}`}
+                >
+                  <div class='px-6 pb-6'>
+                    <div class='prose prose-gray dark:prose-invert max-w-none'>
+                      <div class='text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-line'>
+                        {faq.answer}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <!-- Contact Section -->
+        <div class='mt-16 text-center'>
+          <div
+            class='bg-gradient-to-r from-gdgoc-primary-blue/5 to-gdgoc-primary-green/5 rounded-2xl border border-gdgoc-primary-blue/20 dark:border-gdgoc-secondary-blue/20 p-8 max-w-2xl mx-auto'
+          >
+            <h2
+              class='text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4'
+            >
+              Still have questions?
+            </h2>
+            <p class='text-gray-600 dark:text-gray-300 mb-6 leading-relaxed'>
+              We're here to help! Join our Discord community or reach out to us
+              directly.
+            </p>
+            <div class='flex flex-col sm:flex-row gap-4 justify-center'>
+              <a
+                href='#footer'
+                class='inline-flex items-center justify-center px-6 py-3 bg-gdgoc-primary-blue hover:bg-gdgoc-primary-blue/90 text-white font-medium rounded-full transition-colors duration-200'
+              >
+                Contact Us
+              </a>
+              <a
+                href='https://gdgoc.tech/member-registration'
+                class='inline-flex items-center justify-center px-6 py-3 bg-gdgoc-primary-green hover:bg-gdgoc-primary-green/90 text-white font-medium rounded-full transition-colors duration-200'
+              >
+                Join Our Community
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+
+    faqQuestions.forEach(question => {
+      question.addEventListener('click', function (this: HTMLElement) {
+        const targetId = this.getAttribute('data-target');
+        if (!targetId) return;
+
+        const answer = document.getElementById(targetId) as HTMLElement;
+        const icon = this.querySelector('.faq-icon') as HTMLElement;
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+        faqQuestions.forEach(otherQuestion => {
+          if (otherQuestion !== this) {
+            const otherTargetId = otherQuestion.getAttribute('data-target');
+            if (!otherTargetId) return;
+
+            const otherAnswer = document.getElementById(
+              otherTargetId
+            ) as HTMLElement;
+            const otherIcon = otherQuestion.querySelector(
+              '.faq-icon'
+            ) as HTMLElement;
+
+            if (otherAnswer && otherIcon) {
+              otherQuestion.setAttribute('aria-expanded', 'false');
+              otherAnswer.style.maxHeight = '0px';
+              otherIcon.style.transform = 'rotate(0deg)';
+            }
+          }
+        });
+
+        if (answer && icon) {
+          if (isExpanded) {
+            this.setAttribute('aria-expanded', 'false');
+            answer.style.maxHeight = '0px';
+            icon.style.transform = 'rotate(0deg)';
+          } else {
+            this.setAttribute('aria-expanded', 'true');
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+            icon.style.transform = 'rotate(180deg)';
+          }
+        }
+      });
+    });
+
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function (this: HTMLElement) {
+        const category = this.getAttribute('data-category');
+
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+
+        faqItems.forEach(item => {
+          const itemCategory = item.getAttribute('data-category');
+          const htmlItem = item as HTMLElement;
+
+          if (category === 'all' || itemCategory === category) {
+            htmlItem.style.display = 'block';
+            const question = item.querySelector('.faq-question') as HTMLElement;
+            const answer = item.querySelector('.faq-answer') as HTMLElement;
+            const icon = item.querySelector('.faq-icon') as HTMLElement;
+
+            if (question && answer && icon) {
+              question.setAttribute('aria-expanded', 'false');
+              answer.style.maxHeight = '0px';
+              icon.style.transform = 'rotate(0deg)';
+            }
+          } else {
+            htmlItem.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  .filter-btn.active {
+    transform: scale(1.05);
+  }
+
+  .filter-btn[data-category='all'].active {
+    border: 2px solid #4285f4;
+    background: #4285f4/20 !important;
+  }
+
+  .filter-btn[data-category='general'].active {
+    border: 2px solid #4285f4;
+    background: #4285f4/20 !important;
+  }
+
+  .filter-btn[data-category='membership'].active {
+    border: 2px solid #34a853;
+    background: #34a853/20 !important;
+  }
+
+  .filter-btn[data-category='activities'].active {
+    border: 2px solid #fbbc04;
+    background: #fbbc04/20 !important;
+  }
+
+  .filter-btn[data-category='benefits'].active {
+    border: 2px solid #ea4335;
+    background: #ea4335/20 !important;
+  }
+
+  /* Category-specific FAQ item hover colors */
+  .faq-item[data-category='general'] .group:hover h3 {
+    color: var(--color-gdgoc-primary-blue) !important;
+  }
+
+  .faq-item[data-category='membership'] .group:hover h3 {
+    color: var(--color-gdgoc-primary-green) !important;
+  }
+
+  .faq-item[data-category='activities'] .group:hover h3 {
+    color: var(--color-gdgoc-primary-yellow) !important;
+  }
+
+  .faq-item[data-category='benefits'] .group:hover h3 {
+    color: var(--color-gdgoc-primary-red) !important;
+  }
+
+  html.dark .faq-item[data-category='general'] .group:hover h3 {
+    color: var(--color-gdgoc-secondary-blue) !important;
+  }
+
+  html.dark .faq-item[data-category='membership'] .group:hover h3 {
+    color: var(--color-gdgoc-secondary-green) !important;
+  }
+
+  html.dark .faq-item[data-category='activities'] .group:hover h3 {
+    color: var(--color-gdgoc-primary-yellow) !important;
+  }
+
+  html.dark .faq-item[data-category='benefits'] .group:hover h3 {
+    color: var(--color-gdgoc-secondary-red) !important;
+  }
+
+  .faq-item {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .faq-item:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .faq-item:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .faq-item:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  .faq-item:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  .faq-item:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+  .faq-item:nth-child(6) {
+    animation-delay: 0.6s;
+  }
+  .faq-item:nth-child(7) {
+    animation-delay: 0.7s;
+  }
+  .faq-item:nth-child(8) {
+    animation-delay: 0.8s;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .reduced-motion .faq-item {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+
+  .reduced-motion .filter-btn {
+    transition: none !important;
+  }
+
+  .reduced-motion .faq-question,
+  .reduced-motion .faq-answer,
+  .reduced-motion .faq-icon {
+    transition: none !important;
+  }
+</style>
