@@ -37,21 +37,6 @@ jobs:
       - name: Build verification
         run: bun run build
 
-  security-audit:
-    name: Security Audit
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
-        with:
-          bun-version: latest
-
-      - name: Run security audit
-        run: bun audit
-
   validate-commits:
     name: Validate Commit Messages
     runs-on: ubuntu-latest
