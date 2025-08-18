@@ -252,7 +252,7 @@ const categories: Record<CategoryKey, { name: string; color: string }> = {
                   aria-expanded='false'
                   data-target={`faq-${index}`}
                 >
-                  <div class='flex items-start gap-4 flex-1'>
+                  <div class='flex sm:md:lg:flex-row flex-col items-start gap-4 flex-1'>
                     <span
                       class={`inline-block px-3 py-1 text-xs font-medium rounded-full text-white bg-${categories[faq.category].color}`}
                     >
