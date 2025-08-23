@@ -1,0 +1,340 @@
+.team-masonry {
+  columns: 5;
+  column-gap: 1rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1200px) {
+  .team-masonry {
+    columns: 4;
+  }
+}
+
+@media (max-width: 900px) {
+  .team-masonry {
+    columns: 3;
+  }
+}
+
+@media (max-width: 640px) {
+  .team-masonry {
+    columns: 2;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-masonry {
+    columns: 1;
+  }
+}
+
+.team-member-card {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border: 2px solid transparent;
+}
+
+.team-member-card.has-image {
+  background: #000;
+}
+
+.team-member-card:hover {
+  transform: scale(1.05);
+  z-index: 10;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.team-member-card.leadership {
+  border-color: rgba(66, 133, 244, 0.3);
+}
+
+.team-member-card.external-relations {
+  border-color: rgba(52, 168, 83, 0.3);
+}
+
+.team-member-card.marketing {
+  border-color: rgba(251, 188, 4, 0.3);
+}
+
+.team-member-card.operations {
+  border-color: rgba(234, 67, 53, 0.3);
+}
+
+.team-member-card.finance {
+  border-color: rgba(52, 168, 83, 0.3);
+}
+
+.team-member-card.technology {
+  border-color: rgba(66, 133, 244, 0.3);
+}
+
+.team-member-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+.team-member-card:hover .team-member-image {
+  filter: brightness(0.7);
+}
+
+.team-member-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    transparent 100%
+  );
+  padding: 1.5rem;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.team-member-card:hover .team-member-overlay {
+  transform: translateY(0);
+}
+
+.team-member-overlay-no-image {
+  position: absolute;
+  inset: 0;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(248, 250, 252, 0.9) 100%
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.team-member-card:hover .team-member-overlay-no-image {
+  opacity: 1;
+}
+
+.department-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.department-badge.leadership {
+  background: rgba(66, 133, 244, 0.2);
+  color: rgba(66, 133, 244, 1);
+  border-color: rgba(66, 133, 244, 0.3);
+}
+
+.department-badge.external-relations {
+  background: rgba(52, 168, 83, 0.2);
+  color: rgba(52, 168, 83, 1);
+  border-color: rgba(52, 168, 83, 0.3);
+}
+
+.department-badge.marketing {
+  background: rgba(251, 188, 4, 0.2);
+  color: rgba(251, 188, 4, 1);
+  border-color: rgba(251, 188, 4, 0.3);
+}
+
+.department-badge.operations {
+  background: rgba(234, 67, 53, 0.2);
+  color: rgba(234, 67, 53, 1);
+  border-color: rgba(234, 67, 53, 0.3);
+}
+
+.department-badge.finance {
+  background: rgba(52, 168, 83, 0.2);
+  color: rgba(52, 168, 83, 1);
+  border-color: rgba(52, 168, 83, 0.3);
+}
+
+.department-badge.technology {
+  background: rgba(66, 133, 244, 0.2);
+  color: rgba(66, 133, 244, 1);
+  border-color: rgba(66, 133, 244, 0.3);
+}
+
+.department-badge.overlay {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.member-role {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 0.25rem;
+}
+
+.member-role.overlay {
+  color: white;
+}
+
+.member-role.no-image {
+  color: #1f2937;
+}
+
+.member-name {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.member-name.overlay {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.member-name.no-image {
+  color: #6b7280;
+}
+
+.placeholder-card {
+  aspect-ratio: 3/4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 200px;
+  position: relative;
+}
+
+.placeholder-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  border-radius: 12px;
+}
+
+.coming-soon-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.team-member-card:hover .coming-soon-text {
+  opacity: 0;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .team-member-card {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  }
+
+  .team-member-overlay-no-image {
+    background: linear-gradient(
+      135deg,
+      rgba(31, 41, 55, 0.9) 0%,
+      rgba(17, 24, 39, 0.9) 100%
+    );
+  }
+
+  .member-role.no-image {
+    color: #f9fafb;
+  }
+
+  .member-name.no-image {
+    color: #d1d5db;
+  }
+
+  .placeholder-card::before {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(255, 255, 255, 0.5) 100%
+    );
+  }
+}
+
+/* Staggered animation for cards */
+.team-member-card:nth-child(1) {
+  animation-delay: 0ms;
+}
+.team-member-card:nth-child(2) {
+  animation-delay: 50ms;
+}
+.team-member-card:nth-child(3) {
+  animation-delay: 100ms;
+}
+.team-member-card:nth-child(4) {
+  animation-delay: 150ms;
+}
+.team-member-card:nth-child(5) {
+  animation-delay: 200ms;
+}
+.team-member-card:nth-child(6) {
+  animation-delay: 250ms;
+}
+.team-member-card:nth-child(7) {
+  animation-delay: 300ms;
+}
+.team-member-card:nth-child(8) {
+  animation-delay: 350ms;
+}
+.team-member-card:nth-child(9) {
+  animation-delay: 400ms;
+}
+.team-member-card:nth-child(10) {
+  animation-delay: 450ms;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.team-member-card {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}

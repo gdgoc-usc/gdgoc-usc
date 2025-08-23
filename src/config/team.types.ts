@@ -6,6 +6,6 @@ export type TeamMember = {
 
 export type DepartmentMember = {
   role: string;
-  description: string;
+  name: string;
   imageUrl: string;
 };

@@ -4,54 +4,87 @@ export const leadership: TeamMember[] = [
   {
     role: 'Lead',
     name: 'John Paul Denaya',
-    imageUrl: '/members/iohann.jpg',
+    imageUrl: '',
   },
   {
     role: 'Lead',
     name: 'Homer Adriel Dorin',
-    imageUrl: '/members/homer.jpg',
+    imageUrl: '',
   },
   {
     role: 'Chief Operations Officer',
     name: 'Matt Erron Cabarrubias',
-    imageUrl: '/members/matt.JPG',
+    imageUrl: '',
   },
   {
     role: 'Chief Marketing Officer',
     name: 'Jon Pierre Baltazar',
-    imageUrl: '/members/marketing_jp.jpg',
+    imageUrl: '',
   },
   {
     role: 'Chief Technology Officer',
     name: 'Geri Gian Epanto',
-    imageUrl: '/members/gian.jpg',
+    imageUrl: '',
   },
   {
     role: 'Chief Finance Officer',
     name: 'Yza Hilary Alagon',
-    imageUrl: '/members/yza.jpg',
+    imageUrl: '',
   },
   {
     role: 'Chief Human Relations Officer',
     name: 'Jewel Monsalud',
-    imageUrl: '/members/jewel.jpg',
+    imageUrl: '',
   },
 ];
 
 export const externalRelations: DepartmentMember[] = [
   {
     role: 'External Relations Head',
-    description: 'Partnership development and external communications',
+    name: 'Trisha Urbiztondo',
     imageUrl: '',
   },
   {
     role: 'External Relations Officer',
-    description: 'External stakeholder engagement',
+    name: 'Jillian Almendras',
     imageUrl: '',
   },
   {
-    role: 'International Relations Officer',
-    description: 'Global partnerships and international outreach',
+    role: 'External Relations Officer',
+    name: 'Joaquin Nanquil',
+    imageUrl: '',
+  },
+  {
+    role: 'External Relations Officer',
+    name: 'Atasha Denise Santiago',
+    imageUrl: '',
+  },
+];
+
+export const humanresources: DepartmentMember[] = [
+  {
+    role: 'Internal Relations Officer',
+    name: 'Jared Miñoza',
+    imageUrl: '',
+  },
+  {
+    role: 'Internal Relations Officer',
+    name: 'Venice Claire',
+    imageUrl: '',
+  },
+  {
+    role: 'Internal Relations Officer',
+    name: 'Ulyxis Dave Perez',
+    imageUrl: '',
+  },
+  {
+    role: 'Internal Relations Officer',
+    name: 'Myk Erolf Roble',
+    imageUrl: '',
+  },
+  {
+    role: 'Internal Relations Officer',
+    name: 'January Venice Toledo',
     imageUrl: '',
   },
 ];
@@ -59,17 +92,57 @@ export const externalRelations: DepartmentMember[] = [
 export const marketing: DepartmentMember[] = [
   {
     role: 'Media Engagement Head',
-    description: 'Media relations and public communications',
-    imageUrl: '',
-  },
-  {
-    role: 'Public Information Officer',
-    description: 'Public information and outreach',
+    name: 'Nino Calunod',
     imageUrl: '',
   },
   {
     role: 'Creatives Head',
-    description: 'Creative content and visual design',
+    name: 'Blanche Enid Berdos',
+    imageUrl: '',
+  },
+  {
+    role: 'Public Information Officer',
+    name: 'Heart Alvern Sumicad',
+    imageUrl: '',
+  },
+  {
+    role: 'Creative Designer',
+    name: 'Renee Pintor',
+    imageUrl: '',
+  },
+  {
+    role: 'Creative Designer',
+    name: 'Yasha Fornolles',
+    imageUrl: '',
+  },
+  {
+    role: 'Creative Designer',
+    name: 'Andrea Keisha To Chip',
+    imageUrl: '',
+  },
+  {
+    role: 'Videographer/Photographer',
+    name: 'Kineth Noval',
+    imageUrl: '',
+  },
+  {
+    role: 'Videographer/Photographer',
+    name: 'Joenell Conrad De Pedro',
+    imageUrl: '',
+  },
+  {
+    role: 'Content Writer',
+    name: 'Avryl Joie Arranguez',
+    imageUrl: '',
+  },
+  {
+    role: 'Video Editor',
+    name: 'Kate Roxanne Tumulak',
+    imageUrl: '',
+  },
+  {
+    role: 'Video Editor',
+    name: 'Nic Leander Delgado',
     imageUrl: '',
   },
 ];
@@ -77,17 +150,17 @@ export const marketing: DepartmentMember[] = [
 export const operations: DepartmentMember[] = [
   {
     role: 'Executive Secretary',
-    description: 'Administrative coordination and documentation',
+    name: 'Ethan Andre Dalocanog',
     imageUrl: '',
   },
   {
     role: 'Executive Assistant',
-    description: 'Executive support and operational assistance',
+    name: 'Jhanell Mingo',
     imageUrl: '',
   },
   {
     role: 'Events Manager',
-    description: 'Event planning and execution',
+    name: 'Charles Jade Argawanon',
     imageUrl: '',
   },
 ];
@@ -95,7 +168,17 @@ export const operations: DepartmentMember[] = [
 export const finance: DepartmentMember[] = [
   {
     role: 'Finance Officer',
-    description: 'Financial operations and reporting',
+    name: 'Jomar Cuñado',
+    imageUrl: '',
+  },
+  {
+    role: 'Finance Officer',
+    name: 'Kairi Uang',
+    imageUrl: '',
+  },
+  {
+    role: 'Finance Officer',
+    name: 'Leira Bengil',
     imageUrl: '',
   },
 ];
@@ -103,17 +186,17 @@ export const finance: DepartmentMember[] = [
 export const technology: DepartmentMember[] = [
   {
     role: 'Data Science Officer',
-    description: 'Data analytics and insights',
+    name: 'John Andre Yap',
     imageUrl: '',
   },
   {
     role: 'AI/ML Officer',
-    description: 'Artificial Intelligence and Machine Learning initiatives',
+    name: 'Nick Anthony Miras',
     imageUrl: '',
   },
   {
     role: 'Web Dev Officer',
-    description: 'Web development and digital platforms',
+    name: 'Dustin Jesse Balansag',
     imageUrl: '',
   },
 ];

@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import ThemeSwitcher from '../ThemeSwitcher.tsx';
-import AnimationToggle from '../AnimationToggle.tsx';
+import SettingsDropdown from '../SettingsDropdown.tsx';
 import { Menu, X, UserPlus } from 'lucide-react';
 import HeaderLink from './HeaderLink.astro';
 import MobileHeaderLink from './MobileHeaderLink.astro';
@@ -13,7 +12,6 @@ const navLinks = [
   { href: '#events', text: 'Events' },
   { href: '/faq', text: 'FAQ' },
   { href: 'https://merch.gdgoc.tech', text: 'Merch' },
-  { href: '#footer', text: 'Contact Us' },
 ];
 ---
 
@@ -22,7 +20,7 @@ const navLinks = [
   class='fixed top-0 left-0 right-0 z-50 rounded-none transition-all duration-300 ease-in-out'
 >
   <div id='main-header' class='w-full'>
-    <div class='px-4 sm:px-6 lg:px-8 lg:py-2 w-full'>
+    <div class='px-4 sm:px-6 lg:px-[11rem] lg:py-2 w-full'>
       <div class='flex items-center justify-between h-16'>
         <div class='flex items-center sm:gap-8 md:lg:gap-12'>
           <a href='/' class='flex items-center space-x-2'>
@@ -35,11 +33,12 @@ const navLinks = [
             />
             <div class='flex flex-col'>
               <span
-                class='hidden sm:md:lg:block text-xl font-bold bg-gradient-to-r from-gdgoc-primary-green via-gdgoc-primary-yellow to-gdgoc-secondary-green dark:from-white dark:via-gdgoc-secondary-blue dark:to-gdgoc-secondary-green bg-clip-text text-transparent leading-tight'
+                class='hidden sm:md:lg:block text-xl font-medium text-black dark:text-white leading-tight'
               >
                 Google Developer Groups
               </span>
-              <span class='hidden sm:md:lg:block font-light text-sm'
+              <span
+                class='hidden sm:md:lg:block font-light text-sm text-gdgoc-primary-blue'
                 >University of San Carlos</span
               >
             </div>
@@ -54,12 +53,11 @@ const navLinks = [
         </div>
 
         <div class='flex items-center gap-4'>
-          <AnimationToggle client:load />
-          <ThemeSwitcher client:load />
+          <SettingsDropdown client:load />
 
           <a
             href='https://gdgoc.tech/member-registration'
-            class='hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-gdgoc-primary-green hover:bg-gdgoc-primary-green/90 text-white font-medium rounded-full transition-colors duration-200'
+            class='hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-transparent border-black dark:border-white border-2 hover:bg-gdgoc-primary-blue/90 dark:text-white text-black font-medium rounded-full transition-colors duration-200'
           >
             <UserPlus className='w-5 h-5' />
             <h1 class='custom-class'>Register</h1>
@@ -152,9 +150,9 @@ const navLinks = [
 
   let lastScrollY = 0;
   const scrollRange = 600;
-  const maxBlur = 16;
+  const maxBlur = 64;
   const maxBgOpacity = 0.85;
-  const maxShadowOpacity = 1;
+  const maxShadowOpacity = 0;
   const maxBorderOpacity = 1;
 
   function updateHeaderOnScroll() {

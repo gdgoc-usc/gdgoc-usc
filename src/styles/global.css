@@ -289,7 +289,8 @@ body.loading {
       0 4px 16px rgba(255, 255, 255, calc(0.1 * var(--shadow-opacity)));
 
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    border-bottom: 2px solid rgba(0, 0, 0, var(--border-opacity));
   }
 
   /* Chromatic Aberration  */
@@ -333,6 +334,8 @@ body.loading {
       inset 0 -1px 0 rgba(0, 0, 0, calc(0.3 * var(--shadow-opacity))),
       0 0 0 1px rgba(255, 255, 255, calc(0.15 * var(--shadow-opacity))),
       0 4px 16px rgba(255, 255, 255, calc(0.05 * var(--shadow-opacity)));
+
+    border-bottom: 2px solid rgba(255, 255, 255, var(--border-opacity));
   }
 
   html.dark #main-header::after {

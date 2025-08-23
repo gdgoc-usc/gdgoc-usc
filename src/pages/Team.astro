@@ -1,68 +1,68 @@
 ---
-import SpotlightCard from '@/components/react-bits/SpotlightCard';
-import AnimatedTeamImage from '@/components/animated/AnimatedTeamImage';
 import {
   leadership,
   externalRelations,
+  humanresources,
   marketing,
   operations,
   finance,
   technology,
 } from '@/config/team.data';
+import '@/styles/team-masonry.css';
 
 const allTeamMembers = [
   ...leadership.map(member => ({
     ...member,
     displayName: member.name,
     department: 'Leadership',
-    color: 'rgba(66, 133, 244, 0.25)' as const,
+    departmentClass: 'leadership',
   })),
   ...externalRelations.map(member => ({
     ...member,
-    displayName: member.role,
+    displayName: member.name,
     department: 'External Relations',
-    color: 'rgba(52, 168, 83, 0.25)' as const,
+    departmentClass: 'external-relations',
+  })),
+  ...humanresources.map(member => ({
+    ...member,
+    displayName: member.name,
+    department: 'External Relations',
+    departmentClass: 'external-relations',
   })),
   ...marketing.map(member => ({
     ...member,
-    displayName: member.role,
+    displayName: member.name,
     department: 'Marketing',
-    color: 'rgba(251, 188, 4, 0.25)' as const,
+    departmentClass: 'marketing',
   })),
   ...operations.map(member => ({
     ...member,
-    displayName: member.role,
+    displayName: member.name,
     department: 'Operations',
-    color: 'rgba(234, 67, 53, 0.25)' as const,
+    departmentClass: 'operations',
   })),
   ...finance.map(member => ({
     ...member,
-    displayName: member.role,
+    displayName: member.name,
     department: 'Finance',
-    color: 'rgba(52, 168, 83, 0.25)' as const,
+    departmentClass: 'finance',
   })),
   ...technology.map(member => ({
     ...member,
-    displayName: member.role,
+    displayName: member.name,
     department: 'Technology',
-    color: 'rgba(66, 133, 244, 0.25)' as const,
+    departmentClass: 'technology',
   })),
-];
-
-const infiniteTeamMembers = [
-  ...allTeamMembers,
-  ...allTeamMembers,
-  ...allTeamMembers,
 ];
 ---
 
 <section
   id='team'
-  class='relative w-full overflow-hidden min-h-screen flex flex-col items-center justify-center py-12'
+  class='relative w-full min-h-screen flex flex-col items-center justify-center py-12 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800'
 >
   <div class='relative z-10 container px-4 sm:px-6 lg:px-8 w-full'>
     <div class='w-full'>
-      <div class='text-center my-12'>
+      <div class='text-center my-14'>
         <div class='flex flex-col gap-2'>
           <h1
             class='text-4xl md:text-6xl font-bold text-black dark:text-white mb-4 tracking-tighter'
@@ -82,52 +82,50 @@ const infiniteTeamMembers = [
     </div>
   </div>
 
-  <div class='w-screen relative h-[650px] overflow-hidden'>
-    <div
-      class='absolute left-0 top-0 w-16 h-full bg-gradient-to-r from-white/60 dark:from-gray-900/60 to-transparent z-20 pointer-events-none'
-    >
-    </div>
-    <div
-      class='absolute right-0 top-0 w-16 h-full bg-gradient-to-l from-white/60 dark:from-gray-900/60 to-transparent z-20 pointer-events-none'
-    >
-    </div>
-
-    <div
-      id='team-carousel'
-      class='flex items-center h-full gap-1 px-2 overflow-x-auto overflow-y-hidden scrollbar-hide'
-      style='scroll-behavior: smooth; -webkit-overflow-scrolling: touch;'
-    >
+  <div class='w-full relative'>
+    <div class='team-masonry'>
       {
-        infiniteTeamMembers.map((member, index) => (
+        allTeamMembers.map(member => (
           <div
-            class='carousel-item flex-shrink-0 transition-all duration-300 ease-out'
-            data-index={index}
+            class={`team-member-card ${member.departmentClass} ${
+              member.imageUrl ? 'has-image' : ''
+            }`}
           >
-            <SpotlightCard
-              className='team-card h-[550px] w-[380px] bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-gray-200 dark:border-gray-700 border-2 relative overflow-hidden !p-0'
-              spotlightColor={member.color}
-              client:load
-            >
-              {member.imageUrl && (
-                <AnimatedTeamImage
+            {member.imageUrl ? (
+              <>
+                <img
                   src={member.imageUrl}
-                  alt={member.role + ' photo'}
-                  className='absolute inset-0 w-full h-full'
-                  client:load
+                  alt={`${member.displayName} - ${member.role}`}
+                  class='team-member-image'
+                  loading='lazy'
                 />
-              )}
-              <div class='absolute bottom-0 right-0 z-30 flex flex-col items-end justify-end p-6 bg-gradient-to-t from-black/90 via-black/50 to-transparent w-full h-full pointer-events-none'>
-                <div class='role-badge bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full mb-2 border border-white/30'>
-                  {member.department}
+                <div class='team-member-overlay'>
+                  <div class={`department-badge overlay`}>
+                    {member.department}
+                  </div>
+                  <h3 class='member-role overlay'>{member.role}</h3>
+                  <p class='member-name overlay'>{member.displayName}</p>
                 </div>
-                <h3 class='role-title text-white drop-shadow-lg text-xl font-bold mb-1 text-right'>
-                  {member.role}
-                </h3>
-                <p class='role-name text-white/90 drop-shadow-md text-lg text-right'>
-                  {member.displayName}
-                </p>
+              </>
+            ) : (
+              <div
+                class='placeholder-card'
+                style='background-image: url(/gdgoc_bg_3.webp); background-size: cover; background-position: center;'
+              >
+                <div class='coming-soon-text'>
+                  <h2 class='text-2xl font-bold text-black drop-shadow-lg'>
+                    Coming Soon!
+                  </h2>
+                </div>
+                <div class='team-member-overlay-no-image'>
+                  <div class={`department-badge ${member.departmentClass}`}>
+                    {member.department}
+                  </div>
+                  <h3 class='member-role no-image'>{member.role}</h3>
+                  <p class='member-name no-image'>{member.displayName}</p>
+                </div>
               </div>
-            </SpotlightCard>
+            )}
           </div>
         ))
       }
@@ -137,7 +135,7 @@ const infiniteTeamMembers = [
   <div class='relative z-10 container px-4 sm:px-6 lg:px-8 w-full'>
     <div class='text-center mt-16'>
       <div
-        class='p-6 bg-gradient-to-r from-gdgoc-primary-green/5 to-gdgoc-secondary-green/5 rounded-xl border border-gdgoc-primary-green/20 max-w-4xl mx-auto'
+        class='p-6 bg-gradient-to-r from-gdgoc-primary-green/5 to-gdgoc-secondary-green/5 rounded-xl border border-gdgoc-primary-green/20 max-w-4xl mx-auto backdrop-blur-sm'
       >
         <p class='text-lg text-gray-600 dark:text-gray-300 leading-relaxed'>
           Our diverse team brings together expertise from various fields to
@@ -148,91 +146,3 @@ const infiniteTeamMembers = [
     </div>
   </div>
 </section>
-
-<style>
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-
-  .carousel-item {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  .role-badge {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-  }
-
-  .team-card {
-    box-shadow:
-      0 4px 6px -1px rgba(0, 0, 0, 0.1),
-      0 2px 4px -1px rgba(0, 0, 0, 0.06),
-      0 10px 25px -3px rgba(0, 0, 0, 0.1);
-  }
-
-  .team-card:hover {
-    transform: translateY(-4px);
-    box-shadow:
-      0 20px 25px -5px rgba(0, 0, 0, 0.1),
-      0 10px 10px -5px rgba(0, 0, 0, 0.04),
-      0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  }
-
-  @media (max-width: 768px) {
-    .team-card {
-      height: 480px;
-      width: 320px;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .team-card {
-      height: 420px;
-      width: 280px;
-    }
-  }
-</style>
-
-<script>
-  const carousel = document.getElementById('team-carousel');
-  const items = document.querySelectorAll('.carousel-item');
-
-  if (carousel && items.length > 0) {
-    carousel.scrollLeft = carousel.scrollWidth / 3;
-    carousel.addEventListener('wheel', e => {
-      e.preventDefault();
-      const scrollAmount = e.deltaX !== 0 ? e.deltaX : e.deltaY;
-      if (carousel) {
-        carousel.scrollLeft += scrollAmount * 3;
-      }
-    });
-
-    let touchStartX = 0;
-    let touchStartScrollLeft = 0;
-
-    carousel.addEventListener('touchstart', e => {
-      touchStartX = e.touches[0].clientX;
-      touchStartScrollLeft = carousel ? carousel.scrollLeft : 0;
-    });
-
-    carousel.addEventListener('touchmove', e => {
-      if (!touchStartX) return;
-
-      const touchX = e.touches[0].clientX;
-      const diff = touchStartX - touchX;
-      if (carousel) {
-        carousel.scrollLeft = touchStartScrollLeft + diff;
-      }
-    });
-
-    carousel.addEventListener('touchend', () => {
-      touchStartX = 0;
-    });
-  }
-</script>

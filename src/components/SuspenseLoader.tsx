@@ -17,7 +17,7 @@ export default function SuspenseLoader({
   };
 
   const preloadCriticalAssets = async (): Promise<void> => {
-    const criticalAssets = ['/gdgoc_bg_1_compressed.svg', '/usc_logo.svg'];
+    const criticalAssets = ['/usc_logo.svg'];
 
     let loadedCount = 0;
 
@@ -156,20 +156,15 @@ export default function SuspenseLoader({
     >
       <div className='flex flex-col items-center space-y-6'>
         <div className='relative'>
-          <img
-            src='/gdgoc_logo.svg'
-            alt='GDGoC Logo'
-            className='w-20 h-20 md:w-24 md:h-24 animate-pulse'
-          />
-          <div className='absolute inset-0 w-20 h-20 md:w-24 md:h-24 border-4 border-gdgoc-primary-blue border-t-transparent rounded-full animate-spin'></div>
+          <img src='/loader.gif' alt='GDGoC Loading Animation' />
         </div>
 
-        <div className='text-center space-y-2'>
+        <div className='text-center space-y-0'>
           <h2 className='text-xl md:text-2xl font-semibold text-gray-900 dark:text-white'>
-            GDGoC USC
+            Google Developer Group
           </h2>
-          <p className='text-sm md:text-base text-gray-600 dark:text-gray-300'>
-            Hello World!
+          <p className='text-sm md:text-base text-gdgoc-primary-blue'>
+            University of San Carlos
           </p>
         </div>
 
