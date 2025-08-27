@@ -1,11 +1,12 @@
 ---
-import Layout from '@/layouts/Layout.astro';
-import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
-import Hero from './Hero.astro';
+import Header from '@/components/layout/Header.astro';
+import Layout from '@/layouts/Layout.astro';
 import About from './About.astro';
-import Team from './Team.astro';
+import Hero from './Hero.astro';
 import Partners from './Partners.astro';
+import Team from './Team.astro';
+import Timeline from './Timeline.astro';
 ---
 
 <Layout
@@ -22,17 +23,8 @@ import Partners from './Partners.astro';
 
     <Partners />
 
-    <section
-      id='events'
-      class='min-h-screen w-full flex items-center justify-center bg-white dark:bg-neutral-900'
-    >
-      <div class='container mx-auto px-4 sm:px-6 lg:px-8 text-center'>
-        <h2 class='text-4xl font-bold text-gray-900 dark:text-white mb-4'>
-          Events
-        </h2>
-        <p class='text-xl text-gray-600 dark:text-gray-300'>Coming soon...</p>
-      </div>
-    </section>
+    <Timeline />
+    <!-- Events name was taken already 😢 -->
   </main>
   <Footer />
 </Layout>
