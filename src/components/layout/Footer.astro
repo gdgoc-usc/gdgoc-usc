@@ -85,16 +85,11 @@ const resources = [
           />
           <div>
             <h2
-              class='text-2xl sm:text-3xl font-bold bg-gradient-to-r from-gdgoc-primary-green via-gdgoc-primary-yellow to-gdgoc-secondary-green dark:from-white dark:via-gdgoc-secondary-blue dark:to-gdgoc-secondary-green bg-clip-text text-transparent leading-tight'
+              class='text-2xl sm:text-3xl font-bold text-black dark:text-white leading-tight'
             >
               Google Developer Groups
             </h2>
-            <p class='text-xl font-medium text-gray-700 dark:text-gray-300'>
-              on Campus
-            </p>
-            <p
-              class='text-lg text-gdgoc-secondary-green dark:text-gdgoc-secondary-blue font-semibold'
-            >
+            <p class='text-lg text-gdgoc-primary-blue font-normal'>
               University of San Carlos
             </p>
           </div>
@@ -108,10 +103,10 @@ const resources = [
             development, mobile apps, cloud computing, and AI.
           </p>
           <div
-            class='flex items-center space-x-2 text-sm text-black dark:text-white'
+            class='flex items-center space-x-2 text-sm text-black dark:text-white p-4 border-2 border-black dark:border-white rounded-full w-fit'
           >
             <MapPin className='w-4 h-4' />
-            <span>Cebu City, Philippines</span>
+            <span>University of San Carlos, Cebu</span>
           </div>
         </div>
 
@@ -156,7 +151,9 @@ const resources = [
 
       <div class='grid grid-cols-2 sm:grid-cols-2 gap-8'>
         <div class='space-y-4'>
-          <h3 class='text-lg font-semibold text-gray-900 dark:text-white'>
+          <h3
+            class='text-lg font-semibold text-gdgoc-primary-green dark:text-white'
+          >
             Navigation
           </h3>
           <ul class='space-y-3'>
@@ -165,7 +162,7 @@ const resources = [
                 <li>
                   <a
                     href={link.href}
-                    class='text-gray-600 dark:text-gray-400 hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-secondary-blue transition-colors duration-200 text-sm'
+                    class='text-black dark:text-gray-400 hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-secondary-blue transition-colors duration-200 text-sm'
                   >
                     {link.text}
                   </a>
@@ -176,7 +173,9 @@ const resources = [
         </div>
 
         <div class='space-y-4'>
-          <h3 class='text-lg font-semibold text-gray-900 dark:text-white'>
+          <h3
+            class='text-lg font-semibold text-gdgoc-primary-green dark:text-white'
+          >
             Quick Links
           </h3>
           <ul class='space-y-3'>
@@ -189,7 +188,7 @@ const resources = [
                       href={link.href}
                       target='_blank'
                       rel='noopener noreferrer'
-                      class='flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-secondary-blue transition-colors duration-200 text-sm group'
+                      class='flex items-center space-x-2 text-black dark:text-gray-400 hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-secondary-blue transition-colors duration-200 text-sm group'
                     >
                       <IconComponent className='w-4 h-4 group-hover:scale-110 transition-transform duration-200' />
                       <span>{link.text}</span>
@@ -202,7 +201,9 @@ const resources = [
         </div>
 
         <div class='space-y-4 sm:col-span-2'>
-          <h3 class='text-lg font-semibold text-gray-900 dark:text-white'>
+          <h3
+            class='text-lg font-semibold text-gdgoc-primary-green dark:text-white'
+          >
             Developer Resources
           </h3>
           <div class='grid grid-cols-2 gap-3'>
@@ -212,7 +213,7 @@ const resources = [
                   href={resource.href}
                   target='_blank'
                   rel='noopener noreferrer'
-                  class='text-gray-600 dark:text-gray-400 hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-secondary-blue transition-colors duration-200 text-sm'
+                  class='text-black dark:text-gray-400 hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-secondary-blue transition-colors duration-200 text-sm'
                 >
                   {resource.text}
                 </a>
@@ -231,8 +232,7 @@ const resources = [
           class='flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-500 dark:text-gray-100'
         >
           <p>
-            © {currentYear} Google Developer Groups on Campus - University of San
-            Carlos
+            © {currentYear} Google Developer Group - University of San Carlos
           </p>
           <div class='flex space-x-4'>
             <a
@@ -259,7 +259,7 @@ const resources = [
           class='flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-100'
         >
           <Code className='w-4 h-4' />
-          <span>Built with ❤️ by GDGoC USC Team</span>
+          <span>Built with Astro, Typescript and Tailwind.</span>
         </div>
       </div>
     </div>

@@ -4,37 +4,37 @@ export const leadership: TeamMember[] = [
   {
     role: 'Lead',
     name: 'John Paul Denaya',
-    imageUrl: '',
+    imageUrl: '/members/Iohann.png',
   },
   {
     role: 'Lead',
     name: 'Homer Adriel Dorin',
-    imageUrl: '',
+    imageUrl: '/members/Homer.png',
   },
   {
     role: 'Chief Operations Officer',
     name: 'Matt Erron Cabarrubias',
-    imageUrl: '',
+    imageUrl: '/members/Matt.png',
   },
   {
     role: 'Chief Marketing Officer',
     name: 'Jon Pierre Baltazar',
-    imageUrl: '',
+    imageUrl: '/members/JP.png',
   },
   {
     role: 'Chief Technology Officer',
     name: 'Geri Gian Epanto',
-    imageUrl: '',
+    imageUrl: '/members/Gian.png',
   },
   {
     role: 'Chief Finance Officer',
     name: 'Yza Hilary Alagon',
-    imageUrl: '',
+    imageUrl: '/members/Yza.png',
   },
   {
     role: 'Chief Human Relations Officer',
     name: 'Jewel Monsalud',
-    imageUrl: '',
+    imageUrl: '/members/Jewel.png',
   },
 ];
 
@@ -52,12 +52,12 @@ export const externalRelations: DepartmentMember[] = [
   {
     role: 'External Relations Officer',
     name: 'Joaquin Nanquil',
-    imageUrl: '',
+    imageUrl: '/members/Joaquin.png',
   },
   {
     role: 'External Relations Officer',
     name: 'Atasha Denise Santiago',
-    imageUrl: '',
+    imageUrl: '/members/Atasha.png',
   },
 ];
 
@@ -70,12 +70,12 @@ export const humanresources: DepartmentMember[] = [
   {
     role: 'Internal Relations Officer',
     name: 'Venice Claire',
-    imageUrl: '',
+    imageUrl: '/members/Claire.png',
   },
   {
     role: 'Internal Relations Officer',
     name: 'Ulyxis Dave Perez',
-    imageUrl: '',
+    imageUrl: '/members/Uly.png',
   },
   {
     role: 'Internal Relations Officer',
@@ -85,7 +85,7 @@ export const humanresources: DepartmentMember[] = [
   {
     role: 'Internal Relations Officer',
     name: 'January Venice Toledo',
-    imageUrl: '',
+    imageUrl: '/members/January.png',
   },
 ];
 
@@ -93,12 +93,12 @@ export const marketing: DepartmentMember[] = [
   {
     role: 'Media Engagement Head',
     name: 'Nino Calunod',
-    imageUrl: '',
+    imageUrl: '/members/Nino.png',
   },
   {
     role: 'Creatives Head',
     name: 'Blanche Enid Berdos',
-    imageUrl: '',
+    imageUrl: '/members/Blanche.png',
   },
   {
     role: 'Public Information Officer',
@@ -108,17 +108,17 @@ export const marketing: DepartmentMember[] = [
   {
     role: 'Creative Designer',
     name: 'Renee Pintor',
-    imageUrl: '',
+    imageUrl: '/members/Renee.png',
   },
   {
     role: 'Creative Designer',
     name: 'Yasha Fornolles',
-    imageUrl: '',
+    imageUrl: '/members/Yasha.png',
   },
   {
     role: 'Creative Designer',
     name: 'Andrea Keisha To Chip',
-    imageUrl: '',
+    imageUrl: '/members/Andrea.png',
   },
   {
     role: 'Videographer/Photographer',
@@ -128,12 +128,12 @@ export const marketing: DepartmentMember[] = [
   {
     role: 'Videographer/Photographer',
     name: 'Joenell Conrad De Pedro',
-    imageUrl: '',
+    imageUrl: '/members/Joenell.png',
   },
   {
     role: 'Content Writer',
     name: 'Avryl Joie Arranguez',
-    imageUrl: '',
+    imageUrl: '/members/Avryl.png',
   },
   {
     role: 'Video Editor',
@@ -143,7 +143,7 @@ export const marketing: DepartmentMember[] = [
   {
     role: 'Video Editor',
     name: 'Nic Leander Delgado',
-    imageUrl: '',
+    imageUrl: '/members/Nic Delgado.png',
   },
 ];
 
@@ -151,17 +151,17 @@ export const operations: DepartmentMember[] = [
   {
     role: 'Executive Secretary',
     name: 'Ethan Andre Dalocanog',
-    imageUrl: '',
+    imageUrl: '/members/Ethan.png',
   },
   {
     role: 'Executive Assistant',
     name: 'Jhanell Mingo',
-    imageUrl: '',
+    imageUrl: '/members/Jhanell.png',
   },
   {
     role: 'Events Manager',
     name: 'Charles Jade Argawanon',
-    imageUrl: '',
+    imageUrl: '/members/Charles.png',
   },
 ];
 
@@ -169,7 +169,7 @@ export const finance: DepartmentMember[] = [
   {
     role: 'Finance Officer',
     name: 'Jomar Cuñado',
-    imageUrl: '',
+    imageUrl: '/members/Jomar.png',
   },
   {
     role: 'Finance Officer',
@@ -187,16 +187,16 @@ export const technology: DepartmentMember[] = [
   {
     role: 'Data Science Officer',
     name: 'John Andre Yap',
-    imageUrl: '',
+    imageUrl: '/members/John Andre.png',
   },
   {
     role: 'AI/ML Officer',
     name: 'Nick Anthony Miras',
-    imageUrl: '',
+    imageUrl: '/members/Nick Anthony.png',
   },
   {
     role: 'Web Dev Officer',
     name: 'Dustin Jesse Balansag',
-    imageUrl: '',
+    imageUrl: '/members/Dustin.png',
   },
 ];

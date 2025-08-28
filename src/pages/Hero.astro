@@ -57,14 +57,14 @@ import { socialLinks } from '@/config/social.data';
               </h3>
             </AnimatedHeroText>
 
-            <div class='flex justify-center items-center gap-4 mt-6'>
+            <div class='flex justify-center items-center gap-4 mt-8'>
               {
                 socialLinks.map(link => (
                   <a
                     href={link.href}
                     target='_blank'
                     rel='noopener noreferrer'
-                    class='group p-3 rounded-full dark:bg-white/5 backdrop-blur-sm border dark:border-white/20 border-neutral-300 dark:hover:bg-white/20 dark:hover:border-white/40 transition-all duration-300 hover:scale-110'
+                    class='group p-3 rounded-full dark:bg-white/5 backdrop-blur-sm border-2 border-black dark:border-white/20 dark:hover:bg-white/20 dark:hover:border-white/40 transition-all duration-300 hover:scale-110'
                     aria-label={link.label}
                   >
                     {link.type === 'lucide' ? (

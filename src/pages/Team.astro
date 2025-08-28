@@ -9,52 +9,34 @@ import {
   technology,
 } from '@/config/team.data';
 import '@/styles/team-masonry.css';
-import { Image } from 'astro:assets';
 
-const allTeamMembers = [
-  ...leadership.map(member => ({
-    ...member,
-    displayName: member.name,
-    department: 'Leadership',
-    departmentClass: 'leadership',
-  })),
-  ...externalRelations.map(member => ({
-    ...member,
-    displayName: member.name,
+/* Explicit ordered grouping so grid fills rows with all Leadership first, then each department in sequence */
+const departmentGroups = [
+  { data: leadership, department: 'Leadership', departmentClass: 'leadership' },
+  {
+    data: externalRelations,
     department: 'External Relations',
     departmentClass: 'external-relations',
-  })),
-  ...humanresources.map(member => ({
-    ...member,
-    displayName: member.name,
-    department: 'External Relations',
-    departmentClass: 'external-relations',
-  })),
-  ...marketing.map(member => ({
-    ...member,
-    displayName: member.name,
-    department: 'Marketing',
-    departmentClass: 'marketing',
-  })),
-  ...operations.map(member => ({
-    ...member,
-    displayName: member.name,
-    department: 'Operations',
-    departmentClass: 'operations',
-  })),
-  ...finance.map(member => ({
-    ...member,
-    displayName: member.name,
-    department: 'Finance',
-    departmentClass: 'finance',
-  })),
-  ...technology.map(member => ({
-    ...member,
-    displayName: member.name,
-    department: 'Technology',
-    departmentClass: 'technology',
-  })),
+  },
+  {
+    data: humanresources,
+    department: 'Human Resources',
+    departmentClass: 'human-resources',
+  },
+  { data: marketing, department: 'Marketing', departmentClass: 'marketing' },
+  { data: operations, department: 'Operations', departmentClass: 'operations' },
+  { data: finance, department: 'Finance', departmentClass: 'finance' },
+  { data: technology, department: 'Technology', departmentClass: 'technology' },
 ];
+
+const allTeamMembers = departmentGroups.flatMap(group =>
+  group.data.map(member => ({
+    ...member,
+    displayName: member.name,
+    department: group.department,
+    departmentClass: group.departmentClass,
+  }))
+);
 ---
 
 <section
@@ -128,20 +110,6 @@ const allTeamMembers = [
           </div>
         ))
       }
-    </div>
-  </div>
-
-  <div class='relative z-10 container px-4 sm:px-6 lg:px-8 w-full'>
-    <div class='text-center mt-16'>
-      <div
-        class='p-6 bg-gradient-to-r from-gdgoc-primary-green/5 to-gdgoc-secondary-green/5 rounded-xl border border-gdgoc-primary-green/20 max-w-4xl mx-auto backdrop-blur-sm'
-      >
-        <p class='text-lg text-gray-600 dark:text-gray-300 leading-relaxed'>
-          Our diverse team brings together expertise from various fields to
-          create an inclusive, innovative, supportive environment for student
-          developers at USC.
-        </p>
-      </div>
     </div>
   </div>
 </section>

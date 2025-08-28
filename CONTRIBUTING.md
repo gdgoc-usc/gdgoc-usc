@@ -93,7 +93,6 @@ gdgoc-usc/
 │   ├── layouts/           # Astro layouts
 │   ├── pages/             # Astro pages (routes)
 │   ├── styles/            # Global styles
-│   └── test/              # Test utilities and setup
 ├── astro.config.mjs       # Astro configuration
 ├── package.json           # Project dependencies and scripts
 ├── tsconfig.json          # TypeScript configuration
