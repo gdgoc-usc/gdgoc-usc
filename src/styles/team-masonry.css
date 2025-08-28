@@ -41,11 +41,7 @@
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  border: 2px solid transparent;
-}
-
-.team-member-card.has-image {
-  background: #000;
+  border: 2px solid black;
 }
 
 .team-member-card:hover {
@@ -56,40 +52,42 @@
     0 10px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
-.team-member-card.leadership {
-  border-color: rgba(66, 133, 244, 0.3);
-}
-
-.team-member-card.external-relations {
-  border-color: rgba(52, 168, 83, 0.3);
-}
-
-.team-member-card.marketing {
-  border-color: rgba(251, 188, 4, 0.3);
-}
-
-.team-member-card.operations {
-  border-color: rgba(234, 67, 53, 0.3);
-}
-
-.team-member-card.finance {
-  border-color: rgba(52, 168, 83, 0.3);
-}
-
-.team-member-card.technology {
-  border-color: rgba(66, 133, 244, 0.3);
-}
-
 .team-member-image {
   width: 100%;
   height: auto;
   display: block;
   object-fit: cover;
   transition: all 0.3s ease;
+  position: relative;
+  z-index: 5;
+}
+
+.team-member-card.has-image {
+  position: relative;
+}
+
+.team-member-card.has-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--hover-bg);
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px;
+  z-index: 1;
+}
+
+.team-member-card.has-image:hover::before {
+  opacity: 1;
 }
 
 .team-member-card:hover .team-member-image {
-  filter: brightness(0.7);
+  filter: brightness(0.9);
 }
 
 .team-member-overlay {
@@ -100,12 +98,13 @@
   background: linear-gradient(
     to top,
     rgba(0, 0, 0, 0.9) 0%,
-    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0.6) 30%,
     transparent 100%
   );
   padding: 1.5rem;
   transform: translateY(100%);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
 }
 
 .team-member-card:hover .team-member-overlay {
@@ -230,6 +229,11 @@
   text-align: center;
   min-height: 200px;
   position: relative;
+  transition: background-image 0.3s ease;
+}
+
+.team-member-card:hover .placeholder-card {
+  background-image: var(--hover-bg) !important;
 }
 
 .placeholder-card::before {
@@ -263,10 +267,6 @@
 
 /* Dark mode styles */
 @media (prefers-color-scheme: dark) {
-  .team-member-card {
-    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
-  }
-
   .team-member-overlay-no-image {
     background: linear-gradient(
       135deg,

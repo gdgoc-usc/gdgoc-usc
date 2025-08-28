@@ -1,0 +1,272 @@
+---
+export interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<div class='slot-reel' id={id}>
+  <div class='reel-window'>
+    <div class='reel-content'>
+      <div class='reel-slot'>
+        <div class='placeholder-image'></div>
+      </div>
+      <div class='reel-slot'>
+        <div class='placeholder-image'></div>
+      </div>
+      <div class='reel-slot'>
+        <div class='placeholder-image'></div>
+      </div>
+    </div>
+  </div>
+  <div class='reel-frame'></div>
+</div>
+
+<style>
+  .slot-reel {
+    position: relative;
+    width: 120px;
+    height: 160px;
+    border: 3px solid #000;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #222, #000);
+    overflow: hidden;
+    box-shadow:
+      inset 0 4px 8px rgba(0, 0, 0, 0.6),
+      0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  html.dark .slot-reel {
+    border-color: #fff;
+    background: linear-gradient(145deg, #444, #222);
+  }
+
+  .reel-window {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    background: linear-gradient(145deg, #111, #333);
+    border-radius: 7px;
+    overflow: hidden;
+    border: 1px solid #444;
+  }
+
+  html.dark .reel-window {
+    border-color: #666;
+    background: linear-gradient(145deg, #333, #555);
+  }
+
+  .reel-content {
+    position: absolute;
+    width: 100%;
+    height: 300%;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.1s ease-out;
+  }
+
+  .reel-content.spinning {
+    animation: spin-reel 0.1s linear infinite;
+  }
+
+  .reel-slot {
+    width: 100%;
+    height: 53.33px; /* 160px / 3 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+  }
+
+  .reel-slot:last-child {
+    border-bottom: none;
+  }
+
+  .reel-slot img,
+  .placeholder-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    object-fit: cover;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  }
+
+  .placeholder-image {
+    background: linear-gradient(
+      45deg,
+      var(--color-gdgoc-primary-blue),
+      var(--color-gdgoc-secondary-blue)
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+  }
+
+  .winner-slot {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+      135deg,
+      rgba(52, 168, 83, 0.2),
+      rgba(52, 168, 83, 0.1)
+    );
+    border: 2px solid #34a853;
+    border-radius: 8px;
+    animation: winner-glow 1s ease-in-out infinite alternate;
+  }
+
+  .winner-image {
+    width: 50px !important;
+    height: 50px !important;
+    border: 3px solid #34a853 !important;
+    box-shadow:
+      0 0 20px rgba(52, 168, 83, 0.6),
+      0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  @keyframes spin-reel {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-53.33px);
+    }
+  }
+
+  @keyframes winner-glow {
+    0% {
+      background: linear-gradient(
+        135deg,
+        rgba(52, 168, 83, 0.2),
+        rgba(52, 168, 83, 0.1)
+      );
+      box-shadow: inset 0 0 10px rgba(52, 168, 83, 0.3);
+    }
+    100% {
+      background: linear-gradient(
+        135deg,
+        rgba(52, 168, 83, 0.4),
+        rgba(52, 168, 83, 0.2)
+      );
+      box-shadow: inset 0 0 20px rgba(52, 168, 83, 0.5);
+    }
+  }
+
+  .reel-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    pointer-events: none;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 50%,
+      rgba(0, 0, 0, 0.1) 100%
+    );
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .slot-reel {
+      width: 100px;
+      height: 140px;
+    }
+
+    .reel-slot {
+      height: 46.67px; /* 140px / 3 */
+    }
+
+    .reel-slot img,
+    .placeholder-image {
+      width: 35px;
+      height: 35px;
+    }
+
+    .winner-image {
+      width: 40px !important;
+      height: 40px !important;
+    }
+
+    @keyframes spin-reel {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(-46.67px);
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .slot-reel {
+      width: 80px;
+      height: 120px;
+    }
+
+    .reel-slot {
+      height: 40px; /* 120px / 3 */
+    }
+
+    .reel-slot img,
+    .placeholder-image {
+      width: 30px;
+      height: 30px;
+    }
+
+    .winner-image {
+      width: 35px !important;
+      height: 35px !important;
+    }
+
+    @keyframes spin-reel {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(-40px);
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reel-content.spinning {
+      animation: none;
+    }
+
+    .winner-slot {
+      animation: none;
+    }
+
+    .reel-content {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const reels = document.querySelectorAll('.slot-reel');
+    reels.forEach(reel => {
+      const reelContent = reel.querySelector('.reel-content');
+      if (reelContent) {
+        reelContent.classList.remove('spinning');
+      }
+    });
+  });
+</script>

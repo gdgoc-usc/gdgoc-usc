@@ -1,0 +1,67 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/layout/Header.astro';
+import Footer from '@/components/layout/Footer.astro';
+import SlotMachine from '@/components/slots/SlotMachine.astro';
+---
+
+<Layout
+  title='Fortune Pai Gow - GDGoC USC Team Slots'
+  description='Meet our amazing team members through this fun interactive slot machine game!'
+>
+  <Header />
+  <main class='min-h-screen w-full bg-white dark:bg-gray-800 flex pt-16 px-4'>
+    <div class='container mx-auto max-w-6xl pt-8'>
+      <div class='text-center mb-4'>
+        <h1
+          class='text-4xl md:text-6xl font-bold text-black dark:text-white mb-4 tracking-tight'
+        >
+          <span class='text-gdgoc-primary-blue'>Fortune</span>
+          <span class='text-gdgoc-primary-red ml-2'>Pai</span>
+          <span class='text-gdgoc-primary-yellow ml-2'>Gow</span>
+        </h1>
+        <p class='text-xl md:text-2xl text-black dark:text-gray-300 mb-2'>
+          Meet Our Amazing Team Members!
+        </p>
+        <p
+          class='text-base md:text-lg text-gray-800 dark:text-gray-400 max-w-2xl mx-auto'
+        >
+          Pull the lever and discover one of our talented GDGoC USC team
+          members. Every spin is a guaranteed win! 🎰
+        </p>
+      </div>
+
+      <SlotMachine />
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  import { getAllMembersWithImages } from '@/utils/teamUtils';
+
+  if (typeof window !== 'undefined') {
+    window.getAllMembersWithImages = getAllMembersWithImages;
+  }
+</script>
+
+<style>
+  .glass-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  html.dark .glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+</style>

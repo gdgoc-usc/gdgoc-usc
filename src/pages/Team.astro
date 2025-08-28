@@ -1,42 +1,41 @@
 ---
-import {
-  leadership,
-  externalRelations,
-  humanresources,
-  marketing,
-  operations,
-  finance,
-  technology,
-} from '@/config/team.data';
+import { getAllMembersWithPrioritizedSorting } from '@/utils/teamUtils';
 import '@/styles/team-masonry.css';
 
-/* Explicit ordered grouping so grid fills rows with all Leadership first, then each department in sequence */
-const departmentGroups = [
-  { data: leadership, department: 'Leadership', departmentClass: 'leadership' },
-  {
-    data: externalRelations,
-    department: 'External Relations',
-    departmentClass: 'external-relations',
-  },
-  {
-    data: humanresources,
-    department: 'Human Resources',
-    departmentClass: 'human-resources',
-  },
-  { data: marketing, department: 'Marketing', departmentClass: 'marketing' },
-  { data: operations, department: 'Operations', departmentClass: 'operations' },
-  { data: finance, department: 'Finance', departmentClass: 'finance' },
-  { data: technology, department: 'Technology', departmentClass: 'technology' },
-];
+const allTeamMembersData = getAllMembersWithPrioritizedSorting();
 
-const allTeamMembers = departmentGroups.flatMap(group =>
-  group.data.map(member => ({
+const allTeamMembers = allTeamMembersData.map(member => {
+  let departmentClass = '';
+  switch (member.department) {
+    case 'Leadership':
+      departmentClass = 'leadership';
+      break;
+    case 'External Relations':
+      departmentClass = 'external-relations';
+      break;
+    case 'Human Resources':
+      departmentClass = 'human-resources';
+      break;
+    case 'Marketing':
+      departmentClass = 'marketing';
+      break;
+    case 'Operations':
+      departmentClass = 'operations';
+      break;
+    case 'Finance':
+      departmentClass = 'finance';
+      break;
+    case 'Technology':
+      departmentClass = 'technology';
+      break;
+  }
+
+  return {
     ...member,
     displayName: member.name,
-    department: group.department,
-    departmentClass: group.departmentClass,
-  }))
-);
+    departmentClass,
+  };
+});
 ---
 
 <section
@@ -70,6 +69,7 @@ const allTeamMembers = departmentGroups.flatMap(group =>
             class={`team-member-card ${member.departmentClass} ${
               member.imageUrl ? 'has-image' : ''
             }`}
+            style='--hover-bg: url(/gdgoc_pp_bg.png);'
           >
             {member.imageUrl ? (
               <>
@@ -90,7 +90,7 @@ const allTeamMembers = departmentGroups.flatMap(group =>
             ) : (
               <div
                 class='placeholder-card'
-                style='background-image: url(/gdgoc_bg_3.webp); background-size: cover; background-position: center;'
+                style='background-image: url(/gdgoc_bg_3.webp); background-size: cover; background-position: center; --hover-bg: url(/gdgoc_pp_bg.png);'
               >
                 <div class='coming-soon-text'>
                   <h2 class='text-2xl font-bold text-black drop-shadow-lg'>

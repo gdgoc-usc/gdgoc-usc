@@ -1,0 +1,512 @@
+---
+// SlotLever component for the slot machine
+---
+
+<div class='slot-lever-container'>
+  <div class='slot-lever'>
+    <div class='lever-base'>
+      <div class='lever-base-inner'></div>
+    </div>
+    <div class='lever-arm'>
+      <div class='lever-handle'>
+        <div class='lever-grip'></div>
+        <div class='lever-button'></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .slot-lever-container {
+    position: relative;
+    width: 80px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slot-lever {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    transform-origin: bottom center;
+  }
+
+  .slot-lever:hover {
+    transform: scale(1.05);
+  }
+
+  .slot-lever.pulling {
+    animation: lever-pull 1s ease-out;
+  }
+
+  .lever-base {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 30px;
+    background: linear-gradient(145deg, #333, #111);
+    border: 2px solid #000;
+    border-radius: 20px 20px 5px 5px;
+    box-shadow:
+      0 4px 8px rgba(0, 0, 0, 0.3),
+      inset 0 2px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  html.dark .lever-base {
+    border-color: #fff;
+    background: linear-gradient(145deg, #555, #333);
+  }
+
+  .lever-base-inner {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    background: linear-gradient(145deg, #222, #444);
+    border-radius: 15px 15px 3px 3px;
+    border: 1px solid #666;
+  }
+
+  html.dark .lever-base-inner {
+    background: linear-gradient(145deg, #444, #666);
+    border-color: #888;
+  }
+
+  .lever-arm {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 120px;
+    background: linear-gradient(90deg, #888, #aaa, #888);
+    border: 2px solid #000;
+    border-radius: 4px;
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform-origin: bottom center;
+  }
+
+  html.dark .lever-arm {
+    border-color: #fff;
+    background: linear-gradient(90deg, #aaa, #ccc, #aaa);
+  }
+
+  .lever-handle {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 40px;
+  }
+
+  .lever-grip {
+    width: 100%;
+    height: 25px;
+    background: linear-gradient(145deg, #ea4335, #d73527);
+    border: 2px solid #000;
+    border-radius: 15px;
+    position: relative;
+    box-shadow:
+      0 3px 6px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  html.dark .lever-grip {
+    border-color: #fff;
+  }
+
+  .lever-grip::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 3px;
+    right: 3px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 1px;
+    transform: translateY(-50%);
+  }
+
+  .lever-grip::after {
+    content: '';
+    position: absolute;
+    top: 70%;
+    left: 3px;
+    right: 3px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 1px;
+    transform: translateY(-50%);
+  }
+
+  .lever-button {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(145deg, #fbbc04, #f9ab00);
+    border: 2px solid #000;
+    border-radius: 50%;
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  html.dark .lever-button {
+    border-color: #fff;
+  }
+
+  .lever-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  @keyframes lever-pull {
+    0% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(25deg);
+    }
+    50% {
+      transform: rotate(30deg);
+    }
+    75% {
+      transform: rotate(10deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  /* Hover effect */
+  .slot-lever:hover .lever-grip {
+    background: linear-gradient(145deg, #f28b81, #ea4335);
+    box-shadow:
+      0 4px 8px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+
+  .slot-lever:hover .lever-button {
+    background: linear-gradient(145deg, #fdd663, #fbbc04);
+    box-shadow:
+      0 3px 6px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+
+  /* Active state */
+  .slot-lever:active .lever-arm {
+    transform: translateX(-50%) rotate(15deg);
+  }
+
+  .slot-lever:active .lever-grip {
+    background: linear-gradient(145deg, #d73527, #b52d20);
+  }
+
+  .slot-lever:active .lever-button {
+    background: linear-gradient(145deg, #f9ab00, #e8a317);
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .slot-lever-container {
+      width: 60px;
+      height: 160px;
+    }
+
+    .lever-base {
+      width: 35px;
+      height: 25px;
+    }
+
+    .lever-arm {
+      height: 100px;
+      width: 6px;
+    }
+
+    .lever-handle {
+      width: 25px;
+      height: 35px;
+    }
+
+    .lever-grip {
+      height: 20px;
+    }
+
+    .lever-button {
+      width: 16px;
+      height: 16px;
+      top: 16px;
+    }
+
+    .lever-button::before {
+      width: 6px;
+      height: 6px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .slot-lever-container {
+      width: 50px;
+      height: 140px;
+    }
+
+    .lever-base {
+      width: 30px;
+      height: 20px;
+    }
+
+    .lever-arm {
+      height: 80px;
+      width: 5px;
+      bottom: 15px;
+    }
+
+    .lever-handle {
+      width: 20px;
+      height: 30px;
+      top: -15px;
+    }
+
+    .lever-grip {
+      height: 18px;
+    }
+
+    .lever-button {
+      width: 14px;
+      height: 14px;
+      top: 14px;
+    }
+
+    .lever-button::before {
+      width: 5px;
+      height: 5px;
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .slot-lever {
+      transition: none;
+    }
+
+    .slot-lever.pulling {
+      animation: none;
+    }
+
+    .slot-lever.clicked {
+      animation: none;
+    }
+
+    .slot-lever:hover {
+      transform: none;
+    }
+
+    .slot-lever:active .lever-arm {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Add glow effect when active */
+  .slot-lever.active {
+    filter: drop-shadow(0 0 10px rgba(251, 188, 4, 0.8));
+  }
+
+  .slot-lever.active .lever-button {
+    box-shadow:
+      0 0 15px rgba(251, 188, 4, 0.8),
+      0 2px 4px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  /* Success click feedback */
+  .slot-lever.clicked {
+    animation: lever-click-feedback 0.3s ease-out;
+  }
+
+  .slot-lever.clicked .lever-grip {
+    background: linear-gradient(145deg, #34a853, #137333);
+    box-shadow:
+      0 0 20px rgba(52, 168, 83, 0.6),
+      0 4px 8px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+
+  @keyframes lever-click-feedback {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  /* Disabled state during spinning */
+  .slot-lever.spinning-disabled {
+    pointer-events: none;
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .slot-lever.spinning-disabled .lever-grip {
+    background: linear-gradient(145deg, #888, #666);
+  }
+
+  .slot-lever.spinning-disabled .lever-button {
+    background: linear-gradient(145deg, #999, #777);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const lever = document.querySelector('.slot-lever');
+    let isAnimating = false;
+    let lastClickTime = 0;
+    const debounceDelay = 200; // Reduced to 200ms for better responsiveness
+
+    if (lever) {
+      // Add ready state indicator
+      lever.setAttribute('data-status', 'ready');
+
+      // Main click handler with debouncing and improved reliability
+      const handleLeverClick = (e: Event) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const currentTime = Date.now();
+        const status = lever.getAttribute('data-status');
+
+        // Check if lever is disabled or if we're debouncing
+        if (
+          isAnimating ||
+          status === 'spinning' ||
+          lever.classList.contains('spinning-disabled') ||
+          currentTime - lastClickTime < debounceDelay
+        ) {
+          console.log('🚫 Lever click blocked:', {
+            isAnimating,
+            status,
+            isDisabled: lever.classList.contains('spinning-disabled'),
+            timeSinceLastClick: currentTime - lastClickTime,
+          });
+          return;
+        }
+
+        lastClickTime = currentTime;
+        isAnimating = true;
+        lever.setAttribute('data-status', 'pulling');
+
+        console.log('✅ Lever clicked successfully - triggering spin');
+
+        // Add pulling animation and click feedback
+        lever.classList.add('pulling', 'active', 'clicked');
+
+        // Trigger spin event immediately
+        const event = new CustomEvent('lever-pulled', {
+          bubbles: true,
+          cancelable: true,
+          detail: { timestamp: currentTime },
+        });
+        document.dispatchEvent(event);
+
+        // Remove animation classes after animation completes
+        setTimeout(() => {
+          lever.classList.remove('pulling', 'active', 'clicked');
+          lever.setAttribute('data-status', 'ready');
+          isAnimating = false;
+          console.log('🔄 Lever reset - ready for next pull');
+        }, 1000);
+      };
+
+      // Use both click and touch events for better mobile support
+      lever.addEventListener('click', handleLeverClick, { passive: false });
+      lever.addEventListener('touchend', handleLeverClick, { passive: false });
+
+      // Add keyboard support for accessibility
+      lever.addEventListener('keydown', (e: Event) => {
+        const keyEvent = e as KeyboardEvent;
+        if (keyEvent.code === 'Space' || keyEvent.code === 'Enter') {
+          e.preventDefault();
+          handleLeverClick(e);
+        }
+      });
+
+      // Visual feedback for mouse events (but don't interfere with clicking)
+      lever.addEventListener('mousedown', (e: Event) => {
+        const status = lever.getAttribute('data-status');
+        if (
+          !isAnimating &&
+          status === 'ready' &&
+          !lever.classList.contains('spinning-disabled')
+        ) {
+          lever.classList.add('active');
+        }
+      });
+
+      lever.addEventListener('mouseup', (e: Event) => {
+        const status = lever.getAttribute('data-status');
+        if (
+          !isAnimating &&
+          status === 'ready' &&
+          !lever.classList.contains('spinning-disabled')
+        ) {
+          setTimeout(() => {
+            lever.classList.remove('active');
+          }, 100);
+        }
+      });
+
+      lever.addEventListener('mouseleave', (e: Event) => {
+        if (!isAnimating) {
+          lever.classList.remove('active');
+        }
+      });
+
+      // Listen for external spin state changes
+      document.addEventListener('slot-machine-spinning', () => {
+        lever.setAttribute('data-status', 'spinning');
+        lever.classList.add('spinning-disabled');
+      });
+
+      document.addEventListener('slot-machine-ready', () => {
+        lever.setAttribute('data-status', 'ready');
+        lever.classList.remove('spinning-disabled');
+      });
+
+      // Prevent context menu on mobile
+      lever.addEventListener('contextmenu', (e: Event) => {
+        e.preventDefault();
+      });
+
+      // Prevent double-tap zoom on mobile
+      lever.addEventListener(
+        'touchstart',
+        (e: Event) => {
+          e.preventDefault();
+        },
+        { passive: false }
+      );
+    }
+  });
+</script>

@@ -1,0 +1,60 @@
+---
+// MemberModal component for displaying winner details
+---
+
+<div id='member-modal' class='modal-overlay'>
+  <div class='modal-container'>
+    <div class='modal-content'>
+      <div class='default-content'>
+        <div class='spinner'></div>
+        <p>Loading winner...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style></style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('member-modal');
+
+    if (modal) {
+      modal.addEventListener('click', e => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+          closeModal();
+        }
+      });
+    }
+
+    function closeModal() {
+      if (modal) {
+        modal.classList.remove('show');
+        setTimeout(() => {
+          modal.style.display = 'none';
+          modal.setAttribute('aria-hidden', 'true');
+        }, 300);
+      }
+    }
+
+    (window as any).closeModal = closeModal;
+
+    function showModal() {
+      if (modal) {
+        modal.style.display = 'flex';
+        modal.setAttribute('aria-hidden', 'false');
+        setTimeout(() => {
+          modal.classList.add('show');
+        }, 10);
+      }
+    }
+
+    (window as any).showModal = showModal;
+  });
+</script>

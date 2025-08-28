@@ -1,0 +1,297 @@
+---
+import SlotReel from './SlotReel.astro';
+import SlotLever from './SlotLever.astro';
+import MemberModal from './MemberModal.astro';
+import '../../styles/slot-machine.css';
+---
+
+<div class='slot-machine-container'>
+  <div class='slot-machine-frame'>
+    <div class='slot-machine-top'>
+      <div class='jackpot-display'>
+        <span class='jackpot-text'>JACKPOT!</span>
+        <div class='led-lights'>
+          <div class='led led-red'></div>
+          <div class='led led-yellow'></div>
+          <div class='led led-green'></div>
+          <div class='led led-blue'></div>
+        </div>
+      </div>
+    </div>
+
+    <div class='slot-machine-body'>
+      <div class='reels-container'>
+        <SlotReel id='reel1' />
+        <SlotReel id='reel2' />
+        <SlotReel id='reel3' />
+      </div>
+
+      <SlotLever />
+    </div>
+
+    <div class='slot-machine-bottom'>
+      <div class='control-panel'>
+        <button id='spin-button' class='spin-button'>
+          <span>PULL LEVER</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Winner Modal -->
+  <MemberModal />
+</div>
+<script>
+  import type { MemberWithDepartment } from '../../utils/teamUtils';
+
+  declare global {
+    interface Window {
+      getAllMembersWithImages: () => MemberWithDepartment[];
+      closeModal: () => void;
+      showModal: () => void;
+    }
+  }
+
+  class SlotMachineController {
+    private members: MemberWithDepartment[] = [];
+    private isSpinning: boolean = false;
+    private spinButton: HTMLButtonElement | null = null;
+    private reels: HTMLElement[] = [];
+
+    constructor() {
+      this.init();
+    }
+
+    private async init() {
+      await this.waitForTeamUtils();
+
+      this.members = this.getAllMembers();
+      this.spinButton = document.getElementById(
+        'spin-button'
+      ) as HTMLButtonElement;
+      this.reels = [
+        document.getElementById('reel1'),
+        document.getElementById('reel2'),
+        document.getElementById('reel3'),
+      ].filter((el): el is HTMLElement => el !== null);
+
+      this.setupEventListeners();
+      this.populateInitialReels();
+    }
+
+    private waitForTeamUtils(): Promise<void> {
+      return new Promise(resolve => {
+        const check = () => {
+          if (
+            typeof window !== 'undefined' &&
+            typeof window.getAllMembersWithImages === 'function'
+          ) {
+            resolve();
+          } else {
+            setTimeout(check, 50);
+          }
+        };
+        check();
+      });
+    }
+
+    private getAllMembers(): MemberWithDepartment[] {
+      if (
+        typeof window !== 'undefined' &&
+        typeof window.getAllMembersWithImages === 'function'
+      ) {
+        return window.getAllMembersWithImages();
+      }
+      return [];
+    }
+
+    private setupEventListeners() {
+      this.spinButton?.addEventListener('click', () => this.spin());
+
+      // Listen for lever pulls with improved handling
+      document.addEventListener('lever-pulled', (e: Event) => {
+        e.preventDefault();
+        this.spin();
+      });
+    }
+
+    private populateInitialReels() {
+      this.reels.forEach(reel => {
+        const reelContent = reel.querySelector('.reel-content');
+        if (reelContent) {
+          if (this.members.length > 0) {
+            let html = '';
+            for (let i = 0; i < 9; i++) {
+              const member =
+                this.members[Math.floor(Math.random() * this.members.length)];
+              html += `
+                <div class="reel-slot">
+                  <img src="${member.imageUrl}" alt="${member.name}" />
+                </div>
+              `;
+            }
+            reelContent.innerHTML = html;
+          } else {
+            reelContent.innerHTML = `
+              <div class="placeholder-content">
+                <span>Loading team...</span>
+              </div>
+            `;
+          }
+        }
+      });
+    }
+
+    private async spin() {
+      if (this.isSpinning || this.members.length === 0) {
+        console.log('Spin blocked:', {
+          isSpinning: this.isSpinning,
+          membersLength: this.members.length,
+        });
+        return;
+      }
+
+      console.log('Starting spin...');
+      this.isSpinning = true;
+
+      document.dispatchEvent(new CustomEvent('slot-machine-spinning'));
+
+      if (this.spinButton) {
+        this.spinButton.disabled = true;
+        this.spinButton.textContent = 'SPINNING...';
+      }
+
+      const lever = document.querySelector('.slot-lever');
+      lever?.classList.add('spinning-disabled');
+
+      const winner =
+        this.members[Math.floor(Math.random() * this.members.length)];
+
+      this.reels.forEach((reel, index) => {
+        const reelContent = reel.querySelector('.reel-content');
+        if (reelContent) {
+          reelContent.classList.add('spinning');
+
+          const spinInterval = setInterval(() => {
+            if (!reelContent.classList.contains('spinning')) {
+              clearInterval(spinInterval);
+              return;
+            }
+            this.updateReelContent(reelContent as HTMLElement);
+          }, 100);
+
+          setTimeout(
+            () => {
+              reelContent.classList.remove('spinning');
+              clearInterval(spinInterval);
+              this.showWinnerInReel(reel, winner);
+            },
+            2000 + index * 500
+          );
+        }
+      });
+
+      setTimeout(() => {
+        this.showJackpot(winner);
+        this.isSpinning = false;
+
+        if (this.spinButton) {
+          this.spinButton.disabled = false;
+          this.spinButton.textContent = 'PULL LEVER';
+        }
+
+        const lever = document.querySelector('.slot-lever');
+        lever?.classList.remove('spinning-disabled');
+
+        document.dispatchEvent(new CustomEvent('slot-machine-ready'));
+
+        console.log('Spin completed, controls re-enabled');
+      }, 4000);
+    }
+
+    private updateReelContent(reelContent: HTMLElement) {
+      if (this.members.length === 0) return;
+
+      let html = '';
+      for (let i = 0; i < 9; i++) {
+        const member =
+          this.members[Math.floor(Math.random() * this.members.length)];
+        html += `
+          <div class="reel-slot">
+            <img src="${member.imageUrl}" alt="${member.name}" onerror="this.style.display='none'" />
+          </div>
+        `;
+      }
+      reelContent.innerHTML = html;
+    }
+
+    private showWinnerInReel(reel: HTMLElement, winner: MemberWithDepartment) {
+      const reelContent = reel.querySelector('.reel-content');
+      if (reelContent) {
+        reelContent.innerHTML = `
+          <div class="winner-slot">
+            <img src="${winner.imageUrl}" alt="${winner.name}" class="winner-image" onerror="this.src='/members/placeholder.png'" />
+          </div>
+        `;
+      }
+    }
+
+    private showJackpot(winner: MemberWithDepartment) {
+      const jackpotDisplay = document.querySelector('.jackpot-display');
+      jackpotDisplay?.classList.add('jackpot-win');
+
+      const modal = document.getElementById('member-modal');
+      const modalContent = modal?.querySelector('.modal-content');
+
+      if (modalContent) {
+        modalContent.innerHTML = `
+          <div class="winner-details">
+            <div class="winner-header">
+              <h2>🎉 JACKPOT WINNER! 🎉</h2>
+            </div>
+            <div class="winner-info">
+              <img src="${winner.imageUrl}" alt="${winner.name}" class="winner-portrait" onerror="this.src='/members/placeholder.png'" />
+              <div class="winner-text">
+                <h3>${winner.name}</h3>
+                <p class="winner-role">${winner.role}</p>
+                <p class="winner-department">${winner.department}</p>
+              </div>
+            </div>
+            <button class="close-modal" onclick="window.closeModal()">
+              Meet Another Member!
+            </button>
+          </div>
+        `;
+      }
+
+      if (
+        modal &&
+        typeof window !== 'undefined' &&
+        typeof window.showModal === 'function'
+      ) {
+        window.showModal();
+      }
+
+      setTimeout(() => {
+        jackpotDisplay?.classList.remove('jackpot-win');
+      }, 3000);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    try {
+      new SlotMachineController();
+    } catch (error) {
+      console.error('Failed to initialize slot machine:', error);
+      const container = document.querySelector('.slot-machine-container');
+      if (container) {
+        container.innerHTML = `
+          <div class="error-message">
+            <h3>Oops! Something went wrong</h3>
+            <p>Please refresh the page to try again.</p>
+          </div>
+        `;
+      }
+    }
+  });
+</script>

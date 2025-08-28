@@ -42,12 +42,12 @@ export const externalRelations: DepartmentMember[] = [
   {
     role: 'External Relations Head',
     name: 'Trisha Urbiztondo',
-    imageUrl: '',
+    imageUrl: '/members/Trisha.png',
   },
   {
     role: 'External Relations Officer',
     name: 'Jillian Almendras',
-    imageUrl: '',
+    imageUrl: '/members/Jillian.png',
   },
   {
     role: 'External Relations Officer',
@@ -65,7 +65,7 @@ export const humanresources: DepartmentMember[] = [
   {
     role: 'Internal Relations Officer',
     name: 'Jared Miñoza',
-    imageUrl: '',
+    imageUrl: '/members/Jared.png',
   },
   {
     role: 'Internal Relations Officer',
@@ -138,7 +138,7 @@ export const marketing: DepartmentMember[] = [
   {
     role: 'Video Editor',
     name: 'Kate Roxanne Tumulak',
-    imageUrl: '',
+    imageUrl: '/members/Kate.png',
   },
   {
     role: 'Video Editor',
