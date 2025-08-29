@@ -267,7 +267,7 @@ export function getAllMembersByRoleHierarchy(): MemberWithDepartment[] {
     if (aHasImage && !bHasImage) return -1;
     if (!aHasImage && bHasImage) return 1;
 
-    // Finally sort by name
-    return a.name.localeCompare(b.name);
+    // Don't sort by name - maintain original order
+    return 0;
   });
 }

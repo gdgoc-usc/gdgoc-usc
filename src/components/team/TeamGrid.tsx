@@ -37,12 +37,11 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
     <div
       className={`team-member-card ${member.departmentClass} ${
         member.imageUrl && !imageError ? 'has-image' : ''
-      }`}
+      } bg-gradient-to-br from-slate-50 to-slate-200 dark:from-gray-800 dark:to-gray-900 border-2 border-black dark:border-gray-700`}
       style={{ '--hover-bg': 'url(/gdgoc_pp_bg.png)' } as React.CSSProperties}
     >
       {member.imageUrl && !imageError ? (
         <>
-          {/* Skeleton overlay while image loads */}
           {!imageLoaded && (
             <div className='absolute inset-0 z-10 bg-gray-300 dark:bg-gray-700'>
               <div className='w-full h-full bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 dark:from-gray-600 dark:via-gray-700 dark:to-gray-800 relative overflow-hidden'>

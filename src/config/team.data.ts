@@ -80,7 +80,7 @@ export const humanresources: DepartmentMember[] = [
   {
     role: 'Internal Relations Officer',
     name: 'Myk Erolf Roble',
-    imageUrl: '',
+    imageUrl: '/members/Myk.png',
   },
   {
     role: 'Internal Relations Officer',
@@ -174,12 +174,12 @@ export const finance: DepartmentMember[] = [
   {
     role: 'Finance Officer',
     name: 'Kairi Uang',
-    imageUrl: '',
+    imageUrl: '/members/Kairi.png',
   },
   {
     role: 'Finance Officer',
     name: 'Leira Bengil',
-    imageUrl: '',
+    imageUrl: '/members/Leira.png',
   },
 ];
 

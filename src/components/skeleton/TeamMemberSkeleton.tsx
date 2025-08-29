@@ -8,7 +8,9 @@ const TeamMemberSkeleton: React.FC<TeamMemberSkeletonProps> = ({
   className = '',
 }) => {
   return (
-    <div className={`team-member-card ${className} relative overflow-hidden`}>
+    <div
+      className={`team-member-card ${className} relative overflow-hidden bg-gradient-to-br from-slate-50 to-slate-200 dark:from-gray-800 dark:to-gray-900 border-2 border-black dark:border-gray-700`}
+    >
       <div className='w-full bg-gray-300 dark:bg-gray-700 relative'>
         <div className='w-full aspect-[3/4] bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 dark:from-gray-600 dark:via-gray-700 dark:to-gray-800 relative overflow-hidden'>
           <div className='absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/30 dark:via-white/10 to-transparent'></div>
