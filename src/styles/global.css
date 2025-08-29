@@ -473,6 +473,15 @@ body.loading {
     }
   }
 
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
   .team-card .role-name {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
   }

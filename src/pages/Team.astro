@@ -1,41 +1,6 @@
 ---
-import { getAllMembersWithPrioritizedSorting } from '@/utils/teamUtils';
+import TeamGrid from '@/components/team/TeamGrid';
 import '@/styles/team-masonry.css';
-
-const allTeamMembersData = getAllMembersWithPrioritizedSorting();
-
-const allTeamMembers = allTeamMembersData.map(member => {
-  let departmentClass = '';
-  switch (member.department) {
-    case 'Leadership':
-      departmentClass = 'leadership';
-      break;
-    case 'External Relations':
-      departmentClass = 'external-relations';
-      break;
-    case 'Human Resources':
-      departmentClass = 'human-resources';
-      break;
-    case 'Marketing':
-      departmentClass = 'marketing';
-      break;
-    case 'Operations':
-      departmentClass = 'operations';
-      break;
-    case 'Finance':
-      departmentClass = 'finance';
-      break;
-    case 'Technology':
-      departmentClass = 'technology';
-      break;
-  }
-
-  return {
-    ...member,
-    displayName: member.name,
-    departmentClass,
-  };
-});
 ---
 
 <section
@@ -61,55 +26,5 @@ const allTeamMembers = allTeamMembersData.map(member => {
     </div>
   </div>
 
-  <div class='w-full relative'>
-    <div class='team-masonry'>
-      {
-        allTeamMembers.map(member => (
-          <div
-            class={`team-member-card ${member.departmentClass} ${
-              member.imageUrl ? 'has-image' : ''
-            }`}
-            style='--hover-bg: url(/gdgoc_pp_bg.png);'
-          >
-            {member.imageUrl ? (
-              <>
-                <img
-                  src={member.imageUrl}
-                  alt={`${member.displayName} - ${member.role}`}
-                  class='team-member-image'
-                  loading='lazy'
-                />
-                <div class='team-member-overlay'>
-                  <div class={`department-badge overlay`}>
-                    {member.department}
-                  </div>
-                  <h3 class='member-role overlay'>{member.role}</h3>
-                  <p class='member-name overlay'>{member.displayName}</p>
-                </div>
-              </>
-            ) : (
-              <div
-                class='placeholder-card'
-                style='background-image: url(/gdgoc_bg_3.webp); background-size: cover; background-position: center; --hover-bg: url(/gdgoc_pp_bg.png);'
-              >
-                <div class='coming-soon-text'>
-                  <h2 class='text-2xl font-bold text-black drop-shadow-lg'>
-                    Coming Soon!
-                  </h2>
-                  <p class='text-black text-xs'>Hover to see info.</p>
-                </div>
-                <div class='team-member-overlay-no-image'>
-                  <div class={`department-badge ${member.departmentClass}`}>
-                    {member.department}
-                  </div>
-                  <h3 class='member-role no-image'>{member.role}</h3>
-                  <p class='member-name no-image'>{member.displayName}</p>
-                </div>
-              </div>
-            )}
-          </div>
-        ))
-      }
-    </div>
-  </div>
+  <TeamGrid client:load />
 </section>

@@ -193,3 +193,81 @@ export function getAllMembersWithPrioritizedSorting(): MemberWithDepartment[] {
 
   return [...membersWithImages, ...membersWithoutImages];
 }
+
+export function getAllMembersByRoleHierarchy(): MemberWithDepartment[] {
+  const rolePriority: Record<string, number> = {
+    // Leadership tier
+    Lead: 1,
+    'Chief Operations Officer': 2,
+    'Chief Marketing Officer': 2,
+    'Chief Technology Officer': 2,
+    'Chief Finance Officer': 2,
+    'Chief Human Relations Officer': 2,
+
+    // Department Heads
+    'External Relations Head': 3,
+    'Media Engagement Head': 3,
+    'Creatives Head': 3,
+    'Executive Secretary': 3,
+    'Events Manager': 3,
+    'Executive Assistant': 3,
+
+    // Senior Officers
+    'External Relations Officer': 4,
+    'Internal Relations Officer': 4,
+    'Public Information Officer': 4,
+    'Finance Officer': 4,
+    'Data Science Officer': 4,
+    'AI/ML Officer': 4,
+    'Web Dev Officer': 4,
+
+    // Creative and Content roles
+    'Creative Designer': 5,
+    'Videographer/Photographer': 5,
+    'Content Writer': 5,
+    'Video Editor': 5,
+  };
+
+  const departments = [
+    { data: leadership, name: 'Leadership' },
+    { data: externalRelations, name: 'External Relations' },
+    { data: humanresources, name: 'Human Resources' },
+    { data: marketing, name: 'Marketing' },
+    { data: operations, name: 'Operations' },
+    { data: finance, name: 'Finance' },
+    { data: technology, name: 'Technology' },
+  ];
+
+  const allMembers: MemberWithDepartment[] = [];
+
+  departments.forEach(dept => {
+    dept.data.forEach(member => {
+      allMembers.push({
+        name: member.name,
+        role: member.role,
+        imageUrl: member.imageUrl,
+        department: dept.name,
+      });
+    });
+  });
+
+  // Sort by role priority, then by whether they have images, then by name
+  return allMembers.sort((a, b) => {
+    const aPriority = rolePriority[a.role] || 999;
+    const bPriority = rolePriority[b.role] || 999;
+
+    if (aPriority !== bPriority) {
+      return aPriority - bPriority;
+    }
+
+    // Within same priority, prioritize members with images
+    const aHasImage = a.imageUrl && a.imageUrl.trim() !== '';
+    const bHasImage = b.imageUrl && b.imageUrl.trim() !== '';
+
+    if (aHasImage && !bHasImage) return -1;
+    if (!aHasImage && bHasImage) return 1;
+
+    // Finally sort by name
+    return a.name.localeCompare(b.name);
+  });
+}
