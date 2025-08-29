@@ -158,26 +158,39 @@ const navLinks = [
     const scrollY = window.scrollY;
     const prefersReducedMotion =
       document.documentElement.classList.contains('reduced-motion');
+    const isMobile = window.innerWidth < 1024; // lg breakpoint
 
     if (prefersReducedMotion) {
       const scrollProgress = Math.min(scrollY / scrollRange, 1);
       const easedProgress = 1 - Math.pow(1 - scrollProgress, 3);
-      const bgOpacity = easedProgress;
+      const bgOpacity = isMobile
+        ? Math.max(easedProgress, maxBgOpacity)
+        : easedProgress;
 
       if (mainHeader) {
-        mainHeader.style.setProperty('--blur-amount', '0px');
+        mainHeader.style.setProperty(
+          '--blur-amount',
+          isMobile ? `${maxBlur}px` : '0px'
+        );
         mainHeader.style.setProperty('--bg-opacity', bgOpacity.toString());
         mainHeader.style.setProperty('--shadow-opacity', '0');
-        mainHeader.style.setProperty('--border-opacity', '0');
+        mainHeader.style.setProperty(
+          '--border-opacity',
+          isMobile ? maxBorderOpacity.toString() : '0'
+        );
       }
     } else {
       const scrollProgress = Math.min(scrollY / scrollRange, 1);
       const easedProgress = 1 - Math.pow(1 - scrollProgress, 3);
 
-      const blurAmount = easedProgress * maxBlur;
-      const bgOpacity = easedProgress * maxBgOpacity;
+      const blurAmount = isMobile ? maxBlur : easedProgress * maxBlur;
+      const bgOpacity = isMobile
+        ? Math.max(easedProgress * maxBgOpacity, maxBgOpacity)
+        : easedProgress * maxBgOpacity;
       const shadowOpacity = easedProgress * maxShadowOpacity;
-      const borderOpacity = easedProgress * maxBorderOpacity;
+      const borderOpacity = isMobile
+        ? maxBorderOpacity
+        : easedProgress * maxBorderOpacity;
 
       if (mainHeader) {
         mainHeader.style.setProperty('--blur-amount', `${blurAmount}px`);
@@ -197,6 +210,7 @@ const navLinks = [
   }
 
   window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
+  window.addEventListener('resize', updateHeaderOnScroll, { passive: true });
 
   updateHeaderOnScroll();
 </script>
