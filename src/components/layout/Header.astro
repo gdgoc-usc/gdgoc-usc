@@ -74,7 +74,10 @@ const navLinks = [
         </div>
       </div>
 
-      <div class='lg:hidden' id='mobile-menu'>
+      <div
+        class='lg:hidden opacity-0 max-h-0 overflow-hidden transition-all duration-300 ease-in-out'
+        id='mobile-menu'
+      >
         <div class='px-2 pb-4 space-y-1'>
           {
             navLinks.map(link => (
@@ -101,28 +104,37 @@ const navLinks = [
   const closeIcon = document.getElementById('close-icon');
 
   function openMenu() {
-    mainHeader?.classList.add('mobile-menu-open');
+    if (mobileMenu) {
+      mobileMenu.classList.remove('opacity-0', 'max-h-0');
+      mobileMenu.classList.add('opacity-100', 'max-h-96');
+    }
     menuIcon?.classList.add('hidden');
     closeIcon?.classList.remove('hidden');
+    isMenuOpen = true;
+    setTimeout(() => {
+      updateHeaderOnScroll();
+    }, 150);
   }
 
   function closeMenu() {
-    mainHeader?.classList.add('mobile-menu-closing');
+    if (mobileMenu) {
+      mobileMenu.classList.remove('opacity-100', 'max-h-96');
+      mobileMenu.classList.add('opacity-0', 'max-h-0');
+    }
     menuIcon?.classList.remove('hidden');
     closeIcon?.classList.add('hidden');
-
+    isMenuOpen = false;
     setTimeout(() => {
-      mainHeader?.classList.remove('mobile-menu-open');
-      mainHeader?.classList.remove('mobile-menu-closing');
-    }, 350);
+      updateHeaderOnScroll();
+    }, 150);
   }
+
+  let isMenuOpen = false;
 
   mobileMenuButton?.addEventListener('click', event => {
     event.stopPropagation();
 
-    const isOpen = mainHeader?.classList.contains('mobile-menu-open');
-
-    if (isOpen) {
+    if (isMenuOpen) {
       closeMenu();
     } else {
       openMenu();
@@ -134,7 +146,7 @@ const navLinks = [
       !mobileMenuButton?.contains(event.target as Node) &&
       !mobileMenu?.contains(event.target as Node)
     ) {
-      if (mainHeader?.classList.contains('mobile-menu-open')) {
+      if (isMenuOpen) {
         closeMenu();
       }
     }
@@ -154,43 +166,56 @@ const navLinks = [
   const maxShadowOpacity = 0;
   const maxBorderOpacity = 1;
 
+  function forceHeaderBlur() {
+    const prefersReducedMotion =
+      document.documentElement.classList.contains('reduced-motion');
+
+    if (mainHeader) {
+      mainHeader.style.setProperty(
+        '--blur-amount',
+        prefersReducedMotion ? '0px' : `${maxBlur}px`
+      );
+      mainHeader.style.setProperty('--bg-opacity', maxBgOpacity.toString());
+      mainHeader.style.setProperty(
+        '--shadow-opacity',
+        maxShadowOpacity.toString()
+      );
+      mainHeader.style.setProperty(
+        '--border-opacity',
+        maxBorderOpacity.toString()
+      );
+    }
+  }
+
   function updateHeaderOnScroll() {
     const scrollY = window.scrollY;
     const prefersReducedMotion =
       document.documentElement.classList.contains('reduced-motion');
-    const isMobile = window.innerWidth < 1024; // lg breakpoint
+
+    if (isMenuOpen) {
+      forceHeaderBlur();
+      return;
+    }
 
     if (prefersReducedMotion) {
       const scrollProgress = Math.min(scrollY / scrollRange, 1);
       const easedProgress = 1 - Math.pow(1 - scrollProgress, 3);
-      const bgOpacity = isMobile
-        ? Math.max(easedProgress, maxBgOpacity)
-        : easedProgress;
+      const bgOpacity = easedProgress;
 
       if (mainHeader) {
-        mainHeader.style.setProperty(
-          '--blur-amount',
-          isMobile ? `${maxBlur}px` : '0px'
-        );
+        mainHeader.style.setProperty('--blur-amount', '0px');
         mainHeader.style.setProperty('--bg-opacity', bgOpacity.toString());
         mainHeader.style.setProperty('--shadow-opacity', '0');
-        mainHeader.style.setProperty(
-          '--border-opacity',
-          isMobile ? maxBorderOpacity.toString() : '0'
-        );
+        mainHeader.style.setProperty('--border-opacity', '0');
       }
     } else {
       const scrollProgress = Math.min(scrollY / scrollRange, 1);
       const easedProgress = 1 - Math.pow(1 - scrollProgress, 3);
 
-      const blurAmount = isMobile ? maxBlur : easedProgress * maxBlur;
-      const bgOpacity = isMobile
-        ? Math.max(easedProgress * maxBgOpacity, maxBgOpacity)
-        : easedProgress * maxBgOpacity;
+      const blurAmount = easedProgress * maxBlur;
+      const bgOpacity = easedProgress * maxBgOpacity;
       const shadowOpacity = easedProgress * maxShadowOpacity;
-      const borderOpacity = isMobile
-        ? maxBorderOpacity
-        : easedProgress * maxBorderOpacity;
+      const borderOpacity = easedProgress * maxBorderOpacity;
 
       if (mainHeader) {
         mainHeader.style.setProperty('--blur-amount', `${blurAmount}px`);
@@ -210,7 +235,29 @@ const navLinks = [
   }
 
   window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
-  window.addEventListener('resize', updateHeaderOnScroll, { passive: true });
 
   updateHeaderOnScroll();
 </script>
+
+<style>
+  #main-header {
+    backdrop-filter: blur(var(--blur-amount, 0px));
+    background: rgba(255, 255, 255, var(--bg-opacity, 0));
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, var(--shadow-opacity, 0));
+    border-bottom: 1px solid rgba(0, 0, 0, var(--border-opacity, 0));
+    transition:
+      backdrop-filter 400ms ease-out,
+      background 400ms ease-out,
+      box-shadow 400ms ease-out,
+      border-bottom 400ms ease-out;
+  }
+
+  .dark #main-header {
+    background: rgba(17, 24, 39, var(--bg-opacity, 0));
+    border-bottom: 1px solid rgba(255, 255, 255, var(--border-opacity, 0));
+  }
+
+  .dark #mobile-menu {
+    background: rgba(17, 24, 39, 0.85) !important;
+  }
+</style>

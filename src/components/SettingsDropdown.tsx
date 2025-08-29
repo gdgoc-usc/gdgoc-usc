@@ -64,10 +64,12 @@ export default function SettingsDropdown() {
         className='flex items-center gap-1 p-2 rounded-lg hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 group'
         aria-label='Settings'
         aria-expanded={isOpen}
+        suppressHydrationWarning
       >
         <Settings className='w-5 h-5 group-hover:rotate-90 duration-300' />
         <ChevronDown
           className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          suppressHydrationWarning
         />
       </button>
 
