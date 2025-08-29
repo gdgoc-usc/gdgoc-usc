@@ -252,12 +252,13 @@ const navLinks = [
       border-bottom 400ms ease-out;
   }
 
-  .dark #main-header {
-    background: rgba(17, 24, 39, var(--bg-opacity, 0));
-    border-bottom: 1px solid rgba(255, 255, 255, var(--border-opacity, 0));
+  :global(.dark) #main-header {
+    background: rgba(17, 24, 39, var(--bg-opacity, 0)) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, var(--border-opacity, 0)) !important;
+    box-shadow: 0 4px 6px -1px rgba(255, 255, 255, var(--shadow-opacity, 0)) !important;
   }
 
-  .dark #mobile-menu {
+  :global(.dark) #mobile-menu {
     background: rgba(17, 24, 39, 0.85) !important;
   }
 </style>

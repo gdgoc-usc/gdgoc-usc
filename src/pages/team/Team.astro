@@ -10,15 +10,17 @@ import { Image } from 'astro:assets';
   style='background-image: url(/gdgoc_bg_1.webp); background-size: cover; background-position: center; background-attachment: fixed;'
 >
   <div class='absolute inset-0 bg-white/0 dark:bg-black/0 z-0'></div>
-  <div class='relative z-10 container px-4 sm:px-6 lg:px-8 mt-[4rem] w-full'>
+  <div
+    class='relative z-10 container px-4 sm:px-6 lg:px-8 mt-[2rem] sm:md:lg:xl:mt-[4rem] w-full'
+  >
     <div class='w-full'>
-      <div class='flex justify-center mb-6'>
+      <div class='flex justify-center sm:md:lg:xl:mb-4'>
         <Image
           src='/gdgoc_logo.svg'
           alt='GDGoC Logo'
           width={80}
           height={80}
-          class='w-16 h-16 md:w-20 md:h-20'
+          class='w-24 h-24 md:w-20 md:h-20'
         />
       </div>
       <div class='text-center'>
@@ -30,7 +32,7 @@ import { Image } from 'astro:assets';
           </h1>
         </div>
         <p
-          class='text-xl sm:text-2xl md:text-3xl text-gray-700 dark:text-gray-200 leading-relaxed mb-8 max-w-4xl mx-auto'
+          class='text-xl sm:text-2xl md:text-3xl text-gray-700 dark:text-gray-200 leading-relaxed mb-4 max-w-4xl mx-auto'
         >
           Meet the dedicated leaders driving innovation and community
         </p>

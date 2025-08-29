@@ -156,7 +156,30 @@ export default function SuspenseLoader({
     >
       <div className='flex flex-col items-center space-y-6'>
         <div className='relative'>
-          <img src='/loader.gif' alt='GDGoC Loading Animation' />
+          <img
+            src='/loader.gif'
+            alt='GDGoC Loading Animation'
+            width='120'
+            height='120'
+            loading='eager'
+            decoding='async'
+            style={{
+              imageRendering: 'auto',
+              animation: 'none',
+              objectFit: 'contain',
+              maxWidth: '100%',
+              height: 'auto',
+            }}
+            className='gif-animation'
+            onLoad={e => {
+              const img = e.target as HTMLImageElement;
+              img.style.animationPlayState = 'running';
+              // Force GIF to restart on mobile
+              const src = img.src;
+              img.src = '';
+              img.src = src;
+            }}
+          />
         </div>
 
         <div className='text-center space-y-0'>
@@ -195,6 +218,25 @@ export default function SuspenseLoader({
           ></div>
         </div>
       </div>
+
+      <style>{`
+        .gif-animation {
+          -webkit-animation-play-state: running !important;
+          animation-play-state: running !important;
+          -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+          will-change: auto;
+        }
+
+        @media (max-width: 768px) {
+          .gif-animation {
+            -webkit-animation: none;
+            animation: none;
+            -webkit-animation-play-state: running;
+            animation-play-state: running;
+          }
+        }
+      `}</style>
     </div>
   );
 }
