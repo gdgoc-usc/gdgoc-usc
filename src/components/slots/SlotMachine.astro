@@ -44,6 +44,9 @@ import '../../styles/slot-machine.css';
 <script>
   import type { MemberWithDepartment } from '../../utils/teamUtils';
 
+  // @ts-ignore - canvas-confetti doesn't have types
+  import confetti from 'canvas-confetti';
+
   declare global {
     interface Window {
       getAllMembersWithImages: () => MemberWithDepartment[];
@@ -237,6 +240,9 @@ import '../../styles/slot-machine.css';
     }
 
     private showJackpot(winner: MemberWithDepartment) {
+      // Trigger confetti effect
+      this.triggerConfetti();
+
       const jackpotDisplay = document.querySelector('.jackpot-display');
       jackpotDisplay?.classList.add('jackpot-win');
 
@@ -275,6 +281,49 @@ import '../../styles/slot-machine.css';
       setTimeout(() => {
         jackpotDisplay?.classList.remove('jackpot-win');
       }, 3000);
+    }
+
+    private triggerConfetti(): void {
+      const duration = 1000;
+      const animationEnd = Date.now() + duration;
+
+      const randomInRange = (min: number, max: number) => {
+        return Math.random() * (max - min) + min;
+      };
+
+      const colors = ['#4285f4', '#34a853', '#fbbc04', '#ea4335']; // Google colors
+
+      const frame = () => {
+        confetti({
+          particleCount: randomInRange(50, 100),
+          angle: randomInRange(55, 125),
+          spread: randomInRange(50, 70),
+          origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+          colors: colors,
+        });
+        confetti({
+          particleCount: randomInRange(50, 100),
+          angle: randomInRange(55, 125),
+          spread: randomInRange(50, 70),
+          origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+          colors: colors,
+        });
+
+        if (Date.now() < animationEnd) {
+          requestAnimationFrame(frame);
+        }
+      };
+
+      frame();
+
+      setTimeout(() => {
+        confetti({
+          particleCount: 50,
+          spread: 120,
+          origin: { y: 0.6 },
+          colors: colors,
+        });
+      }, 400);
     }
   }
 

@@ -3,6 +3,7 @@ import Layout from '@/layouts/Layout.astro';
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
 import SlotMachine from '@/components/slots/SlotMachine.astro';
+import { Image } from 'astro:assets';
 ---
 
 <Layout
@@ -13,12 +14,21 @@ import SlotMachine from '@/components/slots/SlotMachine.astro';
   <main class='min-h-screen w-full bg-white dark:bg-gray-800 flex pt-16 px-4'>
     <div class='container mx-auto max-w-6xl pt-8'>
       <div class='text-center mb-4'>
+        <div class='flex justify-center mb-6'>
+          <Image
+            src='/gdgoc_logo.svg'
+            alt='GDGoC Logo'
+            width={80}
+            height={80}
+            class='w-16 h-16 md:w-20 md:h-20'
+          />
+        </div>
         <h1
           class='text-4xl md:text-6xl font-bold text-black dark:text-white mb-4 tracking-tight'
         >
           <span class='text-gdgoc-primary-blue'>Fortune</span>
-          <span class='text-gdgoc-primary-red ml-2'>Pai</span>
-          <span class='text-gdgoc-primary-yellow ml-2'>Gow</span>
+          <span class='text-gdgoc-primary-red'>Pai</span>
+          <span class='text-gdgoc-primary-yellow'>Gow</span>
         </h1>
         <p class='text-xl md:text-2xl text-black dark:text-gray-300 mb-2'>
           Meet Our Amazing Team Members!
@@ -27,11 +37,35 @@ import SlotMachine from '@/components/slots/SlotMachine.astro';
           class='text-base md:text-lg text-gray-800 dark:text-gray-400 max-w-2xl mx-auto'
         >
           Pull the lever and discover one of our talented GDGoC USC team
-          members. Every spin is a guaranteed win! 🎰
+          members.
         </p>
       </div>
 
       <SlotMachine />
+
+      <div class='mt-12 mb-8 text-center'>
+        <div class='p-6 max-w-4xl mx-auto'>
+          <h3
+            class='text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3'
+          >
+            📢 Important Disclaimer
+          </h3>
+          <div class='text-sm text-black dark:text-gray-400 space-y-2'>
+            <p>
+              <strong>This is NOT a gambling site.</strong> This is a fun, educational
+              tool designed to introduce you to our amazing GDGoC USC team members.
+            </p>
+            <p>
+              No real money, betting, or gambling is involved. This is purely
+              for entertainment and team introduction purposes.
+            </p>
+            <p>
+              We promote responsible digital citizenship and do not endorse
+              gambling activities.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
   <Footer />
