@@ -42,9 +42,12 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
     >
       {member.imageUrl && !imageError ? (
         <>
+          {/* Skeleton overlay while image loads */}
           {!imageLoaded && (
-            <div className='absolute inset-0 z-20'>
-              <TeamMemberSkeleton className={member.departmentClass} />
+            <div className='absolute inset-0 z-10 bg-gray-300 dark:bg-gray-700'>
+              <div className='w-full h-full bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 dark:from-gray-600 dark:via-gray-700 dark:to-gray-800 relative overflow-hidden'>
+                <div className='absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/30 dark:via-white/10 to-transparent'></div>
+              </div>
             </div>
           )}
 
@@ -60,9 +63,22 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
           />
 
           <div className='team-member-overlay'>
-            <div className='department-badge overlay'>{member.department}</div>
-            <h3 className='member-role overlay'>{member.role}</h3>
-            <p className='member-name overlay'>{member.displayName}</p>
+            {!imageLoaded && (
+              <div className='absolute inset-0 flex flex-col justify-end p-6'>
+                <div className='inline-block h-5 w-20 bg-gray-400/80 rounded-full mb-2 animate-pulse'></div>
+                <div className='h-5 w-32 bg-gray-300/90 rounded mb-1 animate-pulse'></div>
+                <div className='h-4 w-24 bg-gray-400/80 rounded animate-pulse'></div>
+              </div>
+            )}
+            <div
+              className={`transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+            >
+              <div className='department-badge overlay'>
+                {member.department}
+              </div>
+              <h3 className='member-role overlay'>{member.role}</h3>
+              <p className='member-name overlay'>{member.displayName}</p>
+            </div>
           </div>
         </>
       ) : (
