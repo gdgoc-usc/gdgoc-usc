@@ -1,17 +1,6 @@
 ---
-import TeamGrid from '@/components/team/TeamGrid';
-import '@/styles/team-masonry.css';
-import Header from '@/components/layout/Header.astro';
-import Layout from '@/layouts/Layout.astro';
-import Footer from '@/components/layout/Footer.astro';
-import Team from '@/pages/team/Team.astro';
----
+import { getCurrentYear } from '@/config/team-manager';
 
-<Layout
-  title='GDGoC USC - Our Team'
-  description='Meet our amazing team members!'
->
-  <Header />
-  <Team />
-  <Footer />
-</Layout>
+const currentYear = getCurrentYear();
+return Astro.redirect(`/team/${currentYear}`);
+---

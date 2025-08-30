@@ -74,11 +74,11 @@ export default function SettingsDropdown() {
       </button>
 
       {isOpen && (
-        <div className='absolute right-0 top-full mt-2 w-48 bg-white dark:bg-black rounded-lg border-2 border-black dark:border-white z-[100]'>
+        <div className='absolute right-0 top-full mt-2 w-48 bg-white dark:bg-black rounded-lg border-2 border-black dark:border-gray-700 z-[100]'>
           <div>
             <button
               onClick={toggleTheme}
-              className='flex items-center justify-between rounded-t-lg hover:rounded-t-lg w-full p-4 text-left hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200'
+              className='flex items-center justify-between rounded-t-md hover:rounded-t-md w-full p-4 text-left hover:cursor-pointer hover:bg-gdgoc-primary-blue hover:text-white dark:hover:bg-gray-700 transition-colors duration-200'
             >
               <span className='flex items-center gap-3'>
                 <div className='w-5 h-5 relative'>
@@ -103,13 +103,13 @@ export default function SettingsDropdown() {
 
             <button
               onClick={toggleAnimations}
-              className='flex items-center justify-between rounded-b-lg hover:rounded-b-lg w-full p-4 text-left hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200'
+              className='flex items-center justify-between rounded-b-md hover:rounded-b-md w-full p-4 text-left hover:cursor-pointer hover:bg-gdgoc-primary-blue hover:text-white dark:hover:bg-gray-700 transition-colors duration-200 group'
             >
               <span className='flex items-center gap-3'>
                 {animationsEnabled ? (
-                  <Zap className='w-5 h-5 text-gdgoc-primary-blue' />
+                  <Zap className='w-5 h-5 text-black dark:text-white group-hover:text-white' />
                 ) : (
-                  <ZapOff className='w-5 h-5 text-gray-500' />
+                  <ZapOff className='w-5 h-5 text-black dark:text-white group-hover:text-white' />
                 )}
                 <span className='text-sm'>
                   {animationsEnabled ? 'Animations On' : 'Animations Off'}

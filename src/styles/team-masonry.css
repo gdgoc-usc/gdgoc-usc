@@ -289,7 +289,6 @@
   opacity: 0;
 }
 
-/* Dark mode styles */
 @media (prefers-color-scheme: dark) {
   .team-member-overlay-no-image {
     background: linear-gradient(
@@ -316,7 +315,6 @@
   }
 }
 
-/* Staggered animation for cards */
 .team-member-card:nth-child(1) {
   animation-delay: 0ms;
 }
@@ -364,7 +362,6 @@
   opacity: 0;
 }
 
-/* Shimmer animation for skeleton loading */
 @keyframes shimmer {
   0% {
     transform: translateX(-100%) skewX(12deg);

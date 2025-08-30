@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getAllMembersByRoleHierarchy } from '@/utils/teamUtils';
 import TeamMemberSkeleton from '@/components/skeleton/TeamMemberSkeleton';
 import type { MemberWithDepartment } from '@/utils/teamUtils';
+import type { TeamYearData } from '@/config/team-manager';
 
 interface TeamMember extends MemberWithDepartment {
   displayName: string;
@@ -113,14 +114,20 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
   );
 };
 
-const TeamGrid: React.FC = () => {
+interface TeamGridProps {
+  teamData?: TeamYearData;
+}
+
+const TeamGrid: React.FC<TeamGridProps> = ({ teamData }) => {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadTeamMembers = () => {
       try {
-        const allTeamMembersData = getAllMembersByRoleHierarchy();
+        const allTeamMembersData = teamData
+          ? getAllMembersByRoleHierarchy(teamData)
+          : getAllMembersByRoleHierarchy();
 
         const processedMembers = allTeamMembersData.map(member => {
           let departmentClass = '';

@@ -11,6 +11,7 @@ import type {
   TeamMember as _TeamMember,
   DepartmentMember as _DepartmentMember,
 } from '../config/team.types';
+import type { TeamYearData } from '../config/team-manager';
 
 export interface MemberWithDepartment {
   name: string;
@@ -19,10 +20,21 @@ export interface MemberWithDepartment {
   department: string;
 }
 
-export function getAllMembersWithImages(): MemberWithDepartment[] {
+export function getAllMembersWithImages(
+  teamData?: TeamYearData
+): MemberWithDepartment[] {
   const members: MemberWithDepartment[] = [];
 
-  leadership.forEach(member => {
+  const currentLeadership = teamData?.leadership || leadership;
+  const currentExternalRelations =
+    teamData?.externalRelations || externalRelations;
+  const currentHumanresources = teamData?.humanresources || humanresources;
+  const currentMarketing = teamData?.marketing || marketing;
+  const currentOperations = teamData?.operations || operations;
+  const currentFinance = teamData?.finance || finance;
+  const currentTechnology = teamData?.technology || technology;
+
+  currentLeadership.forEach(member => {
     if (member.imageUrl && member.imageUrl.trim() !== '') {
       members.push({
         name: member.name,
@@ -33,7 +45,7 @@ export function getAllMembersWithImages(): MemberWithDepartment[] {
     }
   });
 
-  externalRelations.forEach(member => {
+  currentExternalRelations.forEach(member => {
     if (member.imageUrl && member.imageUrl.trim() !== '') {
       members.push({
         name: member.name,
@@ -44,7 +56,7 @@ export function getAllMembersWithImages(): MemberWithDepartment[] {
     }
   });
 
-  humanresources.forEach(member => {
+  currentHumanresources.forEach(member => {
     if (member.imageUrl && member.imageUrl.trim() !== '') {
       members.push({
         name: member.name,
@@ -55,7 +67,7 @@ export function getAllMembersWithImages(): MemberWithDepartment[] {
     }
   });
 
-  marketing.forEach(member => {
+  currentMarketing.forEach(member => {
     if (member.imageUrl && member.imageUrl.trim() !== '') {
       members.push({
         name: member.name,
@@ -66,7 +78,7 @@ export function getAllMembersWithImages(): MemberWithDepartment[] {
     }
   });
 
-  operations.forEach(member => {
+  currentOperations.forEach(member => {
     if (member.imageUrl && member.imageUrl.trim() !== '') {
       members.push({
         name: member.name,
@@ -77,7 +89,7 @@ export function getAllMembersWithImages(): MemberWithDepartment[] {
     }
   });
 
-  finance.forEach(member => {
+  currentFinance.forEach(member => {
     if (member.imageUrl && member.imageUrl.trim() !== '') {
       members.push({
         name: member.name,
@@ -88,7 +100,7 @@ export function getAllMembersWithImages(): MemberWithDepartment[] {
     }
   });
 
-  technology.forEach(member => {
+  currentTechnology.forEach(member => {
     if (member.imageUrl && member.imageUrl.trim() !== '') {
       members.push({
         name: member.name,
@@ -103,23 +115,28 @@ export function getAllMembersWithImages(): MemberWithDepartment[] {
 }
 
 export function getMembersByDepartment(
-  department: string
+  department: string,
+  teamData?: TeamYearData
 ): MemberWithDepartment[] {
-  return getAllMembersWithImages().filter(
+  return getAllMembersWithImages(teamData).filter(
     member => member.department === department
   );
 }
 
-export function getRandomMemberWithImage(): MemberWithDepartment | null {
-  const members = getAllMembersWithImages();
+export function getRandomMemberWithImage(
+  teamData?: TeamYearData
+): MemberWithDepartment | null {
+  const members = getAllMembersWithImages(teamData);
   if (members.length === 0) return null;
 
   const randomIndex = Math.floor(Math.random() * members.length);
   return members[randomIndex];
 }
 
-export function getMemberCountByDepartment(): Record<string, number> {
-  const members = getAllMembersWithImages();
+export function getMemberCountByDepartment(
+  teamData?: TeamYearData
+): Record<string, number> {
+  const members = getAllMembersWithImages(teamData);
   const counts: Record<string, number> = {};
 
   members.forEach(member => {
@@ -129,8 +146,8 @@ export function getMemberCountByDepartment(): Record<string, number> {
   return counts;
 }
 
-export function getTotalMembersWithImages(): number {
-  return getAllMembersWithImages().length;
+export function getTotalMembersWithImages(teamData?: TeamYearData): number {
+  return getAllMembersWithImages(teamData).length;
 }
 
 export function shuffleArray<T>(array: T[]): T[] {
@@ -143,9 +160,10 @@ export function shuffleArray<T>(array: T[]): T[] {
 }
 
 export function getRandomMembersForReels(
-  count: number = 12
+  count: number = 12,
+  teamData?: TeamYearData
 ): MemberWithDepartment[] {
-  const allMembers = getAllMembersWithImages();
+  const allMembers = getAllMembersWithImages(teamData);
   const shuffled = shuffleArray(allMembers);
 
   // If we need more than available, repeat the array
@@ -160,15 +178,26 @@ export function getRandomMembersForReels(
   return shuffled.slice(0, count);
 }
 
-export function getAllMembersWithPrioritizedSorting(): MemberWithDepartment[] {
+export function getAllMembersWithPrioritizedSorting(
+  teamData?: TeamYearData
+): MemberWithDepartment[] {
+  const currentLeadership = teamData?.leadership || leadership;
+  const currentExternalRelations =
+    teamData?.externalRelations || externalRelations;
+  const currentHumanresources = teamData?.humanresources || humanresources;
+  const currentMarketing = teamData?.marketing || marketing;
+  const currentOperations = teamData?.operations || operations;
+  const currentFinance = teamData?.finance || finance;
+  const currentTechnology = teamData?.technology || technology;
+
   const departments = [
-    { data: leadership, name: 'Leadership' },
-    { data: externalRelations, name: 'External Relations' },
-    { data: humanresources, name: 'Human Resources' },
-    { data: marketing, name: 'Marketing' },
-    { data: operations, name: 'Operations' },
-    { data: finance, name: 'Finance' },
-    { data: technology, name: 'Technology' },
+    { data: currentLeadership, name: 'Leadership' },
+    { data: currentExternalRelations, name: 'External Relations' },
+    { data: currentHumanresources, name: 'Human Resources' },
+    { data: currentMarketing, name: 'Marketing' },
+    { data: currentOperations, name: 'Operations' },
+    { data: currentFinance, name: 'Finance' },
+    { data: currentTechnology, name: 'Technology' },
   ];
 
   const membersWithImages: MemberWithDepartment[] = [];
@@ -194,7 +223,9 @@ export function getAllMembersWithPrioritizedSorting(): MemberWithDepartment[] {
   return [...membersWithImages, ...membersWithoutImages];
 }
 
-export function getAllMembersByRoleHierarchy(): MemberWithDepartment[] {
+export function getAllMembersByRoleHierarchy(
+  teamData?: TeamYearData
+): MemberWithDepartment[] {
   const rolePriority: Record<string, number> = {
     // Leadership tier
     Lead: 1,
@@ -228,14 +259,23 @@ export function getAllMembersByRoleHierarchy(): MemberWithDepartment[] {
     'Video Editor': 5,
   };
 
+  const currentLeadership = teamData?.leadership || leadership;
+  const currentExternalRelations =
+    teamData?.externalRelations || externalRelations;
+  const currentHumanresources = teamData?.humanresources || humanresources;
+  const currentMarketing = teamData?.marketing || marketing;
+  const currentOperations = teamData?.operations || operations;
+  const currentFinance = teamData?.finance || finance;
+  const currentTechnology = teamData?.technology || technology;
+
   const departments = [
-    { data: leadership, name: 'Leadership' },
-    { data: externalRelations, name: 'External Relations' },
-    { data: humanresources, name: 'Human Resources' },
-    { data: marketing, name: 'Marketing' },
-    { data: operations, name: 'Operations' },
-    { data: finance, name: 'Finance' },
-    { data: technology, name: 'Technology' },
+    { data: currentLeadership, name: 'Leadership' },
+    { data: currentExternalRelations, name: 'External Relations' },
+    { data: currentHumanresources, name: 'Human Resources' },
+    { data: currentMarketing, name: 'Marketing' },
+    { data: currentOperations, name: 'Operations' },
+    { data: currentFinance, name: 'Finance' },
+    { data: currentTechnology, name: 'Technology' },
   ];
 
   const allMembers: MemberWithDepartment[] = [];
@@ -251,7 +291,6 @@ export function getAllMembersByRoleHierarchy(): MemberWithDepartment[] {
     });
   });
 
-  // Sort by role priority, then by whether they have images, then by name
   return allMembers.sort((a, b) => {
     const aPriority = rolePriority[a.role] || 999;
     const bPriority = rolePriority[b.role] || 999;
@@ -260,14 +299,12 @@ export function getAllMembersByRoleHierarchy(): MemberWithDepartment[] {
       return aPriority - bPriority;
     }
 
-    // Within same priority, prioritize members with images
     const aHasImage = a.imageUrl && a.imageUrl.trim() !== '';
     const bHasImage = b.imageUrl && b.imageUrl.trim() !== '';
 
     if (aHasImage && !bHasImage) return -1;
     if (!aHasImage && bHasImage) return 1;
 
-    // Don't sort by name - maintain original order
     return 0;
   });
 }

@@ -1,13 +1,14 @@
 ---
 import { Image } from 'astro:assets';
 import SettingsDropdown from '../SettingsDropdown.tsx';
+import TeamDropdown from './TeamDropdown.tsx';
+import MobileTeamDropdown from './MobileTeamDropdown.tsx';
 import { Menu, X, UserPlus } from 'lucide-react';
 import HeaderLink from './HeaderLink.astro';
 import MobileHeaderLink from './MobileHeaderLink.astro';
 
 const navLinks = [
   { href: '#about', text: 'About GDG' },
-  { href: '/team', text: 'Our Team' },
   { href: '#partners', text: 'Partners' },
   { href: '#events', text: 'Events' },
   { href: '/faq', text: 'FAQ' },
@@ -49,6 +50,7 @@ const navLinks = [
                 <HeaderLink href={link.href} text={link.text} />
               ))
             }
+            <TeamDropdown client:load currentPath={Astro.url.pathname} />
           </nav>
         </div>
 
@@ -84,6 +86,7 @@ const navLinks = [
               <MobileHeaderLink href={link.href} text={link.text} />
             ))
           }
+          <MobileTeamDropdown client:load currentPath={Astro.url.pathname} />
           <a
             href='#membership'
             class='block px-3 py-2 mt-4 text-white bg-gdgoc-primary-green hover:bg-gdgoc-primary-green/90 transition-colors duration-200 font-medium rounded-lg text-center'
@@ -244,7 +247,7 @@ const navLinks = [
     backdrop-filter: blur(var(--blur-amount, 0px));
     background: rgba(255, 255, 255, var(--bg-opacity, 0));
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, var(--shadow-opacity, 0));
-    border-bottom: 1px solid rgba(0, 0, 0, var(--border-opacity, 0));
+    border-bottom: 2px solid rgba(0, 0, 0, var(--border-opacity, 0));
     transition:
       backdrop-filter 400ms ease-out,
       background 400ms ease-out,
@@ -253,8 +256,8 @@ const navLinks = [
   }
 
   :global(.dark) #main-header {
-    background: rgba(17, 24, 39, var(--bg-opacity, 0)) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, var(--border-opacity, 0)) !important;
+    background: rgba(0, 0, 0, var(--bg-opacity, 0)) !important;
+    border-bottom: 2px solid rgba(54, 65, 83, var(--border-opacity, 0)) !important;
     box-shadow: 0 4px 6px -1px rgba(255, 255, 255, var(--shadow-opacity, 0)) !important;
   }
 
