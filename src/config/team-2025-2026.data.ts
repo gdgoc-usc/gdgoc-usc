@@ -103,7 +103,7 @@ export const marketing: DepartmentMember[] = [
   {
     role: 'Public Information Officer',
     name: 'Heart Alvern Sumicad',
-    imageUrl: '/members/',
+    imageUrl: '/members/Heart.png',
   },
   {
     role: 'Creative Designer',
