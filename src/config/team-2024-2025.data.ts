@@ -80,7 +80,7 @@ export const humanresources: DepartmentMember[] = [
   {
     role: 'Internal Relations Officer',
     name: 'Gregg Alexander Marayan',
-    imageUrl: '/members/2024-2025/Shannen.png',
+    imageUrl: '/members/2024-2025/Gregg.png',
   },
   {
     role: 'Internal Relations Officer',
