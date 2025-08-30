@@ -14,7 +14,7 @@ export const leadership: TeamMember[] = [
   {
     role: 'Chief Communications Officer',
     name: 'Shiori Morisaka',
-    imageUrl: '/members/2024-2025/Shiori.png',
+    imageUrl: '/members/2024-2025/',
   },
   {
     role: 'Chief Technology Officer',
@@ -108,7 +108,7 @@ export const marketing: DepartmentMember[] = [
   {
     role: 'Creative Design Officer',
     name: 'Bessa Nicole Tamarra',
-    imageUrl: '/members/2024-2025/Bessa.png',
+    imageUrl: '/members/2024-2025/',
   },
   {
     role: 'Creative Design Officer',
