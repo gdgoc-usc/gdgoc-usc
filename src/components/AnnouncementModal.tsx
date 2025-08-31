@@ -111,7 +111,7 @@ const AnnouncementModal: React.FC = () => {
   const IconComponent = typeStyles.icon;
 
   return (
-    <div className='fixed bottom-10 left-6 z-50 w-72 max-w-sm sm:w-80'>
+    <div className='fixed bottom-10 left-6 z-50 w-64 max-w-xs sm:w-72'>
       <div
         className={`${typeStyles.bg} ${typeStyles.text} transform overflow-hidden rounded-lg border-2 border-black shadow-lg backdrop-blur-sm transition-all duration-300 ease-in-out`}
       >
@@ -128,7 +128,7 @@ const AnnouncementModal: React.FC = () => {
             />
             <button
               onClick={handleClose}
-              className='absolute top-2 right-2 flex-shrink-0 rounded-full bg-black/50 p-1 text-white transition-colors hover:bg-black/70'
+              className='absolute top-2 right-2 flex-shrink-0 rounded-full bg-black/50 p-1 text-white transition-colors hover:cursor-pointer hover:bg-black/70'
               aria-label='Close announcement'
             >
               <X className='h-4 w-4' />
@@ -138,14 +138,14 @@ const AnnouncementModal: React.FC = () => {
 
         <div className='border-t-2 border-t-black p-4'>
           {!announcement.imageUrl && (
-            <div className='mb-3 flex items-start justify-between'>
+            <div className='mb-2 flex items-start justify-between'>
               <div className='flex items-center gap-2'>
                 <IconComponent className='h-5 w-5 flex-shrink-0' />
-                <h3 className='text-sm font-semibold'>{announcement.title}</h3>
+                <h3 className='text-lg font-semibold'>{announcement.title}</h3>
               </div>
               <button
                 onClick={handleClose}
-                className='flex-shrink-0 rounded-full p-1 transition-colors hover:bg-black/10 dark:hover:bg-white/10'
+                className='flex-shrink-0 rounded-full p-1 transition-colors hover:cursor-pointer hover:bg-black/10 dark:hover:bg-white/10'
                 aria-label='Close announcement'
               >
                 <X className='h-4 w-4' />
@@ -154,19 +154,19 @@ const AnnouncementModal: React.FC = () => {
           )}
 
           {announcement.imageUrl && (
-            <div className='mb-3 flex items-center gap-2'>
+            <div className='mb-2 flex items-center gap-2'>
               <IconComponent className='h-5 w-5 flex-shrink-0' />
-              <h3 className='text-sm font-semibold'>{announcement.title}</h3>
+              <h3 className='text-lg font-semibold'>{announcement.title}</h3>
             </div>
           )}
 
-          <p className='mb-4 text-sm leading-relaxed'>{announcement.message}</p>
+          <p className='mb-3 text-xs leading-relaxed'>{announcement.message}</p>
 
           <div className='flex items-center justify-between'>
             {announcement.actionText && announcement.actionUrl && (
               <a
                 href={announcement.actionUrl}
-                className='inline-flex items-center rounded-full bg-black/20 px-3 py-1 text-xs font-medium transition-colors hover:bg-black/30 dark:bg-white/20 dark:hover:bg-white/30'
+                className='inline-flex items-center rounded-full bg-black/20 px-3 py-2 text-sm font-medium transition-colors hover:bg-black/30 dark:bg-white/20 dark:hover:bg-white/30'
                 target={
                   announcement.actionUrl.startsWith('http') ? '_blank' : '_self'
                 }
@@ -182,12 +182,12 @@ const AnnouncementModal: React.FC = () => {
 
             {availableAnnouncements.length > 1 && (
               <div className='flex items-center gap-2'>
-                <div className='flex gap-1'>
+                <div className='flex gap-0.5'>
                   {availableAnnouncements.map(
                     (_: Announcement, index: number) => (
                       <div
                         key={index}
-                        className={`h-1.5 w-1.5 rounded-full transition-colors ${
+                        className={`h-1 w-1 rounded-full transition-colors ${
                           index === currentIndex
                             ? 'bg-current'
                             : 'bg-current/30'
@@ -198,7 +198,7 @@ const AnnouncementModal: React.FC = () => {
                 </div>
                 <button
                   onClick={nextAnnouncement}
-                  className='rounded px-2 py-1 text-xs transition-colors hover:bg-black/10 dark:hover:bg-white/10'
+                  className='rounded px-1.5 py-0.5 text-xs transition-colors hover:cursor-pointer hover:bg-black/10 dark:hover:bg-white/10'
                 >
                   Next
                 </button>
@@ -206,7 +206,7 @@ const AnnouncementModal: React.FC = () => {
             )}
           </div>
 
-          <div className='mt-3'>
+          <div className='pt-4'>
             <button
               onClick={handleDismissForever}
               className='text-xs text-current/70 transition-colors hover:text-current/90'
