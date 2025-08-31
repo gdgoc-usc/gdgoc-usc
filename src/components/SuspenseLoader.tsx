@@ -9,30 +9,19 @@ export default function SuspenseLoader({
   onLoadComplete,
   timeout = 5000,
 }: SuspenseLoaderProps) {
-  const [progress, setProgress] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
-
-  const updateProgress = (percent: number) => {
-    setProgress(percent);
-  };
 
   const preloadCriticalAssets = async (): Promise<void> => {
     const criticalAssets = ['/usc_logo.svg'];
-
-    let loadedCount = 0;
 
     return Promise.all(
       criticalAssets.map(asset => {
         return new Promise<void>((resolve, reject) => {
           const img = new Image();
           img.onload = () => {
-            loadedCount++;
-            updateProgress((loadedCount / criticalAssets.length) * 100);
             resolve();
           };
           img.onerror = () => {
-            loadedCount++;
-            updateProgress((loadedCount / criticalAssets.length) * 100);
             reject(new Error(`Failed to load ${asset}`));
           };
           img.src = asset;
@@ -102,11 +91,8 @@ export default function SuspenseLoader({
     const initializeApp = async () => {
       initializeTheme();
 
-      setTimeout(() => updateProgress(10), 100);
-
       timeoutId = setTimeout(() => {
         // console.warn('SuspenseLoader timeout reached, hiding loader');
-        updateProgress(100);
         setTimeout(hideLoader, 200);
       }, timeout);
 
@@ -117,15 +103,12 @@ export default function SuspenseLoader({
 
         clearTimeout(timeoutId);
 
-        updateProgress(100);
-
         setTimeout(hideLoader, 200);
       } catch {
         // console.warn('Some assets failed to load, continuing anyway:', error);
         clearTimeout(timeoutId);
 
         await waitForComponents();
-        updateProgress(100);
         setTimeout(hideLoader, 200);
       }
     };
@@ -147,8 +130,8 @@ export default function SuspenseLoader({
   return (
     <div
       id='suspense-loader'
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-neutral-900 transition-all duration-500 ${
-        !isVisible ? 'opacity-0 pointer-events-none' : ''
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-white transition-all duration-500 dark:bg-neutral-900 ${
+        !isVisible ? 'pointer-events-none opacity-0' : ''
       }`}
       aria-label='Loading page content'
       role='status'
@@ -182,38 +165,26 @@ export default function SuspenseLoader({
           />
         </div>
 
-        <div className='text-center space-y-0'>
-          <h2 className='text-xl md:text-2xl font-semibold text-gray-900 dark:text-white'>
+        <div className='space-y-0 text-center'>
+          <h2 className='text-xl font-semibold text-gray-900 md:text-2xl dark:text-white'>
             Google Developer Group
           </h2>
-          <p className='text-sm md:text-base text-gdgoc-primary-blue'>
+          <p className='text-gdgoc-primary-blue text-sm md:text-base'>
             University of San Carlos
           </p>
         </div>
-
-        <div className='w-48 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden'>
-          <div
-            className='h-full bg-gradient-to-r from-gdgoc-primary-blue to-gdgoc-primary-green rounded-full transition-all duration-300 ease-out'
-            style={{ width: `${progress}%` }}
-            aria-valuenow={progress}
-            aria-valuemin={0}
-            aria-valuemax={100}
-            role='progressbar'
-          ></div>
-        </div>
-
         <div className='flex space-x-2'>
-          <div className='w-2 h-2 bg-gdgoc-primary-blue rounded-full animate-bounce'></div>
+          <div className='bg-gdgoc-primary-blue h-2 w-2 animate-bounce rounded-full'></div>
           <div
-            className='w-2 h-2 bg-gdgoc-primary-green rounded-full animate-bounce'
+            className='bg-gdgoc-primary-green h-2 w-2 animate-bounce rounded-full'
             style={{ animationDelay: '0.1s' }}
           ></div>
           <div
-            className='w-2 h-2 bg-gdgoc-primary-red rounded-full animate-bounce'
+            className='bg-gdgoc-primary-red h-2 w-2 animate-bounce rounded-full'
             style={{ animationDelay: '0.2s' }}
           ></div>
           <div
-            className='w-2 h-2 bg-gdgoc-primary-yellow rounded-full animate-bounce'
+            className='bg-gdgoc-primary-yellow h-2 w-2 animate-bounce rounded-full'
             style={{ animationDelay: '0.3s' }}
           ></div>
         </div>

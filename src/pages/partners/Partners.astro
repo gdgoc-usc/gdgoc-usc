@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
-import { supporters } from '../config/supporters.data';
+import { supporters } from '@/config/supporters.data';
+import SupporterSkeleton from '@/components/skeleton/SupporterSkeleton';
 ---
 
 <section
@@ -17,6 +18,15 @@ import { supporters } from '../config/supporters.data';
 
   <div class='relative z-10 container w-full max-w-7xl px-4 sm:px-6 lg:px-8'>
     <div class='my-12 text-center'>
+      <div class='flex justify-center sm:md:lg:xl:mb-4'>
+        <Image
+          src='/gdgoc_logo.svg'
+          alt='GDGoC Logo'
+          width={80}
+          height={80}
+          class='h-24 w-24 md:h-20 md:w-20'
+        />
+      </div>
       <div class='flex flex-col gap-4'>
         <h1
           class='mb-4 text-4xl font-bold tracking-tighter text-black md:text-6xl dark:text-white'
@@ -35,22 +45,35 @@ import { supporters } from '../config/supporters.data';
 
   <div class='relative z-10 container w-full max-w-7xl px-4 sm:px-6 lg:px-8'>
     <div
+      id='supporters-grid'
       class='grid auto-rows-auto grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-6 md:grid-cols-4 lg:grid-cols-6'
     >
-      {
-        supporters.map(supporter => (
-          <div class='flex items-center justify-center rounded-lg border-2 border-black bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md dark:border-gray-700'>
-            <Image
-              src={supporter.logo}
-              width={120}
-              height={120}
-              class='h-32 w-32 cursor-pointer object-contain transition-transform duration-300 hover:scale-105'
-              alt={supporter.alt}
-              data-supporter-name={supporter.name}
-            />
-          </div>
-        ))
-      }
+      <div id='skeleton-loader' class='contents'>
+        {
+          Array.from({ length: supporters.length }).map(() => (
+            <SupporterSkeleton client:load />
+          ))
+        }
+      </div>
+      <div
+        id='supporters-content'
+        class='contents opacity-0 transition-opacity duration-500'
+      >
+        {
+          supporters.map(supporter => (
+            <div class='flex items-center justify-center rounded-lg border-2 border-black bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md dark:border-gray-700'>
+              <Image
+                src={supporter.logo}
+                width={120}
+                height={120}
+                class='h-32 w-32 cursor-pointer object-contain transition-transform duration-300 hover:scale-105'
+                alt={supporter.alt}
+                data-supporter-name={supporter.name}
+              />
+            </div>
+          ))
+        }
+      </div>
     </div>
 
     <div
@@ -64,11 +87,52 @@ import { supporters } from '../config/supporters.data';
 <script is:inline>
   document.addEventListener('DOMContentLoaded', function () {
     const tooltip = document.getElementById('tooltip');
+    const skeletonLoader = document.getElementById('skeleton-loader');
+    const supportersContent = document.getElementById('supporters-content');
     const images = document.querySelectorAll('[data-supporter-name]');
 
     if (!tooltip) return;
 
+    let loadedCount = 0;
+    const totalImages = images.length;
+
+    function showContent() {
+      if (skeletonLoader) {
+        skeletonLoader.style.display = 'none';
+      }
+      if (supportersContent) {
+        supportersContent.classList.remove('opacity-0');
+        supportersContent.classList.add('opacity-100');
+      }
+    }
+
+    if (totalImages === 0) {
+      showContent();
+      return;
+    }
+
     images.forEach(function (image) {
+      if (image.complete) {
+        loadedCount++;
+        if (loadedCount === totalImages) {
+          setTimeout(showContent, 300);
+        }
+      } else {
+        image.addEventListener('load', function () {
+          loadedCount++;
+          if (loadedCount === totalImages) {
+            setTimeout(showContent, 300);
+          }
+        });
+
+        image.addEventListener('error', function () {
+          loadedCount++;
+          if (loadedCount === totalImages) {
+            setTimeout(showContent, 300);
+          }
+        });
+      }
+
       image.addEventListener('mouseenter', function (e) {
         const target = e.target;
         if (!target) return;
@@ -93,5 +157,7 @@ import { supporters } from '../config/supporters.data';
         tooltip.style.top = y + 'px';
       });
     });
+
+    setTimeout(showContent, 3000);
   });
 </script>

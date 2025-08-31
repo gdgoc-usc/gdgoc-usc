@@ -6,10 +6,11 @@ import MobileTeamDropdown from './MobileTeamDropdown.tsx';
 import { Menu, X, UserPlus } from 'lucide-react';
 import HeaderLink from './HeaderLink.astro';
 import MobileHeaderLink from './MobileHeaderLink.astro';
+import AnnouncementModal from '../AnnouncementModal.tsx';
 
 const navLinks = [
   { href: '#about', text: 'About GDG' },
-  { href: '#partners', text: 'Partners' },
+  { href: '/partners', text: 'Partners' },
   { href: '#events', text: 'Events' },
   { href: '/faq', text: 'FAQ' },
   { href: 'https://merch.gdgoc.tech', text: 'Merch' },
@@ -18,11 +19,11 @@ const navLinks = [
 
 <!-- bg-[url('/gdgoc_bg_1_compressed.svg')] bg-cover bg-center bg-no-repeat -->
 <header
-  class='fixed top-0 left-0 right-0 z-50 rounded-none transition-all duration-300 ease-in-out'
+  class='fixed top-0 right-0 left-0 z-50 rounded-none transition-all duration-300 ease-in-out'
 >
   <div id='main-header' class='w-full'>
-    <div class='px-4 sm:px-6 xl:px-[11rem] lg:py-2 w-full'>
-      <div class='flex items-center justify-between h-16'>
+    <div class='w-full px-4 sm:px-6 lg:py-2 xl:px-[11rem]'>
+      <div class='flex h-16 items-center justify-between'>
         <div class='flex items-center sm:gap-8 md:lg:gap-12'>
           <a href='/' class='flex items-center space-x-2'>
             <Image
@@ -30,21 +31,21 @@ const navLinks = [
               alt='GDGoC USC Logo'
               width={40}
               height={40}
-              class='w-10 h-10'
+              class='h-10 w-10'
             />
             <div class='flex flex-col'>
               <span
-                class='hidden sm:md:lg:block text-xl font-medium text-black dark:text-white leading-tight'
+                class='hidden text-xl leading-tight font-medium text-black sm:md:lg:block dark:text-white'
               >
                 Google Developer Groups
               </span>
               <span
-                class='hidden sm:md:lg:block font-light text-sm text-gdgoc-primary-blue'
+                class='text-gdgoc-primary-blue hidden text-sm font-light sm:md:lg:block'
                 >University of San Carlos</span
               >
             </div>
           </a>
-          <nav class='hidden lg:flex items-center space-x-8'>
+          <nav class='hidden items-center space-x-8 lg:flex'>
             {
               navLinks.map(link => (
                 <HeaderLink href={link.href} text={link.text} />
@@ -59,28 +60,28 @@ const navLinks = [
 
           <a
             href='https://gdgoc.tech/member-registration'
-            class='hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-transparent border-black dark:border-white border-2 hover:bg-gdgoc-primary-blue/90 dark:text-white text-black font-medium rounded-full transition-colors duration-200'
+            class='hover:bg-gdgoc-primary-blue/90 hidden items-center gap-2 rounded-full border-2 border-black bg-transparent px-4 py-2 font-medium text-black transition-colors duration-200 sm:inline-flex dark:border-white dark:text-white'
           >
-            <UserPlus className='w-5 h-5' />
+            <UserPlus className='h-5 w-5' />
             <h1 class='custom-class'>Register</h1>
           </a>
 
           <button
-            class='lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200'
+            class='rounded-lg p-2 transition-colors duration-200 hover:bg-gray-100 lg:hidden dark:hover:bg-gray-800'
             aria-label='Open menu'
             id='mobile-menu-button'
           >
-            <Menu className='w-6 h-6' id='menu-icon' />
-            <X className='w-6 h-6 hidden' id='close-icon' />
+            <Menu className='h-6 w-6' id='menu-icon' />
+            <X className='hidden h-6 w-6' id='close-icon' />
           </button>
         </div>
       </div>
 
       <div
-        class='lg:hidden opacity-0 max-h-0 overflow-hidden transition-all duration-300 ease-in-out'
+        class='max-h-0 overflow-hidden opacity-0 transition-all duration-300 ease-in-out lg:hidden'
         id='mobile-menu'
       >
-        <div class='px-2 pb-4 space-y-1'>
+        <div class='space-y-1 px-2 pb-4'>
           {
             navLinks.map(link => (
               <MobileHeaderLink href={link.href} text={link.text} />
@@ -89,7 +90,7 @@ const navLinks = [
           <MobileTeamDropdown client:load currentPath={Astro.url.pathname} />
           <a
             href='#membership'
-            class='block px-3 py-2 mt-4 text-white bg-gdgoc-primary-green hover:bg-gdgoc-primary-green/90 transition-colors duration-200 font-medium rounded-lg text-center'
+            class='bg-gdgoc-primary-green hover:bg-gdgoc-primary-green/90 mt-4 block rounded-lg px-3 py-2 text-center font-medium text-white transition-colors duration-200'
           >
             Register
           </a>
@@ -98,6 +99,8 @@ const navLinks = [
     </div>
   </div>
 </header>
+
+<AnnouncementModal client:load />
 
 <script>
   const mobileMenuButton = document.getElementById('mobile-menu-button');

@@ -372,19 +372,19 @@ body.loading {
   }
 
   .section-title {
-    @apply text-3xl md:text-4xl font-bold text-black dark:text-white text-center mb-8 tracking-tight;
+    @apply mb-8 text-center text-3xl font-bold tracking-tight text-black md:text-4xl dark:text-white;
   }
 
   .team-grid {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+    @apply grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3;
   }
 
   .team-card {
-    @apply relative p-6 rounded-xl border border-gray-200 dark:border-gray-700 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm hover:shadow-lg transition-all duration-300;
+    @apply relative rounded-xl border border-gray-200 bg-white/80 p-6 backdrop-blur-sm transition-all duration-300 hover:shadow-lg dark:border-gray-700 dark:bg-gray-800/80;
   }
 
   .role-badge {
-    @apply inline-block px-3 py-1 text-xs font-medium rounded-full mb-4 text-white;
+    @apply mb-4 inline-block rounded-full px-3 py-1 text-xs font-medium text-white;
     background: linear-gradient(
       135deg,
       var(--color-gdgoc-primary-blue),
@@ -393,11 +393,11 @@ body.loading {
   }
 
   .role-title {
-    @apply text-xl font-semibold text-black dark:text-white leading-tight;
+    @apply text-xl leading-tight font-semibold text-black dark:text-white;
   }
 
   .role-name {
-    @apply text-gray-600 dark:text-gray-300 leading-relaxed;
+    @apply leading-relaxed text-gray-600 dark:text-gray-300;
   }
 
   .team-card:hover {

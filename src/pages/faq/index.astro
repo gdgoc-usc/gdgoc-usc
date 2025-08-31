@@ -193,22 +193,22 @@ const categories: Record<CategoryKey, { name: string; color: string }> = {
     <section class='relative w-full pt-8'>
       <div class='container mx-auto px-4 sm:px-6 lg:px-8'>
         <div class='text-center'>
-          <div class='flex justify-center mb-6'>
+          <div class='mb-6 flex justify-center'>
             <Image
               src='/gdgoc_logo.svg'
               alt='GDGoC Logo'
               width={80}
               height={80}
-              class='w-16 h-16 md:w-20 md:h-20'
+              class='h-16 w-16 md:h-20 md:w-20'
             />
           </div>
           <h1
-            class='text-4xl md:text-6xl font-bold text-black dark:text-white mb-4 tracking-tight'
+            class='mb-4 text-4xl font-bold tracking-tight text-black md:text-6xl dark:text-white'
           >
             Frequently Asked Questions
           </h1>
           <p
-            class='text-xl md:text-2xl text-gray-700 dark:text-gray-200 leading-relaxed max-w-3xl mx-auto'
+            class='mx-auto max-w-3xl text-xl leading-relaxed text-gray-700 md:text-2xl dark:text-gray-200'
           >
             Everything you need to know about <strong
               class='text-gdgoc-primary-blue dark:text-gdgoc-secondary-blue'
@@ -219,11 +219,11 @@ const categories: Record<CategoryKey, { name: string; color: string }> = {
       </div>
     </section>
 
-    <section class='w-full pt-8 pb-16 bg-white dark:bg-neutral-900'>
+    <section class='w-full bg-white pt-8 pb-16 dark:bg-neutral-900'>
       <div class='container mx-auto px-4 sm:px-6 lg:px-8'>
-        <div class='flex flex-wrap justify-center gap-3 mb-12'>
+        <div class='mb-12 flex flex-wrap justify-center gap-3'>
           <button
-            class='filter-btn px-6 py-3 rounded-full font-medium transition-all duration-300 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 active cursor-pointer'
+            class='filter-btn active cursor-pointer rounded-full bg-gray-100 px-6 py-3 font-medium text-gray-700 transition-all duration-300 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
             data-category='all'
           >
             All Questions
@@ -231,7 +231,7 @@ const categories: Record<CategoryKey, { name: string; color: string }> = {
           {
             Object.entries(categories).map(([key, category]) => (
               <button
-                class={`filter-btn px-6 py-3 rounded-full font-medium transition-all duration-300 bg-${category.color}/10 hover:bg-${category.color}/20 text-${category.color} dark:text-${category.color} cursor-pointer`}
+                class={`filter-btn rounded-full px-6 py-3 font-medium transition-all duration-300 bg-${category.color}/10 hover:bg-${category.color}/20 text-${category.color} dark:text-${category.color} cursor-pointer`}
                 data-category={key}
               >
                 {category.name}
@@ -240,32 +240,32 @@ const categories: Record<CategoryKey, { name: string; color: string }> = {
           }
         </div>
 
-        <div class='max-w-4xl mx-auto space-y-4'>
+        <div class='mx-auto max-w-4xl space-y-4'>
           {
             faqs.map((faq, index) => (
               <div
-                class={`faq-item bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 hover:border-${categories[faq.category].color}/30`}
+                class={`faq-item overflow-hidden rounded-2xl border border-gray-200 bg-white transition-all duration-300 dark:border-gray-700 dark:bg-gray-800 hover:border-${categories[faq.category].color}/30`}
                 data-category={faq.category}
               >
                 <button
-                  class='faq-question w-full px-6 py-6 text-left flex items-center justify-between group cursor-pointer'
+                  class='faq-question group flex w-full cursor-pointer items-center justify-between px-6 py-6 text-left'
                   aria-expanded='false'
                   data-target={`faq-${index}`}
                 >
-                  <div class='flex sm:md:lg:flex-row flex-col items-start gap-4 flex-1'>
+                  <div class='flex flex-1 flex-col items-start gap-4 sm:md:lg:flex-row'>
                     <span
-                      class={`inline-block px-3 py-1 text-xs font-medium rounded-full text-white bg-${categories[faq.category].color}`}
+                      class={`inline-block rounded-full px-3 py-1 text-xs font-medium text-white bg-${categories[faq.category].color}`}
                     >
                       {categories[faq.category].name}
                     </span>
                     <h3
-                      class={`text-lg md:text-xl font-semibold text-gray-900 dark:text-white transition-colors duration-200 flex-1 group-hover:text-${categories[faq.category].color} dark:group-hover:text-${categories[faq.category].color}`}
+                      class={`flex-1 text-lg font-semibold text-gray-900 transition-colors duration-200 md:text-xl dark:text-white group-hover:text-${categories[faq.category].color} dark:group-hover:text-${categories[faq.category].color}`}
                     >
                       {faq.question}
                     </h3>
                   </div>
                   <svg
-                    class='faq-icon w-6 h-6 text-gray-500 dark:text-gray-400 transition-transform duration-200 flex-shrink-0 ml-4'
+                    class='faq-icon ml-4 h-6 w-6 flex-shrink-0 text-gray-500 transition-transform duration-200 dark:text-gray-400'
                     fill='none'
                     stroke='currentColor'
                     viewBox='0 0 24 24'
@@ -279,12 +279,12 @@ const categories: Record<CategoryKey, { name: string; color: string }> = {
                   </svg>
                 </button>
                 <div
-                  class='faq-answer overflow-hidden transition-all duration-300 max-h-0'
+                  class='faq-answer max-h-0 overflow-hidden transition-all duration-300'
                   id={`faq-${index}`}
                 >
                   <div class='px-6 pb-6'>
                     <div class='prose prose-gray dark:prose-invert max-w-none'>
-                      <div class='text-lg text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-line'>
+                      <div class='text-lg leading-relaxed whitespace-pre-line text-gray-700 dark:text-gray-300'>
                         {faq.answer}
                       </div>
                     </div>
@@ -297,27 +297,27 @@ const categories: Record<CategoryKey, { name: string; color: string }> = {
 
         <div class='mt-16 text-center'>
           <div
-            class='bg-gradient-to-r from-gdgoc-primary-blue/5 to-gdgoc-primary-green/5 rounded-2xl border border-gdgoc-primary-blue/20 dark:border-gdgoc-secondary-blue/20 p-8 max-w-2xl mx-auto'
+            class='from-gdgoc-primary-blue/5 to-gdgoc-primary-green/5 border-gdgoc-primary-blue/20 dark:border-gdgoc-secondary-blue/20 mx-auto max-w-2xl rounded-2xl border bg-gradient-to-r p-8'
           >
             <h2
-              class='text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4'
+              class='mb-4 text-2xl font-bold text-gray-900 md:text-3xl dark:text-white'
             >
               Still have questions?
             </h2>
-            <p class='text-gray-600 dark:text-gray-300 mb-6 leading-relaxed'>
+            <p class='mb-6 leading-relaxed text-gray-600 dark:text-gray-300'>
               We're here to help! Join our Discord community or reach out to us
               directly.
             </p>
-            <div class='flex flex-col sm:flex-row gap-4 justify-center'>
+            <div class='flex flex-col justify-center gap-4 sm:flex-row'>
               <a
                 href='#footer'
-                class='inline-flex items-center justify-center px-6 py-3 bg-gdgoc-primary-blue hover:bg-gdgoc-primary-blue/90 text-white font-medium rounded-full transition-colors duration-200'
+                class='bg-gdgoc-primary-blue hover:bg-gdgoc-primary-blue/90 inline-flex items-center justify-center rounded-full px-6 py-3 font-medium text-white transition-colors duration-200'
               >
                 Contact Us
               </a>
               <a
                 href='https://gdgoc.tech/member-registration'
-                class='inline-flex items-center justify-center px-6 py-3 bg-gdgoc-primary-green hover:bg-gdgoc-primary-green/90 text-white font-medium rounded-full transition-colors duration-200'
+                class='bg-gdgoc-primary-green hover:bg-gdgoc-primary-green/90 inline-flex items-center justify-center rounded-full px-6 py-3 font-medium text-white transition-colors duration-200'
               >
                 Join Our Community
               </a>
