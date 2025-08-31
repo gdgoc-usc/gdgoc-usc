@@ -197,7 +197,6 @@
     }
   }
 
-  /* Hover effect */
   .slot-lever:hover .lever-grip {
     background: linear-gradient(145deg, #f28b81, #ea4335);
     box-shadow:
@@ -212,7 +211,6 @@
       inset 0 1px 0 rgba(255, 255, 255, 0.6);
   }
 
-  /* Active state */
   .slot-lever:active .lever-arm {
     transform: translateX(-50%) rotate(15deg);
   }
@@ -225,7 +223,6 @@
     background: linear-gradient(145deg, #f9ab00, #e8a317);
   }
 
-  /* Mobile Responsive */
   @media (max-width: 768px) {
     .slot-lever-container {
       width: 60px;
@@ -302,7 +299,6 @@
     }
   }
 
-  /* Reduced Motion */
   @media (prefers-reduced-motion: reduce) {
     .slot-lever {
       transition: none;
@@ -325,7 +321,6 @@
     }
   }
 
-  /* Add glow effect when active */
   .slot-lever.active {
     filter: drop-shadow(0 0 10px rgba(251, 188, 4, 0.8));
   }
@@ -337,7 +332,6 @@
       inset 0 1px 0 rgba(255, 255, 255, 0.5);
   }
 
-  /* Success click feedback */
   .slot-lever.clicked {
     animation: lever-click-feedback 0.3s ease-out;
   }
@@ -362,7 +356,6 @@
     }
   }
 
-  /* Disabled state during spinning */
   .slot-lever.spinning-disabled {
     pointer-events: none;
     opacity: 0.6;
@@ -383,13 +376,11 @@
     const lever = document.querySelector('.slot-lever');
     let isAnimating = false;
     let lastClickTime = 0;
-    const debounceDelay = 200; // Reduced to 200ms for better responsiveness
+    const debounceDelay = 200;
 
     if (lever) {
-      // Add ready state indicator
       lever.setAttribute('data-status', 'ready');
 
-      // Main click handler with debouncing and improved reliability
       const handleLeverClick = (e: Event) => {
         e.preventDefault();
         e.stopPropagation();
@@ -397,40 +388,20 @@
         const currentTime = Date.now();
         const status = lever.getAttribute('data-status');
 
-        // Check if lever is disabled or if we're debouncing
-        if (
-          isAnimating ||
-          status === 'spinning' ||
-          lever.classList.contains('spinning-disabled') ||
-          currentTime - lastClickTime < debounceDelay
-        ) {
-          console.log('🚫 Lever click blocked:', {
-            isAnimating,
-            status,
-            isDisabled: lever.classList.contains('spinning-disabled'),
-            timeSinceLastClick: currentTime - lastClickTime,
-          });
-          return;
-        }
-
         lastClickTime = currentTime;
         isAnimating = true;
         lever.setAttribute('data-status', 'pulling');
 
         console.log('✅ Lever clicked successfully - triggering spin');
 
-        // Add pulling animation and click feedback
         lever.classList.add('pulling', 'active', 'clicked');
 
-        // Trigger spin event immediately
         const event = new CustomEvent('lever-pulled', {
           bubbles: true,
           cancelable: true,
           detail: { timestamp: currentTime },
         });
         document.dispatchEvent(event);
-
-        // Remove animation classes after animation completes
         setTimeout(() => {
           lever.classList.remove('pulling', 'active', 'clicked');
           lever.setAttribute('data-status', 'ready');
@@ -439,11 +410,9 @@
         }, 1000);
       };
 
-      // Use both click and touch events for better mobile support
       lever.addEventListener('click', handleLeverClick, { passive: false });
       lever.addEventListener('touchend', handleLeverClick, { passive: false });
 
-      // Add keyboard support for accessibility
       lever.addEventListener('keydown', (e: Event) => {
         const keyEvent = e as KeyboardEvent;
         if (keyEvent.code === 'Space' || keyEvent.code === 'Enter') {
@@ -452,7 +421,6 @@
         }
       });
 
-      // Visual feedback for mouse events (but don't interfere with clicking)
       lever.addEventListener('mousedown', (e: Event) => {
         const status = lever.getAttribute('data-status');
         if (
@@ -483,7 +451,6 @@
         }
       });
 
-      // Listen for external spin state changes
       document.addEventListener('slot-machine-spinning', () => {
         lever.setAttribute('data-status', 'spinning');
         lever.classList.add('spinning-disabled');
@@ -494,12 +461,10 @@
         lever.classList.remove('spinning-disabled');
       });
 
-      // Prevent context menu on mobile
       lever.addEventListener('contextmenu', (e: Event) => {
         e.preventDefault();
       });
 
-      // Prevent double-tap zoom on mobile
       lever.addEventListener(
         'touchstart',
         (e: Event) => {

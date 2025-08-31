@@ -111,7 +111,6 @@ import '../../styles/slot-machine.css';
     private setupEventListeners() {
       this.spinButton?.addEventListener('click', () => this.spin());
 
-      // Listen for lever pulls with improved handling
       document.addEventListener('lever-pulled', (e: Event) => {
         e.preventDefault();
         this.spin();
@@ -240,7 +239,6 @@ import '../../styles/slot-machine.css';
     }
 
     private showJackpot(winner: MemberWithDepartment) {
-      // Trigger confetti effect
       this.triggerConfetti();
 
       const jackpotDisplay = document.querySelector('.jackpot-display');
