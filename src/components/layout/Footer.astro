@@ -45,11 +45,11 @@ const resources = [
 
 <footer
   id='footer'
-  class='relative bg-white dark:bg-neutral-900 border-t border-gray-200 dark:border-neutral-700'
+  class='relative border-t-2 border-black bg-white dark:border-gray-700 dark:bg-neutral-900'
 >
   <div class='absolute inset-0 overflow-hidden'>
     <div
-      class='absolute inset-0 w-full h-full'
+      class='absolute inset-0 h-full w-full'
       style='background-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.15) 1px, transparent 1px); background-size: 24px 24px; background-position: 0 0;'
     >
     </div>
@@ -57,37 +57,30 @@ const resources = [
 
   <div class='absolute inset-0 overflow-hidden dark:hidden'>
     <div
-      class='absolute inset-0 w-full h-full'
+      class='absolute inset-0 h-full w-full'
       style='background-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.08) 1px, transparent 1px); background-size: 16px 16px; background-position: 12px 12px;'
     >
     </div>
   </div>
 
-  <div class='absolute inset-0 overflow-hidden hidden dark:block'>
+  <div class='absolute inset-0 hidden overflow-hidden dark:block'>
     <div
-      class='absolute inset-0 w-full h-full'
+      class='absolute inset-0 h-full w-full'
       style='background-image: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 1px, transparent 1px); background-size: 24px 24px; background-position: 0 0;'
     >
     </div>
   </div>
 
-  <div class='absolute inset-0 overflow-hidden hidden dark:block'>
+  <div class='absolute inset-0 hidden overflow-hidden dark:block'>
     <div
-      class='absolute inset-0 w-full h-full'
+      class='absolute inset-0 h-full w-full'
       style='background-image: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 1px, transparent 1px); background-size: 16px 16px; background-position: 12px 12px;'
     >
     </div>
   </div>
 
-  <div class='absolute inset-0 opacity-3 dark:opacity-5'>
-    <div
-      class='absolute inset-0 bg-gradient-to-br from-gdgoc-primary-blue via-gdgoc-primary-green to-gdgoc-primary-yellow'
-    >
-    </div>
-  </div>
-
-  <div class='relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16'>
-    <div class='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16'>
+  <div class='relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8'>
+    <div class='grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16'>
       <div class='space-y-8'>
         <div class='flex items-start space-x-4'>
           <Image
@@ -95,35 +88,34 @@ const resources = [
             alt='GDGoC USC Logo'
             width={60}
             height={60}
-            class='w-15 h-15'
+            class='h-15 w-15'
           />
           <div>
             <h2
-              class='text-2xl sm:text-3xl font-bold text-black dark:text-white leading-tight'
+              class='text-2xl leading-tight font-bold text-black sm:text-3xl dark:text-white'
             >
               Google Developer Groups
             </h2>
-            <p class='text-lg text-gdgoc-primary-blue font-normal'>
+            <p class='text-gdgoc-primary-blue text-lg font-normal'>
               University of San Carlos
             </p>
           </div>
         </div>
 
         <div class='space-y-4'>
-          <p class='text-black dark:text-white text-base leading-relaxed'>
+          <p class='text-base leading-relaxed text-black dark:text-white'>
             Building the next generation of developers through technology,
             community, and innovation. Join us in exploring the latest in web
             development, mobile apps, cloud computing, and AI.
           </p>
           <div
-            class='flex items-center space-x-2 text-sm text-black dark:text-white p-4 border-2 border-black dark:border-white rounded-full w-fit'
+            class='flex w-fit items-center space-x-2 rounded-full border-2 border-black p-4 text-sm text-black dark:border-white dark:text-white'
           >
-            <MapPin className='w-4 h-4' />
+            <MapPin className='h-4 w-4' />
             <span>University of San Carlos, Cebu</span>
           </div>
         </div>
 
-        <!-- Social Links -->
         <div class='space-y-4'>
           <h3 class='text-lg font-semibold text-gray-900 dark:text-white'>
             Connect with Us
@@ -136,11 +128,11 @@ const resources = [
                   target='_blank'
                   rel='noopener noreferrer'
                   aria-label={social.label}
-                  class='group flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-neutral-800 hover:bg-gdgoc-primary-blue/10 dark:hover:bg-gdgoc-primary-blue/20 transition-all duration-200 hover:scale-110'
+                  class='group hover:bg-gdgoc-primary-blue/10 dark:hover:bg-gdgoc-primary-blue/20 flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 transition-all duration-200 hover:scale-110 dark:bg-neutral-800'
                 >
                   {social.type === 'simple-icon' ? (
                     <svg
-                      class={`w-6 h-6 ${social.color}`}
+                      class={`h-6 w-6 ${social.color}`}
                       fill='currentColor'
                       viewBox='0 0 24 24'
                     >
@@ -153,7 +145,7 @@ const resources = [
                       />
                     </svg>
                   ) : (
-                    <Globe className={`w-6 h-6 ${social.color}`} />
+                    <Globe className={`h-6 w-6 ${social.color}`} />
                   )}
                 </a>
               ))
@@ -162,10 +154,10 @@ const resources = [
         </div>
       </div>
 
-      <div class='grid grid-cols-2 sm:grid-cols-2 gap-8'>
+      <div class='grid grid-cols-2 gap-8 sm:grid-cols-2'>
         <div class='space-y-4'>
           <h3
-            class='text-lg font-semibold text-gdgoc-primary-green dark:text-white'
+            class='text-gdgoc-primary-green text-lg font-semibold dark:text-white'
           >
             Navigation
           </h3>
@@ -175,7 +167,7 @@ const resources = [
                 <li>
                   <a
                     href={link.href}
-                    class='text-black dark:text-gray-400 hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-secondary-blue transition-colors duration-200 text-sm'
+                    class='hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-secondary-blue text-sm text-black transition-colors duration-200 dark:text-gray-400'
                   >
                     {link.text}
                   </a>
@@ -187,7 +179,7 @@ const resources = [
 
         <div class='space-y-4'>
           <h3
-            class='text-lg font-semibold text-gdgoc-primary-green dark:text-white'
+            class='text-gdgoc-primary-green text-lg font-semibold dark:text-white'
           >
             Quick Links
           </h3>
@@ -201,7 +193,7 @@ const resources = [
                       href={link.href}
                       target='_blank'
                       rel='noopener noreferrer'
-                      class='flex items-center space-x-2 text-black dark:text-gray-400 hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-secondary-blue transition-colors duration-200 text-sm group'
+                      class='hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-secondary-blue group flex items-center space-x-2 text-sm text-black transition-colors duration-200 dark:text-gray-400'
                     >
                       <IconComponent className='w-4 h-4 group-hover:scale-110 transition-transform duration-200' />
                       <span>{link.text}</span>
@@ -215,7 +207,7 @@ const resources = [
 
         <div class='space-y-4 sm:col-span-2'>
           <h3
-            class='text-lg font-semibold text-gdgoc-primary-green dark:text-white'
+            class='text-gdgoc-primary-green text-lg font-semibold dark:text-white'
           >
             Developer Resources
           </h3>
@@ -226,7 +218,7 @@ const resources = [
                   href={resource.href}
                   target='_blank'
                   rel='noopener noreferrer'
-                  class='text-black dark:text-gray-400 hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-secondary-blue transition-colors duration-200 text-sm'
+                  class='hover:text-gdgoc-primary-blue dark:hover:text-gdgoc-secondary-blue text-sm text-black transition-colors duration-200 dark:text-gray-400'
                 >
                   {resource.text}
                 </a>
@@ -237,12 +229,12 @@ const resources = [
       </div>
     </div>
 
-    <div class='mt-12 pt-8 border-t border-gray-200 dark:border-neutral-700'>
+    <div class='mt-12 pt-8'>
       <div
-        class='flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0'
+        class='flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0'
       >
         <div
-          class='flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-500 dark:text-gray-100'
+          class='flex flex-col items-center space-y-2 text-sm text-gray-500 md:flex-row md:space-y-0 md:space-x-6 dark:text-gray-100'
         >
           <p>
             © {currentYear} Google Developer Group - University of San Carlos
@@ -271,7 +263,7 @@ const resources = [
         <div
           class='flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-100'
         >
-          <Code className='w-4 h-4' />
+          <Code className='h-4 w-4' />
           <span>Built with Astro, Typescript and Tailwind.</span>
         </div>
       </div>

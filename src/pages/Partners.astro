@@ -1,11 +1,11 @@
 ---
 import { Image } from 'astro:assets';
-import { brands } from '../config/brands.data';
+import { supporters } from '../config/supporters.data';
 ---
 
 <section
   id='partners'
-  class='relative w-full overflow-hidden min-h-screen flex flex-col items-center py-12 bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-900'
+  class='relative flex min-h-screen w-full flex-col items-center overflow-hidden bg-white py-12 dark:bg-gray-900'
 >
   <div class='absolute inset-0 opacity-20 dark:opacity-10'>
     <div
@@ -15,41 +15,83 @@ import { brands } from '../config/brands.data';
     </div>
   </div>
 
-  <div class='relative z-10 container px-4 sm:px-6 lg:px-8 w-full max-w-7xl'>
-    <div class='text-center my-12'>
+  <div class='relative z-10 container w-full max-w-7xl px-4 sm:px-6 lg:px-8'>
+    <div class='my-12 text-center'>
       <div class='flex flex-col gap-4'>
         <h1
-          class='text-4xl md:text-6xl font-bold text-black dark:text-white mb-4 tracking-tighter'
+          class='mb-4 text-4xl font-bold tracking-tighter text-black md:text-6xl dark:text-white'
         >
-          Our Partners & Sponsors
+          Partners that have supported us
         </h1>
         <p
-          class='text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed'
+          class='mx-auto max-w-3xl text-xl leading-relaxed text-gray-600 dark:text-gray-300'
         >
-          We're grateful for the organizations that support our mission to build
-          a thriving developer community at USC.
+          We're grateful for the organizations, sponsors and partners that
+          support our mission to build a thriving developer community at USC.
         </p>
       </div>
     </div>
   </div>
 
-  <div class='relative z-10 container px-4 sm:px-6 lg:px-8 w-full max-w-7xl'>
+  <div class='relative z-10 container w-full max-w-7xl px-4 sm:px-6 lg:px-8'>
     <div
-      class='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-8 auto-rows-auto'
+      class='grid auto-rows-auto grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-6 md:grid-cols-4 lg:grid-cols-6'
     >
-      <!-- {
-        brands.map(brand => (
-          <div class='flex items-center justify-center'>
+      {
+        supporters.map(supporter => (
+          <div class='flex items-center justify-center rounded-lg border-2 border-black bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-md dark:border-gray-700'>
             <Image
-              src={brand.logo}
-              width={brand.width || 64}
-              height={brand.height || 64}
-              class='w-full h-auto max-w-64 object-contain brightness-0 dark:brightness-0 dark:invert drop-shadow-lg transform group-hover:scale-105 transition-all duration-500'
-              alt={brand.alt}
+              src={supporter.logo}
+              width={120}
+              height={120}
+              class='h-32 w-32 cursor-pointer object-contain transition-transform duration-300 hover:scale-105'
+              alt={supporter.alt}
+              data-supporter-name={supporter.name}
             />
           </div>
         ))
-      } -->
+      }
+    </div>
+
+    <div
+      id='tooltip'
+      class='pointer-events-none fixed z-50 rounded-lg border-2 border-black bg-white px-3 py-2 text-lg whitespace-nowrap text-black opacity-0 transition-opacity duration-200 dark:border-gray-700 dark:bg-gray-800 dark:text-white'
+    >
     </div>
   </div>
 </section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    const tooltip = document.getElementById('tooltip');
+    const images = document.querySelectorAll('[data-supporter-name]');
+
+    if (!tooltip) return;
+
+    images.forEach(function (image) {
+      image.addEventListener('mouseenter', function (e) {
+        const target = e.target;
+        if (!target) return;
+
+        const supporterName = target.getAttribute('data-supporter-name');
+        if (supporterName) {
+          tooltip.textContent = supporterName;
+          tooltip.style.opacity = '1';
+        }
+      });
+
+      image.addEventListener('mouseleave', function () {
+        tooltip.style.opacity = '0';
+      });
+
+      image.addEventListener('mousemove', function (e) {
+        const tooltipRect = tooltip.getBoundingClientRect();
+        const x = e.clientX + 10;
+        const y = e.clientY - tooltipRect.height - 10;
+
+        tooltip.style.left = x + 'px';
+        tooltip.style.top = y + 'px';
+      });
+    });
+  });
+</script>

@@ -38,5 +38,7 @@
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "typescript.preferences.quoteStyle": "single",
-  "javascript.preferences.quoteStyle": "single"
+  "javascript.preferences.quoteStyle": "single",
+  "css.validate": true,
+  "css.lint.unknownAtRules": "ignore"
 }
