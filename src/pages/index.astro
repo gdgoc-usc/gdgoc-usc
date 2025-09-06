@@ -1,11 +1,12 @@
 ---
-import Layout from '@/layouts/Layout.astro';
-import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
-import Hero from './Hero.astro';
-import About from './About.astro';
-import Team from '@/pages/team/Team.astro';
+import Header from '@/components/layout/Header.astro';
+import Layout from '@/layouts/Layout.astro';
 import Partners from '@/pages/partners/Partners.astro';
+import Team from '@/pages/team/Team.astro';
+import About from './About.astro';
+import Calendar from './Calendar.astro';
+import Hero from './Hero.astro';
 ---
 
 <Layout
@@ -18,21 +19,11 @@ import Partners from '@/pages/partners/Partners.astro';
 
     <About />
 
+    <Calendar />
+
     <Partners />
 
     <Team />
-
-    <section
-      id='events'
-      class='flex min-h-screen w-full items-center justify-center bg-white dark:bg-neutral-900'
-    >
-      <div class='container mx-auto px-4 text-center sm:px-6 lg:px-8'>
-        <h2 class='mb-4 text-4xl font-bold text-gray-900 dark:text-white'>
-          Events
-        </h2>
-        <p class='text-xl text-gray-600 dark:text-gray-300'>Coming soon...</p>
-      </div>
-    </section>
   </main>
   <Footer />
 </Layout>
