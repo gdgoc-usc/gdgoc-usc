@@ -1,0 +1,17 @@
+---
+import type { EventType } from '@/config/events.data';
+import Event from './Event.astro';
+
+const { month, events_data } = Astro.props;
+---
+
+<div
+  class='size-[180px] h-full min-h-[180px] bg-white py-2 sm:size-[230px] xl:size-[280px] dark:bg-[#131314]'
+>
+  <h2 class='mb-2 w-full pb-2 text-center text-sm text-black dark:text-white'>
+    {month.toUpperCase()}
+  </h2>
+  <div class='h-full w-full space-y-2'>
+    {events_data.map((eventItem: EventType) => <Event event={eventItem} />)}
+  </div>
+</div>
