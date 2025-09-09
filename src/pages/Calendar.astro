@@ -1,6 +1,5 @@
 ---
-import CalendarItem from '@/components/calendar/CalendarItem.astro';
-import { EVENTS_DATA } from '@/config/events.data';
+import CalendarGrid from '@/components/calendar/CalendarGrid';
 ---
 
 <section
@@ -30,15 +29,8 @@ import { EVENTS_DATA } from '@/config/events.data';
           Stay tuned for our exciting upcoming events and activities!
         </p>
       </div>
-      <div
-        class='mt-8 grid grid-cols-2 items-center justify-center gap-2 md:grid-cols-3 lg:grid-cols-4'
-      >
-        {
-          Object.entries(EVENTS_DATA).map(([month, events]) => (
-            <CalendarItem month={month} events_data={events} />
-          ))
-        }
-      </div>
+
+      <CalendarGrid client:load />
     </div>
   </div>
 </section>
