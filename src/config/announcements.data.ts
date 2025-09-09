@@ -11,17 +11,17 @@ export interface Announcement {
 }
 
 export const announcements: Announcement[] = [
-  {
-    id: 'infosession-rsvp',
-    title: 'InfoSession RSVP',
-    message:
-      'Join our launchpad event this year: InfoSession 2025! Grab your tickets and join us on this exciting event as we introduce to your our vision and events this year.',
-    type: 'success',
-    actionText: 'Register Now',
-    actionUrl: 'https://gdgoc.tech/infosession-2025',
-    imageUrl: '/announcements/Infosession2025.png',
-    isActive: true,
-  },
+  // {
+  //   id: 'infosession-rsvp',
+  //   title: 'InfoSession RSVP',
+  //   message:
+  //     'Join our launchpad event this year: InfoSession 2025! Grab your tickets and join us on this exciting event as we introduce to your our vision and events this year.',
+  //   type: 'success',
+  //   actionText: 'Register Now',
+  //   actionUrl: 'https://gdgoc.tech/infosession-2025',
+  //   imageUrl: '/announcements/Infosession2025.png',
+  //   isActive: true,
+  // },
   {
     id: 'maintenance-notice',
     title: 'Under Construction',
