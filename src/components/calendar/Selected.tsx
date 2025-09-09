@@ -80,8 +80,10 @@ const Selected = ({ event }: { event: EventType }) => {
         </div>
         <div className='w-full'>
           <a
-            href='#'
+            href={`https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${event.date.toISOString().slice(0, 10).replace(/-/g, '')}/${event.date.toISOString().slice(0, 10).replace(/-/g, '')}&details=${encodeURIComponent(event.description)}&location=${encodeURIComponent(event.location)}`}
             className='hover:text-gdgoc-primary-yellow text-sm hover:underline'
+            target='_blank'
+            rel='noopener noreferrer'
           >
             Add to Calendar
           </a>
