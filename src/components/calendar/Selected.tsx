@@ -12,7 +12,7 @@ function formatDateToLongString(date: Date): string {
 
 const Selected = ({ event }: { event: EventType }) => {
   return (
-    <div className='flex h-full w-full flex-col'>
+    <div className='mt-4 flex h-full w-full flex-col'>
       <div className='flex w-full gap-4'>
         <div className='w-full flex-1'>
           <div
