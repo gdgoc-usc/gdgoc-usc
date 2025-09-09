@@ -30,15 +30,6 @@ export const EVENTS_DATA: Record<string, EventType[]> = {
       category: 'org',
     },
     {
-      title: 'Booting Up: Navigating Tech Without Burning Out',
-      date: new Date('2025-09-13T17:00:00'),
-      location: 'USC-TC SMED AVR',
-      description:
-        'Join us for an engaging discussion on how to navigate the tech industry without burning out. Our expert panel will share their insights and strategies for maintaining a healthy work-life balance.',
-      link: 'https://gdg.community.dev/events/details/google-gdg-usc-booting-up-navigating-tech-without-burning-out/',
-      category: 'tech',
-    },
-    {
       title: 'Orbiting the Web: Foundations of Web Development',
       date: new Date('2025-09-27T17:00:00'),
       location: 'USC-TC SMED AVR',
@@ -66,15 +57,6 @@ export const EVENTS_DATA: Record<string, EventType[]> = {
         'Join us for an exciting DevJam event where you can collaborate with fellow developers to build and ship projects together. Whether you are a beginner or an experienced coder, this is a great opportunity to learn, share ideas, and create something amazing!',
       link: 'https://gdg.community.dev/events/details/google-gdg-usc-devjam-build-together-ship-together/',
       category: 'tech',
-    },
-    {
-      title: 'AI and Data Science for Everyone',
-      date: new Date('2025-10-24T17:00:00'),
-      location: 'USC-TC SMED AVR',
-      description:
-        "Join us for an exciting event focused on AI and Data Science! Our expert speakers will share their insights and experiences, and you'll have the opportunity to participate in hands-on workshops and discussions.",
-      link: 'https://gdg.community.dev/events/details/google-gdg-usc-ai-and-data-science-for-everyone/',
-      category: 'ai/ml',
     },
   ],
   nov: [],
