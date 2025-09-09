@@ -2,6 +2,14 @@ import Event from './Event';
 
 import type { EventType } from '@/config/events.data';
 
+function isCurrentMonth(month: string): boolean {
+  const now = new Date();
+  const currentMonthShort = now
+    .toLocaleString('en-US', { month: 'short' })
+    .toLowerCase();
+  return month.toLowerCase() === currentMonthShort;
+}
+
 export default function Month({
   month,
   events_data,
@@ -13,9 +21,13 @@ export default function Month({
 }) {
   return (
     <div className='size-[180px] h-full min-h-[180px] bg-white py-2 sm:size-[230px] xl:size-[280px] dark:bg-[#131314]'>
-      <h2 className='mb-2 w-full pb-2 text-center text-sm text-black dark:text-white'>
-        {month.toUpperCase()}
-      </h2>
+      <div className='mb-2 flex w-full justify-center text-black dark:text-white'>
+        <h2
+          className={`px-2 text-center text-sm ${isCurrentMonth(month) ? 'rounded-full bg-[#A8C7FA] text-black' : ''} sm:text-base`}
+        >
+          {month.toUpperCase()}
+        </h2>
+      </div>
       <div className='h-full w-full space-y-2'>
         {events_data.map((eventItem, i) => (
           <Event
