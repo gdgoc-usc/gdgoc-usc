@@ -23,7 +23,7 @@ export default function Month({
     <div className='size-[180px] h-full min-h-[180px] bg-white py-2 sm:size-[230px] xl:size-[280px] dark:bg-[#131314]'>
       <div className='mb-2 flex w-full justify-center text-black dark:text-white'>
         <h2
-          className={`px-2 text-center text-sm ${isCurrentMonth(month) ? 'rounded-full bg-[#A8C7FA] text-black' : ''} sm:text-base`}
+          className={`px-2 text-center text-sm ${isCurrentMonth(month) ? 'rounded-full bg-[#0B57D0] text-white dark:bg-[#A8C7FA] dark:text-black' : ''} sm:text-base`}
         >
           {month.toUpperCase()}
         </h2>
