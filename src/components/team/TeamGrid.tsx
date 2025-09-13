@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { getAllMembersByRoleHierarchy } from '@/utils/teamUtils';
 import TeamMemberSkeleton from '@/components/skeleton/TeamMemberSkeleton';
-import type { MemberWithDepartment } from '@/utils/teamUtils';
 import type { TeamYearData } from '@/config/team-manager';
+import type { MemberWithDepartment } from '@/utils/teamUtils';
+import { getAllMembersByRoleHierarchy } from '@/utils/teamUtils';
+import React, { useEffect, useState } from 'react';
 
 interface TeamMember extends MemberWithDepartment {
   displayName: string;
@@ -38,16 +38,16 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
     <div
       className={`team-member-card ${member.departmentClass} ${
         member.imageUrl && !imageError ? 'has-image' : ''
-      } bg-gradient-to-br from-slate-50 to-slate-200 dark:from-gray-800 dark:to-gray-900 border-2 border-black dark:border-gray-700 relative`}
+      } relative border-2 border-black bg-gradient-to-br from-slate-50 to-slate-200 dark:border-gray-700 dark:from-gray-800 dark:to-gray-900`}
       style={{ '--hover-bg': 'url(/gdgoc_pp_bg.png)' } as React.CSSProperties}
     >
-      <div className='w-full aspect-[3/4] relative'>
+      <div className='relative aspect-[3/4] w-full'>
         {member.imageUrl && !imageError ? (
           <>
             {!imageLoaded && (
               <div className='absolute inset-0 z-10 bg-gray-300 dark:bg-gray-700'>
-                <div className='w-full h-full bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 dark:from-gray-600 dark:via-gray-700 dark:to-gray-800 relative overflow-hidden'>
-                  <div className='absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/30 dark:via-white/10 to-transparent'></div>
+                <div className='relative h-full w-full overflow-hidden bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 dark:from-gray-600 dark:via-gray-700 dark:to-gray-800'>
+                  <div className='absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent dark:via-white/10'></div>
                 </div>
               </div>
             )}
@@ -55,7 +55,7 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
             <img
               src={member.imageUrl}
               alt={`${member.displayName} - ${member.role}`}
-              className={`team-member-image absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
+              className={`team-member-image absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
               loading='lazy'
@@ -66,9 +66,9 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
             <div className='team-member-overlay'>
               {!imageLoaded && (
                 <div className='absolute inset-0 flex flex-col justify-end p-6'>
-                  <div className='inline-block h-5 w-20 bg-gray-400/80 rounded-full mb-2 animate-pulse'></div>
-                  <div className='h-5 w-32 bg-gray-300/90 rounded mb-1 animate-pulse'></div>
-                  <div className='h-4 w-24 bg-gray-400/80 rounded animate-pulse'></div>
+                  <div className='mb-2 inline-block h-5 w-20 animate-pulse rounded-full bg-gray-400/80'></div>
+                  <div className='mb-1 h-5 w-32 animate-pulse rounded bg-gray-300/90'></div>
+                  <div className='h-4 w-24 animate-pulse rounded bg-gray-400/80'></div>
                 </div>
               )}
               <div
@@ -84,7 +84,7 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
           </>
         ) : (
           <div
-            className='placeholder-card w-full h-full'
+            className='placeholder-card h-full w-full'
             style={
               {
                 backgroundImage: 'url(/gdgoc_bg_3.webp)',
@@ -98,7 +98,7 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
               <h2 className='text-2xl font-bold text-black drop-shadow-lg'>
                 Coming Soon!
               </h2>
-              <p className='text-black text-xs'>Hover to see info.</p>
+              <p className='text-xs text-black'>Hover to see info.</p>
             </div>
             <div className='team-member-overlay-no-image'>
               <div className={`department-badge ${member.departmentClass}`}>
@@ -176,7 +176,7 @@ const TeamGrid: React.FC<TeamGridProps> = ({ teamData }) => {
   }, []);
 
   return (
-    <div className='w-full relative'>
+    <div className='relative w-full'>
       <div className='team-grid'>
         {isLoading
           ? Array.from({ length: 12 }, (_, index) => (
