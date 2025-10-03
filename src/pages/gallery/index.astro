@@ -1,0 +1,46 @@
+---
+import AlbumGrid from '@/components/gallery/AlbumGrid';
+import Footer from '@/components/layout/Footer.astro';
+import Header from '@/components/layout/Header.astro';
+import Layout from '@/layouts/Layout.astro';
+import { Image } from 'astro:assets';
+---
+
+<Layout
+  title='GDGoC USC - Google Developer Groups on Campus'
+  description='Join the Google Developer Groups on Campus at University of San Carlos. Learn, build, and connect with fellow developers.'
+>
+  <Header />
+  <section
+    class='relative flex min-h-screen w-full flex-col items-center justify-center bg-white py-12 dark:bg-black'
+    style='background-image: url(/gdgoc_bg_1.webp); background-size: cover; background-position: center; background-attachment: fixed;'
+  >
+    <div class='mt-10'>
+      <div class='flex justify-center sm:md:lg:xl:mb-4'>
+        <Image
+          src='/gdgoc_logo.svg'
+          alt='GDGoC Logo'
+          width={80}
+          height={80}
+          class='h-24 w-24 md:h-20 md:w-20'
+        />
+      </div>
+      <div class='text-center'>
+        <h1
+          class='mb-4 text-4xl font-bold tracking-tighter text-black md:text-6xl dark:text-white'
+        >
+          Gallery
+        </h1>
+        <p
+          class='mx-auto mb-4 max-w-4xl text-lg leading-relaxed text-gray-700 sm:text-xl md:text-2xl dark:text-gray-200'
+        >
+          Fueled by Code, powered by people. A look into what has happened in
+          the community. we don't only do stuff offline, but we also do it
+          online.
+        </p>
+      </div>
+    </div>
+    <AlbumGrid client:load />
+  </section>
+  <Footer />
+</Layout>
