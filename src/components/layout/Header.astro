@@ -7,6 +7,7 @@ import { Menu, X, UserPlus } from 'lucide-react';
 import HeaderLink from './HeaderLink.astro';
 import MobileHeaderLink from './MobileHeaderLink.astro';
 import AnnouncementModal from '../AnnouncementModal.tsx';
+import MoreDropdown from './MoreDropdown';
 
 const navLinks = [
   { href: '#about', text: 'About GDG' },
@@ -51,7 +52,7 @@ const navLinks = [
                 <HeaderLink href={link.href} text={link.text} />
               ))
             }
-            <TeamDropdown client:load currentPath={Astro.url.pathname} />
+            <MoreDropdown client:load currentPath={Astro.url.pathname} />
           </nav>
         </div>
 
@@ -87,6 +88,7 @@ const navLinks = [
               <MobileHeaderLink href={link.href} text={link.text} />
             ))
           }
+          <MobileHeaderLink href={'/gallery'} text={'Gallery'} />
           <MobileTeamDropdown client:load currentPath={Astro.url.pathname} />
           <a
             href='#membership'
