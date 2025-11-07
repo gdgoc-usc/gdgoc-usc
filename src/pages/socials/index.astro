@@ -10,23 +10,23 @@ import SocialsLayout from '@/layouts/SocialsLayout.astro';
   description='Join the Google Developer Groups on Campus at University of San Carlos. Learn, build, and connect with fellow developers.'
 >
   <body
-    class='min-h-screen bg-gradient-to-br from-white via-gray-50 to-blue-50 dark:bg-black transition-colors duration-300'
+    class='min-h-screen bg-gradient-to-br from-white via-gray-50 to-blue-50 transition-colors duration-300 dark:bg-black'
   >
     <div class='absolute top-4 right-4 z-10'>
       <ThemeSwitcher client:load />
     </div>
 
-    <div class='min-h-screen flex items-center justify-center px-4 py-8'>
-      <div class='w-full max-w-md mx-auto space-y-8'>
-        <div class='text-center space-y-4'>
-          <div class='w-24 h-24 mx-auto rounded-full bg-black p-[0.1rem]'>
+    <div class='flex min-h-screen items-center justify-center px-4 py-8'>
+      <div class='mx-auto w-full max-w-md space-y-8'>
+        <div class='space-y-4 text-center'>
+          <div class='mx-auto h-24 w-24 rounded-full bg-black p-[0.1rem]'>
             <div
-              class='w-full h-full rounded-full bg-white dark:bg-black flex items-center justify-center overflow-hidden'
+              class='flex h-full w-full items-center justify-center overflow-hidden rounded-full bg-white dark:bg-black'
             >
               <img
                 src='/new_logo.svg'
                 alt='GDG on Campus USC Logo'
-                class='w-16 h-16 object-contain'
+                class='h-16 w-16 object-contain'
               />
             </div>
           </div>
@@ -35,13 +35,13 @@ import SocialsLayout from '@/layouts/SocialsLayout.astro';
             <h1 class='text-2xl font-extrabold text-black dark:text-white'>
               Google Developer Groups
             </h1>
-            <p class='text-gray-600 dark:text-gray-300 text-sm leading-relaxed'>
+            <p class='text-sm leading-relaxed text-gray-600 dark:text-gray-300'>
               University of San Carlos
             </p>
           </div>
         </div>
 
-        <div class='space-y-2 flex flex-col gap-4'>
+        <div class='flex flex-col gap-4 space-y-2'>
           {
             socialLinks.map(social => (
               <SocialLinkCard social={social} client:load />
@@ -50,7 +50,7 @@ import SocialsLayout from '@/layouts/SocialsLayout.astro';
         </div>
 
         <!-- Footer -->
-        <div class='text-center pt-4'>
+        <div class='pt-4 text-center'>
           <p class='text-xs text-gray-500 dark:text-gray-400'>
             © 2025 Google Developer Groups on Campus - University of San Carlos
           </p>

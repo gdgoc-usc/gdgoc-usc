@@ -7,26 +7,26 @@ import { socialLinks } from '@/config/social.data';
 
 <section
   id='hero'
-  class='relative min-h-screen w-full flex items-center justify-center overflow-hidden'
+  class='relative flex min-h-screen w-full items-center justify-center overflow-hidden'
 >
   <!-- This one is for mobile view, since I kinda noticed that the large size SVG is laggy -->
   <div
-    class='absolute inset-0 bg-cover !opacity-40 bg-[position:left_center] sm:bg-[length:120%] sm:bg-[position:left_center] md:bg-cover md:bg-center bg-no-repeat animate-bg-reveal md:hidden'
+    class='animate-bg-reveal absolute inset-0 bg-cover bg-[position:left_center] bg-no-repeat !opacity-40 sm:bg-[length:120%] sm:bg-[position:left_center] md:hidden md:bg-cover md:bg-center'
     style="background-image: url('/gdgoc_bg_1.webp');"
   >
   </div>
   <!-- This is for desktop view -->
   <div
-    class='absolute inset-0 bg-cover bg-[position:left_center] sm:bg-[length:120%] sm:bg-[position:left_center] md:bg-cover md:bg-center bg-no-repeat animate-bg-reveal hidden md:block'
+    class='animate-bg-reveal absolute inset-0 hidden bg-cover bg-[position:left_center] bg-no-repeat sm:bg-[length:120%] sm:bg-[position:left_center] md:block md:bg-cover md:bg-center'
     style="background-image: url('/gdgoc_bg_1.webp');"
   >
   </div>
   <div class='relative z-10 container mx-auto px-4 sm:px-6 lg:px-8'>
-    <div class='flex flex-col items-center justify-center max-w-4xl mx-auto'>
-      <div class='flex flex-col justify-center text-center items-center w-full'>
+    <div class='mx-auto flex max-w-4xl flex-col items-center justify-center'>
+      <div class='flex w-full flex-col items-center justify-center text-center'>
         <div class='space-y-6'>
           <AnimatedHeroText
-            className='text-center text-5xl md:text-7xl lg:text-8xl font-medium text-black dark:text-white leading-[0.99] tracking-[-1.44px] lg:tracking-[-2.72px] text-balance mb-6'
+            className='mb-6 text-center text-5xl leading-[0.99] font-medium tracking-[-1.44px] text-balance text-black md:text-7xl lg:text-8xl lg:tracking-[-2.72px] dark:text-white'
             client:load
           >
             <span class='text-gdgoc-primary-blue'>G</span><span
@@ -39,7 +39,7 @@ import { socialLinks } from '@/config/social.data';
             <span class='text-black dark:text-gray-200'>Developer Groups</span>
 
             <AnimatedHeroText
-              className='inline-flex items-center gap-2 px-6 py-3 border-black dark:border-white border-2 bg-gdgoc-primary-green sm:md:lg:bg-transparent rounded-full mt-6'
+              className='bg-gdgoc-primary-green mt-6 inline-flex items-center gap-2 rounded-full border-2 border-black px-6 py-3 sm:md:lg:bg-transparent dark:border-white'
               delay={0.2}
               client:load
             >
@@ -48,32 +48,32 @@ import { socialLinks } from '@/config/social.data';
                 alt='USC Logo'
                 width={64}
                 height={64}
-                class='w-8 h-8 md:lg:w-10 md:lg:h-10 drop-shadow-2xl transform group-hover:rotate-3 transition-all duration-500'
+                class='h-8 w-8 transform drop-shadow-2xl transition-all duration-500 group-hover:rotate-3 md:lg:h-10 md:lg:w-10'
               />
               <h3
-                class='text-sm lg:text-lg font-medium text-white dark:text-white sm:md:lg:text-black tracking-normal'
+                class='text-sm font-medium tracking-normal text-white lg:text-lg sm:md:lg:text-black dark:text-white'
               >
                 University of San Carlos
               </h3>
             </AnimatedHeroText>
 
-            <div class='flex justify-center items-center gap-4 mt-8'>
+            <div class='mt-8 flex items-center justify-center gap-4'>
               {
                 socialLinks.map(link => (
                   <a
                     href={link.href}
                     target='_blank'
                     rel='noopener noreferrer'
-                    class='group p-3 rounded-full dark:bg-white/5 backdrop-blur-sm border-2 border-black dark:border-white/20 dark:hover:bg-white/20 dark:hover:border-white/40 transition-all duration-300 hover:scale-110'
+                    class='group rounded-full border-2 border-black p-3 backdrop-blur-sm transition-all duration-300 hover:scale-110 dark:border-white/20 dark:bg-white/5 dark:hover:border-white/40 dark:hover:bg-white/20'
                     aria-label={link.label}
                   >
                     {link.type === 'lucide' ? (
                       <Globe
-                        className={`w-6 h-6 ${link.color} transition-colors duration-300`}
+                        className={`h-6 w-6 ${link.color} transition-colors duration-300`}
                       />
                     ) : (
                       <svg
-                        class={`w-6 h-6 ${link.color} transition-colors duration-300`}
+                        class={`h-6 w-6 ${link.color} transition-colors duration-300`}
                         fill='currentColor'
                         viewBox='0 0 24 24'
                         set:html={
@@ -88,7 +88,7 @@ import { socialLinks } from '@/config/social.data';
           </AnimatedHeroText>
 
           <AnimatedHeroText
-            className='text-base lg:text-lg text-gray-700 dark:text-gray-100 max-w-lg mx-auto leading-relaxed mt-6'
+            className='mx-auto mt-6 max-w-lg text-base leading-relaxed text-gray-700 lg:text-lg dark:text-gray-100'
             delay={0.4}
             client:load
           >
@@ -97,18 +97,18 @@ import { socialLinks } from '@/config/social.data';
           </AnimatedHeroText>
 
           <AnimatedHeroText
-            className='flex justify-center mt-6'
+            className='mt-6 flex justify-center'
             delay={0.6}
             client:load
           >
             <button
               onclick='scrollToNextSection()'
-              class='group relative inline-flex items-center gap-3 px-8 py-4 md:px-10 md:py-5 border-2 border-black dark:border-white bg-transparent text-black dark:text-white hover:bg-gdgoc-primary-green dark:hover:bg-gdgoc-primary-blue hover:text-white font-semibold rounded-full transition-all duration-200 transform hover:cursor-pointer overflow-hidden'
+              class='group hover:bg-gdgoc-primary-green dark:hover:bg-gdgoc-primary-blue relative inline-flex transform items-center gap-3 overflow-hidden rounded-full border-2 border-black bg-transparent px-8 py-4 font-semibold text-black transition-all duration-200 hover:cursor-pointer hover:text-white md:px-10 md:py-5 dark:border-white dark:text-white'
               aria-label='Learn more about GDGoC USC'
             >
               <span class='relative z-10'>Learn More</span>
               <ChevronDown
-                className='relative z-10 w-5 h-5 transition-transform duration-300 group-hover:-rotate-90'
+                className='relative z-10 h-5 w-5 transition-transform duration-300 group-hover:-rotate-90'
                 client:load
               />
             </button>

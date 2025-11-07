@@ -61,34 +61,34 @@ export default function SettingsDropdown() {
     <div className='relative' ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className='flex items-center gap-1 p-2 rounded-lg hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 group'
+        className='group flex items-center gap-1 rounded-lg p-2 transition-colors duration-200 hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800'
         aria-label='Settings'
         aria-expanded={isOpen}
         suppressHydrationWarning
       >
-        <Settings className='w-5 h-5 group-hover:rotate-90 duration-300' />
+        <Settings className='h-5 w-5 duration-300 group-hover:rotate-90' />
         <ChevronDown
-          className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
           suppressHydrationWarning
         />
       </button>
 
       {isOpen && (
-        <div className='absolute right-0 top-full mt-2 w-48 bg-white dark:bg-black rounded-lg border-2 border-black dark:border-gray-700 z-[100]'>
+        <div className='absolute top-full right-0 z-[100] mt-2 w-48 rounded-lg border-2 border-black bg-white dark:border-gray-700 dark:bg-black'>
           <div>
             <button
               onClick={toggleTheme}
-              className='flex items-center justify-between rounded-t-md hover:rounded-t-md w-full p-4 text-left hover:cursor-pointer hover:bg-gdgoc-primary-blue hover:text-white dark:hover:bg-gray-700 transition-colors duration-200'
+              className='hover:bg-gdgoc-primary-blue flex w-full items-center justify-between rounded-t-md p-4 text-left transition-colors duration-200 hover:cursor-pointer hover:rounded-t-md hover:text-white dark:hover:bg-gray-700'
             >
               <span className='flex items-center gap-3'>
-                <div className='w-5 h-5 relative'>
+                <div className='relative h-5 w-5'>
                   <Sun
-                    className={`absolute inset-0 w-5 h-5 transition-opacity duration-200 ${
+                    className={`absolute inset-0 h-5 w-5 transition-opacity duration-200 ${
                       theme === 'light' ? 'opacity-100' : 'opacity-0'
                     }`}
                   />
                   <Moon
-                    className={`absolute inset-0 w-5 h-5 transition-opacity duration-200 ${
+                    className={`absolute inset-0 h-5 w-5 transition-opacity duration-200 ${
                       theme === 'dark' ? 'opacity-100' : 'opacity-0'
                     }`}
                   />
@@ -103,13 +103,13 @@ export default function SettingsDropdown() {
 
             <button
               onClick={toggleAnimations}
-              className='flex items-center justify-between rounded-b-md hover:rounded-b-md w-full p-4 text-left hover:cursor-pointer hover:bg-gdgoc-primary-blue hover:text-white dark:hover:bg-gray-700 transition-colors duration-200 group'
+              className='hover:bg-gdgoc-primary-blue group flex w-full items-center justify-between rounded-b-md p-4 text-left transition-colors duration-200 hover:cursor-pointer hover:rounded-b-md hover:text-white dark:hover:bg-gray-700'
             >
               <span className='flex items-center gap-3'>
                 {animationsEnabled ? (
-                  <Zap className='w-5 h-5 text-black dark:text-white group-hover:text-white' />
+                  <Zap className='h-5 w-5 text-black group-hover:text-white dark:text-white' />
                 ) : (
-                  <ZapOff className='w-5 h-5 text-black dark:text-white group-hover:text-white' />
+                  <ZapOff className='h-5 w-5 text-black group-hover:text-white dark:text-white' />
                 )}
                 <span className='text-sm'>
                   {animationsEnabled ? 'Animations On' : 'Animations Off'}

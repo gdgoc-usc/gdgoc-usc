@@ -19,17 +19,17 @@ export default function ThemeSwitcher() {
   return (
     <button
       onClick={toggleTheme}
-      className='relative p-2 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-800 transition-colors duration-200 hover:cursor-pointer'
+      className='relative rounded-lg p-2 transition-colors duration-200 hover:cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-800'
       aria-label='Toggle theme'
     >
-      <div className='w-5 h-5 relative'>
+      <div className='relative h-5 w-5'>
         <Sun
-          className={`absolute inset-0 w-5 h-5 transition-opacity duration-200 ${
+          className={`absolute inset-0 h-5 w-5 transition-opacity duration-200 ${
             theme === 'light' ? 'opacity-100' : 'opacity-0'
           }`}
         />
         <Moon
-          className={`absolute inset-0 w-5 h-5 transition-opacity duration-200 ${
+          className={`absolute inset-0 h-5 w-5 transition-opacity duration-200 ${
             theme === 'dark' ? 'opacity-100' : 'opacity-0'
           }`}
         />

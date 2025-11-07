@@ -89,17 +89,17 @@ const GridMotion: FC<GridMotionProps> = ({
   return (
     <div ref={gridRef} className='h-full w-full overflow-hidden'>
       <section
-        className='w-full h-screen overflow-hidden relative flex items-center justify-center'
+        className='relative flex h-screen w-full items-center justify-center overflow-hidden'
         style={{
           background: `radial-gradient(circle, ${isDark ? 'black' : 'white'} 0%, transparent 100%)`,
         }}
       >
-        <div className='absolute inset-0 pointer-events-none z-[4] bg-[length:250px]'></div>
-        <div className='gap-4 flex-none relative w-[150vw] h-[150vh] grid grid-rows-4 grid-cols-1 rotate-[-15deg] origin-center z-[2]'>
+        <div className='pointer-events-none absolute inset-0 z-[4] bg-[length:250px]'></div>
+        <div className='relative z-[2] grid h-[150vh] w-[150vw] flex-none origin-center rotate-[-15deg] grid-cols-1 grid-rows-4 gap-4'>
           {Array.from({ length: 4 }, (_, rowIndex) => (
             <div
               key={rowIndex}
-              className='grid gap-4 grid-cols-7'
+              className='grid grid-cols-7 gap-4'
               style={{ willChange: 'transform, filter' }}
               ref={el => {
                 if (el) rowRefs.current[rowIndex] = el;
@@ -109,16 +109,16 @@ const GridMotion: FC<GridMotionProps> = ({
                 const content = combinedItems[rowIndex * 7 + itemIndex];
                 return (
                   <div key={itemIndex} className='relative'>
-                    <div className='relative w-full h-full overflow-hidden rounded-[10px] bg-white dark:bg-[#111] flex items-center justify-center text-black dark:text-white text-[1.5rem]'>
+                    <div className='relative flex h-full w-full items-center justify-center overflow-hidden rounded-[10px] bg-white text-[1.5rem] text-black dark:bg-[#111] dark:text-white'>
                       {typeof content === 'string' &&
                       (content.startsWith('http') ||
                         content.startsWith('/')) ? (
                         <div
-                          className='w-full h-full bg-cover bg-center absolute top-0 left-0'
+                          className='absolute top-0 left-0 h-full w-full bg-cover bg-center'
                           style={{ backgroundImage: `url(${content})` }}
                         ></div>
                       ) : (
-                        <div className='p-4 text-center z-[1]'>{content}</div>
+                        <div className='z-[1] p-4 text-center'>{content}</div>
                       )}
                     </div>
                   </div>
@@ -127,7 +127,7 @@ const GridMotion: FC<GridMotionProps> = ({
             </div>
           ))}
         </div>
-        <div className='relative w-full h-full top-0 left-0 pointer-events-none'></div>
+        <div className='pointer-events-none relative top-0 left-0 h-full w-full'></div>
       </section>
     </div>
   );

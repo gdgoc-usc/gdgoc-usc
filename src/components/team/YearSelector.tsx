@@ -49,34 +49,34 @@ const YearSelector: React.FC<YearSelectorProps> = ({
     <div className='relative mb-6 sm:md:lg:xl:mb-4' ref={dropdownRef}>
       <button
         onClick={handleToggle}
-        className='flex items-center gap-3 px-6 py-3 bg-white dark:bg-gray-800 border-2 border-gdgoc-primary-blue dark:border-gray-700 text-gdgoc-primary-blue hover:bg-gdgoc-primary-blue hover:text-white dark:hover:text-white transition-all duration-200 font-medium rounded-full hover:shadow-md hover:cursor-pointer'
+        className='border-gdgoc-primary-blue text-gdgoc-primary-blue hover:bg-gdgoc-primary-blue flex items-center gap-3 rounded-full border-2 bg-white px-6 py-3 font-medium transition-all duration-200 hover:cursor-pointer hover:text-white hover:shadow-md dark:border-gray-700 dark:bg-gray-800 dark:hover:text-white'
         aria-expanded={isOpen}
         aria-haspopup='true'
       >
-        <Calendar className='w-5 h-5' />
+        <Calendar className='h-5 w-5' />
         <span className='text-lg'>{currentYearLabel}</span>
         <ChevronDown
-          className={`w-5 h-5 transition-transform duration-200 ${
+          className={`h-5 w-5 transition-transform duration-200 ${
             isOpen ? 'rotate-180' : ''
           }`}
         />
       </button>
 
       {isOpen && (
-        <div className='absolute top-full left-0 mt-2 w-full min-w-[250px] bg-white dark:bg-gray-800 rounded-lg border-2 border-black dark:border-gray-700 z-[100] overflow-hidden'>
+        <div className='absolute top-full left-0 z-[100] mt-2 w-full min-w-[250px] overflow-hidden rounded-lg border-2 border-black bg-white dark:border-gray-700 dark:bg-gray-800'>
           <div>
             {availableYears.map(year => (
               <button
                 key={year.id}
                 onClick={() => handleYearSelect(year.id)}
-                className={`w-full text-left px-6 py-3 transition-colors duration-200 hover:cursor-pointer ${
+                className={`w-full px-6 py-3 text-left transition-colors duration-200 hover:cursor-pointer ${
                   currentYear === year.id
-                    ? 'bg-gdgoc-primary-blue text-white font-medium'
-                    : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    ? 'bg-gdgoc-primary-blue font-medium text-white'
+                    : 'text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
                 }`}
               >
                 <div className='flex items-center gap-3'>
-                  <Calendar className='w-4 h-4' />
+                  <Calendar className='h-4 w-4' />
                   <span>{year.label}</span>
                 </div>
               </button>

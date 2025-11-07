@@ -35,22 +35,22 @@ export default function AnimationToggle() {
         onClick={toggleAnimations}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
-        className='p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200'
+        className='rounded-lg p-2 transition-colors duration-200 hover:bg-gray-100 dark:hover:bg-gray-800'
         aria-label={
           animationsEnabled ? 'Disable animations' : 'Enable animations'
         }
       >
         {animationsEnabled ? (
-          <Zap className='w-5 h-5 text-gdgoc-primary-blue' />
+          <Zap className='text-gdgoc-primary-blue h-5 w-5' />
         ) : (
-          <ZapOff className='w-5 h-5 text-gray-500' />
+          <ZapOff className='h-5 w-5 text-gray-500' />
         )}
       </button>
 
       {showTooltip && (
-        <div className='absolute left-full top-1/2 transform -translate-y-1/2 ml-2 px-3 py-2 text-sm text-white bg-gray-900 dark:bg-gray-700 rounded-lg shadow-lg whitespace-nowrap z-[60] hidden sm:block'>
+        <div className='absolute top-1/2 left-full z-[60] ml-2 hidden -translate-y-1/2 transform rounded-lg bg-gray-900 px-3 py-2 text-sm whitespace-nowrap text-white shadow-lg sm:block dark:bg-gray-700'>
           {animationsEnabled ? 'Disable animations' : 'Enable animations'}
-          <div className='absolute right-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-r-4 border-transparent border-r-gray-900 dark:border-r-gray-700'></div>
+          <div className='absolute top-1/2 right-full h-0 w-0 -translate-y-1/2 transform border-t-4 border-r-4 border-b-4 border-transparent border-r-gray-900 dark:border-r-gray-700'></div>
         </div>
       )}
     </div>

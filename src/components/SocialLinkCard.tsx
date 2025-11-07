@@ -33,13 +33,13 @@ export default function SocialLinkCard({ social }: SocialLinkCardProps) {
       target='_blank'
       rel='noopener noreferrer'
       aria-label={social.label}
-      className='group block w-full p-4 rounded-2xl bg-white dark:bg-black backdrop-blur-sm border border-black dark:border-neutral-800 hover:shadow-[4px_5px_0_0] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]'
+      className='group block w-full rounded-2xl border border-black bg-white p-4 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-[4px_5px_0_0] active:scale-[0.98] dark:border-neutral-800 dark:bg-black'
     >
       <div className='flex items-center space-x-4'>
-        <div className='flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br bg-gray-100 dark:bg-neutral-800 flex items-center justify-center border-2 border-transparent group-hover:border-black transition-all duration-300'>
+        <div className='flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border-2 border-transparent bg-gray-100 bg-gradient-to-br transition-all duration-300 group-hover:border-black dark:bg-neutral-800'>
           {social.type === 'simple-icon' && typeof social.icon === 'object' ? (
             <svg
-              className={`w-6 h-6 ${social.color} transition-colors duration-300`}
+              className={`h-6 w-6 ${social.color} transition-colors duration-300`}
               viewBox='0 0 24 24'
               fill='currentColor'
             >
@@ -47,23 +47,23 @@ export default function SocialLinkCard({ social }: SocialLinkCardProps) {
             </svg>
           ) : (
             <Globe
-              className={`w-6 h-6 ${social.color} transition-colors duration-300`}
+              className={`h-6 w-6 ${social.color} transition-colors duration-300`}
             />
           )}
         </div>
 
-        <div className='flex-1 min-w-0'>
-          <h3 className='text-lg font-semibold text-gray-900 dark:text-white transition-colors duration-300'>
+        <div className='min-w-0 flex-1'>
+          <h3 className='text-lg font-semibold text-gray-900 transition-colors duration-300 dark:text-white'>
             {getSocialName()}
           </h3>
-          <p className='text-sm text-gray-500 dark:text-gray-400 truncate'>
+          <p className='truncate text-sm text-gray-500 dark:text-gray-400'>
             {getCleanUrl()}
           </p>
         </div>
 
         <div className='flex-shrink-0'>
           <svg
-            className='w-5 h-5 text-black dark:text-gray-500 group-hover:translate-x-2 transition-all duration-300'
+            className='h-5 w-5 text-black transition-all duration-300 group-hover:translate-x-2 dark:text-gray-500'
             fill='none'
             stroke='currentColor'
             viewBox='0 0 24 24'

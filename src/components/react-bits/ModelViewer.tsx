@@ -85,7 +85,7 @@ const Loader: FC<{ placeholderSrc?: string }> = ({ placeholderSrc }) => {
           src={placeholderSrc}
           width={128}
           height={128}
-          className='blur-lg rounded-lg'
+          className='rounded-lg blur-lg'
         />
       ) : (
         `${Math.round(progress)} %`
@@ -506,7 +506,7 @@ const ModelViewer: FC<ViewerProps> = ({
       {showScreenshotButton && (
         <button
           onClick={capture}
-          className='absolute top-4 right-4 z-10 cursor-pointer px-4 py-2 border border-white rounded-xl bg-transparent text-white hover:bg-white hover:text-black transition-colors'
+          className='absolute top-4 right-4 z-10 cursor-pointer rounded-xl border border-white bg-transparent px-4 py-2 text-white transition-colors hover:bg-white hover:text-black'
         >
           Take Screenshot
         </button>
