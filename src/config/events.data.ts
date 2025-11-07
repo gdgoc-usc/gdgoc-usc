@@ -60,28 +60,28 @@ export const EVENTS_DATA: Record<string, EventType[]> = {
     },
   ],
   oct: [
-    {
-      title: 'Git Ready, Blastoff: Collaboration at Light Speed',
-      slug: 'git-ready-blastoff-collaboration-at-light-speed',
-      date: new Date('2025-10-18'),
-      location: 'TBA',
-      description:
-        "This workshop is a crash course on GitHub, basic Git workflows, and collaborative project-building, specifically tailored to how actual Development Team flows. Expect less of a lecture and more of a survival guide—built around the kinds of projects you'll face in Web Dev I and Info Management I and II. The audience will also get into Project Management Tips and Tools.",
-      category: 'tech',
-      pubmat: '/events/not-aired.png', // Placeholder image
-      alt: 'Git Ready, Blastoff: Collaboration at Light Speed',
-    },
-    {
-      title: 'DevJam: Build Together, Ship Together',
-      slug: 'devjam-build-together-ship-together',
-      date: new Date('2025-10-23'),
-      location: 'TBA',
-      description:
-        "DevJam is the culminating event of the Headstart series—a two-day coding sprint designed to simulate a real-world team development cycle. It's not just about applying what participants learned in HTML, CSS, and JS—it's about working with other people, solving problems under constraints, and pushing through from idea to something that displays on screen.",
-      category: 'tech',
-      pubmat: '/events/not-aired.png', // Placeholder image
-      alt: 'DevJam: Build Together, Ship Together',
-    },
+    // {
+    //   title: 'Git Ready, Blastoff: Collaboration at Light Speed',
+    //   slug: 'git-ready-blastoff-collaboration-at-light-speed',
+    //   date: new Date('2025-10-18'),
+    //   location: 'TBA',
+    //   description:
+    //     "This workshop is a crash course on GitHub, basic Git workflows, and collaborative project-building, specifically tailored to how actual Development Team flows. Expect less of a lecture and more of a survival guide—built around the kinds of projects you'll face in Web Dev I and Info Management I and II. The audience will also get into Project Management Tips and Tools.",
+    //   category: 'tech',
+    //   pubmat: '/events/not-aired.png', // Placeholder image
+    //   alt: 'Git Ready, Blastoff: Collaboration at Light Speed',
+    // },
+    // {
+    //   title: 'DevJam: Build Together, Ship Together',
+    //   slug: 'devjam-build-together-ship-together',
+    //   date: new Date('2025-10-23'),
+    //   location: 'TBA',
+    //   description:
+    //     "DevJam is the culminating event of the Headstart series—a two-day coding sprint designed to simulate a real-world team development cycle. It's not just about applying what participants learned in HTML, CSS, and JS—it's about working with other people, solving problems under constraints, and pushing through from idea to something that displays on screen.",
+    //   category: 'tech',
+    //   pubmat: '/events/not-aired.png', // Placeholder image
+    //   alt: 'DevJam: Build Together, Ship Together',
+    // },
   ],
   nov: [],
   dec: [],
