@@ -83,7 +83,20 @@ export const EVENTS_DATA: Record<string, EventType[]> = {
     //   alt: 'DevJam: Build Together, Ship Together',
     // },
   ],
-  nov: [],
+  nov: [
+    {
+      title:
+        'CODE FOR A CAUSE: Empowering Through Knowledge, Standing in Solidarity',
+      slug: 'code-for-a-cause-empowering-through-knowledge-standing-in-solidarity',
+      date: new Date('2025-11-15'),
+      location: 'Gmeet',
+      description:
+        'In times of adversity, every act of compassion counts. As communities continue to recover from the impact of Typhoon Tino, we believe support can come in many forms—including the gift of learning. In partnership with Google Developers Group on Campus – University of San Carlos, USC-Pathways, Innovare: USC Competition Guild, USC Computer and Information Sciences Council, and DOST Scholars Association in USC, we aim to create opportunities for growth and connection. Collective action, no matter how small, can spark meaningful change.',
+      category: 'tech',
+      pubmat: '/events/CodeForACause.jpg',
+      alt: 'CODE FOR A CAUSE: Empowering Through Knowledge, Standing in Solidarity',
+    },
+  ],
   dec: [],
   jan: [],
   feb: [],
