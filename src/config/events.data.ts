@@ -96,6 +96,17 @@ export const EVENTS_DATA: Record<string, EventType[]> = {
       pubmat: '/events/CodeForACause.jpg',
       alt: 'CODE FOR A CAUSE: Empowering Through Knowledge, Standing in Solidarity',
     },
+    {
+      title: 'Git Ready, Blastoff: Collaboration at Light Speed',
+      slug: 'git-ready-blastoff-collaboration-at-light-speed',
+      date: new Date('2025-11-22'),
+      location: 'Gmeet',
+      description:
+        'A hands-on workshop designed to help students and developers navigate the essentials of Git and GitHub. Say goodbye to lost files and messy group projects – learn practical version control skills, streamline collaboration, and build disciplined workflows you can apply in both academic and personal projects.',
+      category: 'tech',
+      pubmat: '/events/GitReady.jpg',
+      alt: 'Git Ready, Blastoff: Collaboration at Light Speed',
+    },
   ],
   dec: [],
   jan: [],
