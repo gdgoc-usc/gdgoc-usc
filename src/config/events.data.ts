@@ -85,8 +85,7 @@ export const EVENTS_DATA: Record<string, EventType[]> = {
   ],
   nov: [
     {
-      title:
-        'CODE FOR A CAUSE: Empowering Through Knowledge, Standing in Solidarity',
+      title: 'Code for a Cause',
       slug: 'code-for-a-cause-empowering-through-knowledge-standing-in-solidarity',
       date: new Date('2025-11-15'),
       location: 'Gmeet',
@@ -106,6 +105,17 @@ export const EVENTS_DATA: Record<string, EventType[]> = {
       category: 'tech',
       pubmat: '/events/GitReady.jpg',
       alt: 'Git Ready, Blastoff: Collaboration at Light Speed',
+    },
+    {
+      title: 'Chain of Thought: An AI and Blockchain Code Camp',
+      slug: 'chain-of-thought-an-ai-an-blockchain-code-camp',
+      date: new Date('2025-11-29'),
+      location: 'DOST Region VII Office',
+      description:
+        "We're bringing together two of today's most disruptive technologies: Artificial Intelligence and Blockchain – in one unforgettable afternoon. From the cryptographic foundations that power decentralized systems to the neural networks driving intelligent machines - this November, we're going hands-on.",
+      category: 'ai/ml',
+      pubmat: '/events/ChainOfThought.jpg',
+      alt: 'Chain of Thought: An AI and Blockchain Code Camp',
     },
   ],
   dec: [],
