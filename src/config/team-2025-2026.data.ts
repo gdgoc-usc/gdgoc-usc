@@ -3,8 +3,8 @@ import type { TeamMember, DepartmentMember } from './team.types';
 export const leadership: TeamMember[] = [
   {
     role: 'Lead',
-    name: 'John Paul Denaya',
-    imageUrl: '/members/Iohann.png',
+    name: 'John Andre Yap',
+    imageUrl: '/members/Jay.png',
   },
   {
     role: 'Lead',
@@ -185,11 +185,6 @@ export const finance: DepartmentMember[] = [
 
 export const technology: DepartmentMember[] = [
   {
-    role: 'Data Science Officer',
-    name: 'John Andre Yap',
-    imageUrl: '/members/John Andre.png',
-  },
-  {
     role: 'AI/ML Officer',
     name: 'Nick Anthony Miras',
     imageUrl: '/members/Nick Anthony.png',
@@ -198,5 +193,15 @@ export const technology: DepartmentMember[] = [
     role: 'Web Dev Officer',
     name: 'Dustin Jesse Balansag',
     imageUrl: '/members/Dustin.png',
+  },
+  {
+    role: 'Data Science Officer',
+    name: 'Elgen Mar Arinasa',
+    imageUrl: '/members/Elgen.png',
+  },
+  {
+    role: 'Cybersecurity Officer',
+    name: 'Jasper Lee Marbella',
+    imageUrl: '/members/Jasper.png',
   },
 ];
