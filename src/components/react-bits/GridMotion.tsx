@@ -6,10 +6,7 @@ interface GridMotionProps {
   gradientColor?: string;
 }
 
-const GridMotion: FC<GridMotionProps> = ({
-  items = [],
-  gradientColor = 'black',
-}) => {
+const GridMotion: FC<GridMotionProps> = ({ items = [], gradientColor }) => {
   const [isDark, setIsDark] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
   const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -23,6 +20,7 @@ const GridMotion: FC<GridMotionProps> = ({
   );
   const combinedItems =
     items.length > 0 ? items.slice(0, totalItems) : defaultItems;
+  const resolvedGradientColor = gradientColor ?? (isDark ? 'black' : 'white');
 
   useEffect(() => {
     const checkDarkMode = () => {
@@ -91,7 +89,7 @@ const GridMotion: FC<GridMotionProps> = ({
       <section
         className='relative flex h-screen w-full items-center justify-center overflow-hidden'
         style={{
-          background: `radial-gradient(circle, ${isDark ? 'black' : 'white'} 0%, transparent 100%)`,
+          background: `radial-gradient(circle, ${resolvedGradientColor} 0%, transparent 100%)`,
         }}
       >
         <div className='pointer-events-none absolute inset-0 z-[4] bg-[length:250px]'></div>

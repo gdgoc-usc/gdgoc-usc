@@ -22,6 +22,7 @@ import {
   Environment,
   ContactShadows,
 } from '@react-three/drei';
+import type { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import * as THREE from 'three';
 
@@ -74,6 +75,29 @@ const PARALLAX_MAG = 0.05;
 const PARALLAX_EASE = 0.12;
 const HOVER_MAG = deg2rad(6);
 const HOVER_EASE = 0.15;
+const SUPPORTED_EXTENSIONS = new Set(['glb', 'gltf', 'fbx', 'obj']);
+
+const isMesh = (obj: THREE.Object3D): obj is THREE.Mesh =>
+  (obj as THREE.Mesh).isMesh === true;
+
+const isShadowCastingLight = (
+  obj: THREE.Object3D
+): obj is THREE.Light & { castShadow: boolean } =>
+  (obj as THREE.Light).isLight === true && 'castShadow' in obj;
+
+const asMaterialArray = (
+  material: THREE.Material | THREE.Material[]
+): THREE.Material[] => (Array.isArray(material) ? material : [material]);
+
+const applyMeshOpacity = (mesh: THREE.Mesh, opacity: number) => {
+  const clamped = Math.min(Math.max(opacity, 0), 1);
+  asMaterialArray(mesh.material).forEach(material => {
+    material.opacity = clamped;
+    if (clamped < 1) {
+      material.transparent = true;
+    }
+  });
+};
 
 const Loader: FC<{ placeholderSrc?: string }> = ({ placeholderSrc }) => {
   const { progress, active } = useProgress();
@@ -100,7 +124,7 @@ const DesktopControls: FC<{
   max: number;
   zoomEnabled: boolean;
 }> = ({ pivot, min, max, zoomEnabled }) => {
-  const ref = useRef<any>(null);
+  const ref = useRef<OrbitControlsImpl | null>(null);
   useFrame(() => ref.current?.target.copy(pivot));
   return (
     <OrbitControls
@@ -165,11 +189,12 @@ const ModelInner: FC<ModelInnerProps> = ({
   const cHov = useRef({ x: 0, y: 0 });
 
   const ext = useMemo(() => url.split('.').pop()!.toLowerCase(), [url]);
+  const isSupported = SUPPORTED_EXTENSIONS.has(ext);
   const content = useMemo<THREE.Object3D | null>(() => {
+    if (!SUPPORTED_EXTENSIONS.has(ext)) return null;
     if (ext === 'glb' || ext === 'gltf') return useGLTF(url).scene.clone();
     if (ext === 'fbx') return useFBX(url).clone();
     if (ext === 'obj') return useLoader(OBJLoader, url).clone();
-    console.error('Unsupported format:', ext);
     return null;
   }, [url, ext]);
 
@@ -186,15 +211,11 @@ const ModelInner: FC<ModelInnerProps> = ({
     g.position.set(-sphere.center.x, -sphere.center.y, -sphere.center.z);
     g.scale.setScalar(s);
 
-    g.traverse((o: any) => {
-      if (o.isMesh) {
-        o.castShadow = true;
-        o.receiveShadow = true;
-        if (fadeIn) {
-          o.material.transparent = true;
-          o.material.opacity = 0;
-        }
-      }
+    g.traverse(obj => {
+      if (!isMesh(obj)) return;
+      obj.castShadow = true;
+      obj.receiveShadow = true;
+      if (fadeIn) applyMeshOpacity(obj, 0);
     });
 
     g.getWorldPosition(pivotW.current);
@@ -221,8 +242,8 @@ const ModelInner: FC<ModelInnerProps> = ({
       const id = setInterval(() => {
         t += 0.05;
         const v = Math.min(t, 1);
-        g.traverse((o: any) => {
-          if (o.isMesh) o.material.opacity = v;
+        g.traverse(obj => {
+          if (isMesh(obj)) applyMeshOpacity(obj, v);
         });
         invalidate();
         if (v === 1) {
@@ -416,7 +437,15 @@ const ModelInner: FC<ModelInnerProps> = ({
     if (need) invalidate();
   });
 
-  if (!content) return null;
+  if (!content) {
+    return isSupported ? null : (
+      <Html center>
+        <div className='rounded-md bg-black/70 px-3 py-2 text-sm text-white'>
+          Unsupported format: {ext.toUpperCase()}
+        </div>
+      </Html>
+    );
+  }
   return (
     <group ref={outer}>
       <group ref={inner}>
@@ -456,7 +485,7 @@ const ModelViewer: FC<ViewerProps> = ({
 }) => {
   useEffect(() => void useGLTF.preload(url), [url]);
   const pivot = useRef(new THREE.Vector3()).current;
-  const contactRef = useRef<THREE.Mesh>(null);
+  const contactRef = useRef<THREE.Mesh | null>(null);
   const rendererRef = useRef<THREE.WebGLRenderer>(null);
   const sceneRef = useRef<THREE.Scene>(null);
   const cameraRef = useRef<THREE.Camera>(null);
@@ -475,11 +504,10 @@ const ModelViewer: FC<ViewerProps> = ({
     if (!g || !s || !c) return;
     g.shadowMap.enabled = false;
     const tmp: { l: THREE.Light; cast: boolean }[] = [];
-    s.traverse((o: any) => {
-      if (o.isLight && 'castShadow' in o) {
-        tmp.push({ l: o, cast: o.castShadow });
-        o.castShadow = false;
-      }
+    s.traverse(obj => {
+      if (!isShadowCastingLight(obj)) return;
+      tmp.push({ l: obj, cast: obj.castShadow });
+      obj.castShadow = false;
     });
     if (contactRef.current) contactRef.current.visible = false;
     g.render(s, c);
@@ -527,7 +555,7 @@ const ModelViewer: FC<ViewerProps> = ({
         style={{ touchAction: 'pan-y pinch-zoom' }}
       >
         {environmentPreset !== 'none' && (
-          <Environment preset={environmentPreset as any} background={false} />
+          <Environment preset={environmentPreset} background={false} />
         )}
 
         <ambientLight intensity={ambientIntensity} />
@@ -543,7 +571,7 @@ const ModelViewer: FC<ViewerProps> = ({
         <directionalLight position={[0, 4, -5]} intensity={rimLightIntensity} />
 
         <ContactShadows
-          ref={contactRef as any}
+          ref={contactRef}
           position={[0, -0.5, 0]}
           opacity={0.35}
           scale={10}

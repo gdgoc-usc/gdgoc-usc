@@ -1,14 +1,15 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { ChevronDown, Users, Images } from 'lucide-react';
+import React, { useState } from 'react';
+import { ChevronDown, Images } from 'lucide-react';
 import TeamDropdown from './TeamDropdown';
 
 interface MoreDropdownProps {
   currentPath?: string;
 }
 
-const MoreDropdown: React.FC<MoreDropdownProps> = ({ currentPath }) => {
+const MoreDropdown: React.FC<MoreDropdownProps> = ({
+  currentPath: _currentPath,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
   const handleToggle = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsOpen(!isOpen);

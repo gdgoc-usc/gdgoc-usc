@@ -1,8 +1,8 @@
 import { EVENTS_DATA } from '@/config/events.data';
-import React, { useState } from 'react';
+import React from 'react';
 import AlbumItem from './AlbumItem.tsx';
 
-const AlbumGrid = () => {
+const AlbumGrid: React.FC = () => {
   const allEvents = Object.values(EVENTS_DATA).flat();
 
   return (

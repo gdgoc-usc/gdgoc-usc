@@ -1,7 +1,22 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { shaderMaterial } from '@react-three/drei';
 import * as THREE from 'three';
+
+type LiquidGlassUniforms = {
+  uTime: { value: number };
+  uScrollProgress: { value: number };
+  uResolution: { value: THREE.Vector2 };
+  uBackgroundTexture: { value: THREE.Texture | null };
+  uDistortionStrength: { value: number };
+  uChromaticAberration: { value: number };
+  uRefractionIndex: { value: number };
+  uGlassThickness: { value: number };
+};
+
+type LiquidGlassShaderMaterial = THREE.ShaderMaterial & {
+  uniforms: LiquidGlassUniforms;
+};
 
 const LiquidGlassMaterial = shaderMaterial(
   {
@@ -159,17 +174,9 @@ function LiquidGlassPlane({ scrollProgress }: { scrollProgress: number }) {
   const meshRef = useRef<THREE.Mesh>(null);
   const { viewport, gl } = useThree();
 
-  // Create render target for background
-  const renderTarget = useMemo(() => {
-    return new THREE.WebGLRenderTarget(
-      gl.domElement.width,
-      gl.domElement.height
-    );
-  }, [gl]);
-
   useFrame(state => {
     if (meshRef.current) {
-      const material = meshRef.current.material as any;
+      const material = meshRef.current.material as LiquidGlassShaderMaterial;
       material.uniforms.uTime.value = state.clock.elapsedTime;
       material.uniforms.uScrollProgress.value = scrollProgress;
       material.uniforms.uResolution.value.set(
