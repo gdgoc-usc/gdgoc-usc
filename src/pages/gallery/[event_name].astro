@@ -5,12 +5,13 @@ import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
 import { Image } from 'astro:assets';
 import Gallery from '@/components/gallery/Gallery';
+import Masonry from '@/components/gallery/Masonry';
 
 export function getStaticPaths() {
   return Object.values(EVENTS_DATA)
     .flat()
-    .map(events => ({
-      params: { event_name: events.slug },
+    .map(event => ({
+      params: { event_name: event.slug },
     }));
 }
 
@@ -26,48 +27,50 @@ const event = Object.values(EVENTS_DATA)
   description='Join the Google Developer Groups on Campus at University of San Carlos. Learn, build, and connect with fellow developers.'
 >
   <Header />
-  <section
-    class='relative flex min-h-screen w-full flex-col items-center justify-center bg-white py-12 dark:bg-black'
-    style='background-image: url(/gdgoc_bg_1.webp); background-size: cover; background-position: center; background-attachment: fixed;'
-  >
-    <div class='mt-10'>
-      <div class='flex justify-center sm:md:lg:xl:mb-4'>
-        <Image
-          src='/gdgoc_logo.svg'
-          alt='GDGoC Logo'
-          width={80}
-          height={80}
-          class='h-24 w-24 md:h-20 md:w-20'
-        />
+  <main class='flex min-h-screen flex-col'>
+    <section
+      class='relative w-full flex-col items-center justify-center bg-white py-12 dark:bg-black'
+      style='background-image: url(/gdgoc_bg_1.webp); background-size: cover; background-position: center; background-attachment: fixed;'
+    >
+      <div class='mt-10'>
+        <div class='flex justify-center sm:md:lg:xl:mb-4'>
+          <Image
+            src='/gdgoc_logo.svg'
+            alt='GDGoC Logo'
+            width={80}
+            height={80}
+            class='h-24 w-24 md:h-20 md:w-20'
+          />
+        </div>
+        <div class='text-center'>
+          <h1
+            class='mb-4 text-4xl font-bold tracking-tighter text-black md:text-6xl dark:text-white'
+          >
+            {event.title}
+          </h1>
+          <p
+            class='mx-auto mb-4 max-w-4xl text-xl leading-relaxed text-gray-700 sm:text-2xl md:text-3xl dark:text-gray-200'
+          >
+            {event.description}
+          </p>
+          <p
+            class='mx-auto mb-4 max-w-4xl text-lg leading-relaxed text-gray-700 sm:text-2xl md:text-3xl dark:text-gray-200'
+          >
+            {
+              event.date.toLocaleDateString('en-US', {
+                month: 'long',
+                year: 'numeric',
+                day: 'numeric',
+              })
+            }
+          </p>
+        </div>
       </div>
-      <div class='text-center'>
-        <h1
-          class='mb-4 text-4xl font-bold tracking-tighter text-black md:text-6xl dark:text-white'
-        >
-          {event.title}
-        </h1>
-        <p
-          class='mx-auto mb-4 max-w-4xl text-xl leading-relaxed text-gray-700 sm:text-2xl md:text-3xl dark:text-gray-200'
-        >
-          {event.description}
-        </p>
-        <p
-          class='mx-auto mb-4 max-w-4xl text-lg leading-relaxed text-gray-700 sm:text-2xl md:text-3xl dark:text-gray-200'
-        >
-          {
-            event.date.toLocaleDateString('en-US', {
-              month: 'long',
-              year: 'numeric',
-              day: 'numeric',
-            })
-          }
-        </p>
-      </div>
-    </div>
 
-    <Gallery client:load />
-    <!---Place images here dustin or create your own component -->
-  </section>
+      <Gallery client:load event_slug={event.slug} />
+      <!---Place images here dustin or create your own component -->
+    </section>
 
-  <Footer />
+    <Footer />
+  </main>
 </Layout>

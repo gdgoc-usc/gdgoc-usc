@@ -55,7 +55,7 @@ export const EVENTS_DATA: Record<string, EventType[]> = {
       description:
         "This workshop is designed to equip students with essential skills needed for academic projects, portfolios, and personal websites. You'll walk away with your live mini-site, a deeper understanding of web development, and confidence to explore further.",
       category: 'web',
-      pubmat: '/events/orbitingtheweb.png',
+      pubmat: '/events/OrbitingTheWeb.png',
       alt: 'Orbiting the Web: Foundations of Web Development',
     },
   ],
