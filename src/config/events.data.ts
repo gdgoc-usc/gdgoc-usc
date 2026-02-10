@@ -120,7 +120,31 @@ export const EVENTS_DATA: Record<string, EventType[]> = {
   ],
   dec: [],
   jan: [],
-  feb: [],
+  feb: [
+    {
+      title: 'Beyond Tutorials: Real-World Data Science in Practice',
+      slug: 'boyond-tutorials-real-world-data-science-in-practice',
+      date: new Date('2026-2-10'),
+      location: 'Gmeet',
+      description:
+        "Explore a data analytics repository featuring causal inference, clustering, and target trial emulation in Python. Then dive into an independent flu vs. COVID-19 time-series analysis using public health datasets. See how data scientists frame problems, choose appropriate methods, and interpret results, with transparent reasoning about what worked, what didn't, and why. ",
+      category: 'ds',
+      pubmat: '/events/BeyondTutorials.jpg',
+      alt: 'Beyond Tutorials: Real-World Data Science in Practice',
+    },
+    {
+      title:
+        'AI on the Cloud: Train Models without a GPU using AWS and Google Cloud',
+      slug: 'ai-on-the-cloud-train-models-without-a-gpu-using-aws-and-google-cloud',
+      date: new Date('2026-2-11'),
+      location: 'Gmeet',
+      description:
+        'Local machines can only take you so far. This workshop introduces you to cloud-based machine learning workflows. Participants will gain hands-on experience with AWS SageMaker and Google Cloud Vertex AI, learning how to set up cloud notebooks, launch training jobs, and utilize managed ML infrastructure.',
+      category: 'ai/ml',
+      pubmat: '/events/AIOnTheCloud.jpg',
+      alt: 'AI on the Cloud: Train Models without a GPU using AWS and Google Cloud',
+    },
+  ],
   mar: [],
   apr: [],
   may: [],

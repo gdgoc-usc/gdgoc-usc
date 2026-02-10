@@ -6,7 +6,6 @@ import MobileTeamDropdown from './MobileTeamDropdown.tsx';
 import { Menu, X, UserPlus } from 'lucide-react';
 import HeaderLink from './HeaderLink.astro';
 import MobileHeaderLink from './MobileHeaderLink.astro';
-import AnnouncementModal from '../AnnouncementModal.tsx';
 import MoreDropdown from './MoreDropdown';
 
 const navLinks = [
@@ -101,8 +100,6 @@ const navLinks = [
     </div>
   </div>
 </header>
-
-<AnnouncementModal client:load />
 
 <script>
   const mobileMenuButton = document.getElementById('mobile-menu-button');
