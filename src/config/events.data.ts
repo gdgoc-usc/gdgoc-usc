@@ -85,7 +85,8 @@ export const EVENTS_DATA: Record<string, EventType[]> = {
   ],
   nov: [
     {
-      title: 'Code for a Cause',
+      title:
+        'Code for a Cause: Empowering Through Knowledge, Standing in Solidarity',
       slug: 'code-for-a-cause-empowering-through-knowledge-standing-in-solidarity',
       date: new Date('2025-11-15'),
       location: 'Gmeet',
@@ -143,6 +144,17 @@ export const EVENTS_DATA: Record<string, EventType[]> = {
       category: 'ai/ml',
       pubmat: '/events/AIOnTheCloud.jpg',
       alt: 'AI on the Cloud: Train Models without a GPU using AWS and Google Cloud',
+    },
+    {
+      title: 'Beyond the Prompt: Be an MVP at MVPs',
+      slug: 'beyond-the-prompt-be-an-mvp-at-mvps',
+      date: new Date('2026-2-28'),
+      location: 'USC-TC LB447',
+      description:
+        "Join us for an exciting hands-on workshop where you'll learn to turn your ideas into functional apps and software solutions using AI-powered workflows built for speed and execution. Say goodbye to mere vibe coding as you dive deep into structured prototyping and implementation with agent orchestration. Discover the best practices and principles for effective AI-assisted development. We will guide you on how to maximize your AI assistants within your IDEs to elevate your coding game. This workshop is perfect for hackathons and real-world MVPs—transforming days of work into hours and hours into minutes. Whether you're using Claude Code, Codex, or Antigravity, you’ll walk away with the skills to become an MVP at rapid-prototyping MVPs. ",
+      category: 'ai/ml',
+      pubmat: '/events/BeyondThePrompt.jpg',
+      alt: 'Beyond the Prompt: Be an MVP at MVPs',
     },
   ],
   mar: [],
