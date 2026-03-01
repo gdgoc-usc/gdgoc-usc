@@ -24,11 +24,7 @@ const Selected = ({ event }: { event: EventType }) => {
           <p className='text-sm'>{formatDateToLongString(event.date)}</p>
         </div>
       </div>
-      <img
-        src={event.pubmat}
-        alt={event.alt}
-        className='mt-4 w-full rounded-xl object-cover'
-      />
+
       <p className='mt-4 w-full pl-12 text-sm'>{event.description}</p>
       <div className='mt-4 flex w-full items-center gap-4'>
         <div className='w-full flex-1'>
