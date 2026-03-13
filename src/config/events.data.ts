@@ -16,6 +16,7 @@ export const categoryColors: Record<string, string> = {
   'ai/ml': 'bg-red-400 dark:bg-red-500',
   org: 'bg-yellow-400 dark:bg-yellow-500',
   tech: 'bg-indigo-400 dark:bg-indigo-500',
+  cyber: 'bg-purple-900 dark:bg-purple-950',
   default: 'bg-gray-400 dark:bg-gray-500',
 };
 
@@ -157,7 +158,34 @@ export const EVENTS_DATA: Record<string, EventType[]> = {
       alt: 'Beyond the Prompt: Be an MVP at MVPs',
     },
   ],
-  mar: [],
+  mar: [
+    {
+      title: 'RACCETCon 2026',
+      slug: 'raccetcon-2026',
+      date: new Date('2026-03-28'),
+      location: 'USC-TC CN Lab | USC-TC Rigney Hall',
+      description: `Cloud. Data. ML. IoT. Agentic development.
+                    Ever wondered how they actually connect?
+                    Over two days, we're running six back-to-back surprises — stepping back to see the full system, then stepping in to build it! 🛠️
+                    In celebration of RACCETCon 2026, join us on March 10–11, 2026, for two days of insightful tech lectures and exciting hands-on sessions as part of their pre-conference workshops, covering a variety of topics coming from our GDG USC’s very own tech department (…and campus lead)!
+                    Expect real provisioning in the cloud, structured data workflows, live device-to-cloud pipelines, and ML systems that go all the way from training to deployment 🤖 — plus a grounded look at agentic development beyond the buzzwords.
+                    Whether in the computer lab or Rigney Hall, we're inviting you to be part of the build! ✨`,
+      category: 'tech',
+      pubmat: '/events/RACCETCon2026.jpg',
+      alt: 'RACCETCon 2026',
+    },
+    {
+      title: 'GameJams: Capture The Flag',
+      slug: 'gamejams-capture-the-flag',
+      date: new Date('2026-03-29'),
+      location: 'USC-TC LB447',
+      description:
+        "💻 𝗪𝗮𝗻𝘁 𝘁𝗼 𝘁𝗿𝘆 𝘆𝗼𝘂𝗿 𝗵𝗮𝗻𝗱 𝗮𝘁 𝗯𝗲𝗶𝗻𝗴 𝗮 𝗵𝗮𝗰𝗸𝗲𝗿? Well now you can, because GDGOC and CISCO present to you our first ever cybersecurity event in the form of 𝗖𝗮𝗽𝘁𝘂𝗿𝗲 𝘁𝗵𝗲 𝗙𝗹𝗮𝗴! The event will feature a seminar & workshop and a competition to apply your skills. Beginner or experienced, you're welcome to learn and see what it takes to get into cybersecurity!",
+      category: 'cyber',
+      pubmat: '/events/GameJams.jpg',
+      alt: 'GameJams: Capture The Flag',
+    },
+  ],
   apr: [],
   may: [],
   jun: [],
