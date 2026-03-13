@@ -11,14 +11,11 @@ const AlbumItem: React.FC<AlbumItemProps> = ({ src, slug, alt, className }) => {
   const [imageloaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
 
-  // Will fix this in the future since the onLoad and onError is not working properly
   const handleImageLoad = () => {
-    alert('✅ onLoad fired');
     setImageLoaded(true);
   };
 
   const handleImageError = () => {
-    alert('✅ onError fired');
     setImageError(true);
   };
   return (
