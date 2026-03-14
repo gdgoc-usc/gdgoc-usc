@@ -160,9 +160,20 @@ export const EVENTS_DATA: Record<string, EventType[]> = {
   ],
   mar: [
     {
+      title: 'GameJams: Capture The Flag',
+      slug: 'gamejams-capture-the-flag',
+      date: new Date('2026-03-9'),
+      location: 'USC-TC LB447',
+      description:
+        "💻 𝗪𝗮𝗻𝘁 𝘁𝗼 𝘁𝗿𝘆 𝘆𝗼𝘂𝗿 𝗵𝗮𝗻𝗱 𝗮𝘁 𝗯𝗲𝗶𝗻𝗴 𝗮 𝗵𝗮𝗰𝗸𝗲𝗿? Well now you can, because GDGOC and CISCO present to you our first ever cybersecurity event in the form of 𝗖𝗮𝗽𝘁𝘂𝗿𝗲 𝘁𝗵𝗲 𝗙𝗹𝗮𝗴! The event will feature a seminar & workshop and a competition to apply your skills. Beginner or experienced, you're welcome to learn and see what it takes to get into cybersecurity!",
+      category: 'cyber',
+      pubmat: '/events/GameJams.jpg',
+      alt: 'GameJams: Capture The Flag',
+    },
+    {
       title: 'RACCETCon 2026',
       slug: 'raccetcon-2026',
-      date: new Date('2026-03-28'),
+      date: new Date('2026-03-10'),
       location: 'USC-TC CN Lab | USC-TC Rigney Hall',
       description: `Cloud. Data. ML. IoT. Agentic development.
                     Ever wondered how they actually connect?
@@ -175,15 +186,16 @@ export const EVENTS_DATA: Record<string, EventType[]> = {
       alt: 'RACCETCon 2026',
     },
     {
-      title: 'GameJams: Capture The Flag',
-      slug: 'gamejams-capture-the-flag',
-      date: new Date('2026-03-29'),
-      location: 'USC-TC LB447',
-      description:
-        "💻 𝗪𝗮𝗻𝘁 𝘁𝗼 𝘁𝗿𝘆 𝘆𝗼𝘂𝗿 𝗵𝗮𝗻𝗱 𝗮𝘁 𝗯𝗲𝗶𝗻𝗴 𝗮 𝗵𝗮𝗰𝗸𝗲𝗿? Well now you can, because GDGOC and CISCO present to you our first ever cybersecurity event in the form of 𝗖𝗮𝗽𝘁𝘂𝗿𝗲 𝘁𝗵𝗲 𝗙𝗹𝗮𝗴! The event will feature a seminar & workshop and a competition to apply your skills. Beginner or experienced, you're welcome to learn and see what it takes to get into cybersecurity!",
-      category: 'cyber',
-      pubmat: '/events/GameJams.jpg',
-      alt: 'GameJams: Capture The Flag',
+      title: 'Catch Codey',
+      slug: 'catch-codey',
+      date: new Date('2026-03-13'),
+      location: 'Ramon Duterte Memorial National High School',
+      description: `𝐋𝐨𝐨𝐤𝐬 𝐥𝐢𝐤𝐞 𝐆𝐃𝐆 𝐎𝐧 𝐂𝐚𝐦𝐩𝐮𝐬 𝐔𝐒𝐂 𝐢𝐬 𝐠𝐨𝐢𝐧𝐠… 𝐨𝐟𝐟 𝐜𝐚𝐦𝐩𝐮𝐬?! 👀🏫
+                    DEVCON Kids Cebu takes GDG USC along for a ride and is heading to Ramon Duterte Memorial National High School! Bringing the fun of Scratch coding to the students of Ramon Duterte Memorial National High School as they learn to create their own games, stories, and animations with Codey leading the way 🚀🤖
+                    Will the students of RDMNHS finally catch Codey? 🏃‍♂️🐱`,
+      category: 'tech',
+      pubmat: '/events/CatchCodey.jpg',
+      alt: 'Catch Codey',
     },
   ],
   apr: [],
