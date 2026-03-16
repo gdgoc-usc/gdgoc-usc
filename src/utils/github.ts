@@ -19,7 +19,7 @@ export const fetchEventImages = async (
       .filter((file: any) => /\.(webp|jpg|jpeg|png)$/i.test(file.name))
       .map((file: any, index: number) => {
         const originalUrl = `https://cdn.jsdelivr.net/gh/gdgoc-usc/gdgoc-website-gallery@master/${event_slug}/${file.name}`;
-        const optimizedUrl = `https://res.cloudinary.com/your-cloud-name/image/fetch/w_800,f_auto,q_auto/${originalUrl}`;
+        const optimizedUrl = `https://wsrv.nl/?url=${encodeURIComponent(originalUrl)}&w=800&output=webp&q=80`;
 
         return {
           id: index,
