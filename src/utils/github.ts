@@ -16,7 +16,7 @@ export const fetchEventImages = async (
     const data = await response.json();
 
     return data
-      .filter((file: any) => /\.(webp|jpg|jpeg|png)$/i.test(file.name))
+      .filter((file: any) => /\.(webp|jpg|jpeg|png|heic)$/i.test(file.name))
       .map((file: any, index: number) => {
         const originalUrl = `https://cdn.jsdelivr.net/gh/gdgoc-usc/gdgoc-website-gallery@master/${event_slug}/${file.name}`;
         const optimizedUrl = `https://wsrv.nl/?url=${encodeURIComponent(originalUrl)}&w=800&output=webp&q=80`;

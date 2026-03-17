@@ -14,6 +14,7 @@ const navLinks = [
   { href: '#events', text: 'Events' },
   { href: '/faq', text: 'FAQ' },
   { href: 'https://merch.gdgoc.tech', text: 'Merch' },
+  { href: '/gallery', text: 'Gallery' },
 ];
 ---
 
@@ -87,7 +88,6 @@ const navLinks = [
               <MobileHeaderLink href={link.href} text={link.text} />
             ))
           }
-          <MobileHeaderLink href={'/gallery'} text={'Gallery'} />
           <MobileTeamDropdown client:load currentPath={Astro.url.pathname} />
           <a
             href='#membership'
